@@ -1,4 +1,8 @@
 package com.lt.business;
 
-public class NotificationImpl {
+public class NotificationImpl implements PaymentNotificationInterface{
+    @Override
+    public String getBillDetails() {
+        return null;
+    }
 }
