@@ -1,13 +1,19 @@
 package com.lt.business;
 
+import java.io.IOException;
+
 public interface StudentInterface{
-    public String viewReportCard();
-    public  String login();
-    public String addCourse();
-    public String removeCourse();
-    public String payFees();
-    public String updateDetails();
-    public void viewCourse();
+
+    public  void login();
+    public void payFees();
+    public void updateDetails();
+    public void viewReportCard();
+
+    public void studentViewAllCourses();
+    public void viewAvailableCourses();
+    public void registerToCourse() throws IOException;
+    public void withdrawFromCourse() throws IOException;
+    public void viewAllRegisteredCourses();
 
 }
 

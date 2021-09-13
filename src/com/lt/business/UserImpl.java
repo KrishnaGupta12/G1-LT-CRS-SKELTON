@@ -1,13 +1,14 @@
 package com.lt.business;
 
 public class UserImpl implements UserInterface{
+
     @Override
-    public String getUserName() {
-        return null;
+    public void getUserName() {
+
     }
 
     @Override
-    public String gatPassword() {
-        return null;
+    public void gatPassword() {
+
     }
 }

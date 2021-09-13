@@ -2,21 +2,23 @@ package com.lt.business;
 
 import com.lt.bean.Courses;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CourseImpl implements CourseInterface {
+
     @Override
-    public List<Courses> addCourse() {
+    public ArrayList<Courses> addCourse() {
         return null;
     }
 
     @Override
-    public String deleteCourse() {
-        return null;
+    public void deleteCourse() {
+
     }
 
     @Override
-    public List<Courses> getCourseCatalog() {
+    public ArrayList<Courses> getCourseCatalog() {
         return null;
     }
 

@@ -1,38 +1,51 @@
 package com.lt.business;
 
+import java.io.IOException;
+
 public class StudentImpl implements StudentInterface {
+
     @Override
-    public String viewReportCard() {
-        return null;
+    public void login() {
+
     }
 
     @Override
-    public String login() {
-        return null;
+    public void payFees() {
+
     }
 
     @Override
-    public String addCourse() {
-        return null;
+    public void updateDetails() {
+
     }
 
     @Override
-    public String removeCourse() {
-        return null;
+    public void viewReportCard() {
+
     }
 
     @Override
-    public String payFees() {
-        return null;
+    public void studentViewAllCourses() {
+
     }
 
     @Override
-    public String updateDetails() {
-        return null;
+    public void viewAvailableCourses() {
+
     }
 
     @Override
-    public void viewCourse() {
+    public void registerToCourse() throws IOException {
+
+    }
+
+    @Override
+    public void withdrawFromCourse() throws IOException {
+
+    }
+
+    @Override
+    public void viewAllRegisteredCourses() {
 
     }
 }
