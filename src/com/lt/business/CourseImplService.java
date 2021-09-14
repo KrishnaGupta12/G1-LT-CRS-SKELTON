@@ -5,7 +5,7 @@ import com.lt.bean.Courses;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseImpl implements CourseInterface {
+public class CourseImplService implements CourseInterface {
 
     @Override
     public ArrayList<Courses> addCourse() {

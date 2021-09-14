@@ -6,7 +6,7 @@ import com.lt.bean.Student;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfessorImpl implements ProfessorInterface{
+public class ProfessorImplService implements ProfessorInterface{
 
     @Override
     public void login() {

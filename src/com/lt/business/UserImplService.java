@@ -1,6 +1,6 @@
 package com.lt.business;
 
-public class UserImpl implements UserInterface{
+public class UserImplService implements UserInterface{
 
     @Override
     public void getUserName() {
