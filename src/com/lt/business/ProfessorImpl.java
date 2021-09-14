@@ -1,8 +1,10 @@
 package com.lt.business;
 
 import com.lt.bean.Courses;
+import com.lt.bean.Student;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfessorImpl implements ProfessorInterface{
 
@@ -12,7 +14,17 @@ public class ProfessorImpl implements ProfessorInterface{
     }
 
     @Override
-    public ArrayList<Courses> viewFullCourse() {
+    public List<Courses> viewFullCourses() {
+        return null;
+    }
+
+    @Override
+    public void addGrade() {
+
+    }
+
+    @Override
+    public List<Student> viewRegisteredStudents() {
         return null;
     }
 }

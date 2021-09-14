@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface CourseInterface {
-    public ArrayList<Courses> addCourse();
+    public List<Courses> addCourse();
     public  void deleteCourse();
-    public ArrayList<Courses> getCourseCatalog();
+    public List<Courses> getCourseCatalog();
     public  boolean isCourseAvailable();
 }

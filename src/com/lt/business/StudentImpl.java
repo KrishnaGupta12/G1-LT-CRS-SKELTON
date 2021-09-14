@@ -1,8 +1,13 @@
 package com.lt.business;
 
+import com.lt.bean.CourseCatalog;
+import com.lt.bean.Courses;
+
 import java.io.IOException;
+import java.util.List;
 
 public class StudentImpl implements StudentInterface {
+
 
     @Override
     public void login() {
@@ -25,13 +30,13 @@ public class StudentImpl implements StudentInterface {
     }
 
     @Override
-    public void studentViewAllCourses() {
-
+    public List<CourseCatalog> studentViewAllCourses() {
+        return null;
     }
 
     @Override
-    public void viewAvailableCourses() {
-
+    public List<Courses> viewAvailableCourses() {
+        return null;
     }
 
     @Override
@@ -45,7 +50,7 @@ public class StudentImpl implements StudentInterface {
     }
 
     @Override
-    public void viewAllRegisteredCourses() {
-
+    public List<Courses> viewAllRegisteredCourses() {
+        return null;
     }
 }

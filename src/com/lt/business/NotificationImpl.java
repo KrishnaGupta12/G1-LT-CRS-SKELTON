@@ -6,4 +6,9 @@ public class NotificationImpl implements PaymentNotificationInterface{
     public void getBillDetails() {
 
     }
+
+    @Override
+    public void sendNotification() {
+
+    }
 }

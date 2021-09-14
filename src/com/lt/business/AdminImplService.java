@@ -5,8 +5,9 @@ import com.lt.bean.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class AdminImpl implements AdminInterface{
+public class AdminImplService implements AdminInterface{
 
 
     @Override
@@ -20,8 +21,8 @@ public class AdminImpl implements AdminInterface{
     }
 
     @Override
-    public void approveStudent() {
-
+    public boolean approveStudent() {
+        return false;
     }
 
     @Override
@@ -45,8 +46,8 @@ public class AdminImpl implements AdminInterface{
     }
 
     @Override
-    public void displayACourse() throws IOException {
-
+    public List<Courses> displayACourse() throws IOException {
+        return null;
     }
 
     @Override
@@ -55,18 +56,17 @@ public class AdminImpl implements AdminInterface{
     }
 
     @Override
-    public void adminViewAllCourses() {
-
-    }
-
-    @Override
-    public ArrayList<Courses> viewFullCourses() {
+    public List<Courses> adminViewAllCourses() {
         return null;
     }
 
     @Override
-    public void viewRegisteredStudents() throws IOException {
-
+    public List<Courses> viewFullCourses() {
+        return null;
     }
 
+    @Override
+    public List<Student> viewRegisteredStudents() throws IOException {
+        return null;
+    }
 }

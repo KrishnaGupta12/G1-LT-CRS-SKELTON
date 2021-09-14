@@ -5,21 +5,22 @@ import com.lt.bean.Student;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface AdminInterface {
     public void adminLogin();
     public void addProfessor();
-    public void approveStudent();
+    public boolean approveStudent();
 
     public void generateReportCard();
     public void createCourse() throws IOException;
     public void deleteCourse() throws IOException;
     public void editCourse() throws IOException;
-    public void displayACourse() throws IOException;
+    public List<Courses> displayACourse() throws IOException;
     public void registerStudent() throws IOException;
-    public void adminViewAllCourses();
-    public ArrayList<Courses> viewFullCourses();
-    public void viewRegisteredStudents() throws IOException;
+    public List<Courses> adminViewAllCourses();
+    public List<Courses> viewFullCourses();
+    public List<Student> viewRegisteredStudents() throws IOException;
 
 
 }

@@ -15,7 +15,10 @@ public class AdminMenu {
             System.out.println("3. Add course ");
             System.out.println("4. Delete course");
             System.out.println("5. Generate report cards");
-            System.out.println("6. Exit");
+            System.out.println("6. Edit Course");
+            System.out.println("7. View All Courses");
+            System.out.println("8. View Registered Student for Courses");
+            System.out.println("9. Exit");
             Scanner sc = new Scanner(System.in);
             int task = sc.nextInt();
             switch (task) {
@@ -39,8 +42,20 @@ public class AdminMenu {
                     System.out.println("Generate report cards");
                     break;
 
-
                 case 6:
+                    System.out.println("Edit Course");
+                    break;
+
+                case 7:
+                    System.out.println("View All Courses");
+                    break;
+
+                case 8:
+                    System.out.println("View Registered Student for Courses");
+                    break;
+
+
+                case 9:
                     System.out.println("Exit");
                     System.exit(0);
                 default:
