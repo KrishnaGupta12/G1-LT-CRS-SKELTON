@@ -5,10 +5,14 @@ import com.lt.bean.Student;
 import com.lt.bean.User;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
-import static com.lt.dao.StudentDao.studentsList;
+import static com.lt.dao.CourseCatalogDao.coursesList;
+import static com.lt.dao.CourseCatalogDao.coursesMap;
+import static com.lt.dao.StudentDao.map;
+//import static com.lt.dao.StudentDao.studentsList;
 
 public class StudentImplService extends User implements StudentInterface {
 
@@ -29,46 +33,40 @@ public class StudentImplService extends User implements StudentInterface {
 
     @Override
     public boolean signUp(Student student) {
-        studentsList.add(student);
-        System.out.println(studentsList);
+        map.put(student.getStudentEmail(),student);
+        Set<String> set= map.keySet();
+        Iterator iterator= set.iterator();
+        while (iterator.hasNext()){
+            System.out.println(map.get(iterator.next()));
+        }
         return true;
     }
 
     @Override
-    public List<String> studentViewAllCourses() {
-        List<String> courseList = new ArrayList<String>();
-        courseList.add("Java");
-        courseList.add("Advance Java");
-        courseList.add("Jdbc");
-        courseList.add("Servelet");
-        courseList.add("Jsp");
-        courseList.add("Spring");
-        courseList.add("SpringBoot");
-        courseList.add("sql");
-        courseList.add("MangoDB");
-        courseList.add("mysql");
-        courseList.add("html");
-        courseList.add("css");
-        courseList.add("javascripta");
-        courseList.add("Angular");
-
-        for (int i = 0; i < courseList.size(); i++) {
-            // prints out the courses within the course list
-            System.out.println("All Courses : "+ courseList.get(i));
+    public void studentViewAllCourses() {
+        for (Courses courses:coursesList) {
+            System.out.println(courses);
         }
-        return courseList;
     }
 
 
-
-
     @Override
-    public List<Courses> viewAvailableCourses() {
-        return null;
+    public void viewAvailableCourses() {
+        for (Courses courses:coursesList) {
+            System.out.println(courses);
+        }
     }
 
     @Override
-    public void registerToCourse() throws IOException {
+    public boolean registerToCourse(Courses newCourses) {
+
+        coursesMap.put(newCourses.getCourseId(), newCourses);
+        Set<Long> set= coursesMap.keySet();
+        Iterator iterator= set.iterator();
+        while (iterator.hasNext()){
+            System.out.println(coursesMap.get(iterator.next()));
+        }
+        return true;
 
     }
 

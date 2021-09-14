@@ -1,6 +1,7 @@
 package com.lt.bean;
 
 import java.util.Date;
+import java.util.List;
 
 public class Student {
     private long studentId;
@@ -8,16 +9,19 @@ public class Student {
     private String studentEmail;
     private char gender;
     private Date studentDOB;
+    private String passWord;
+    private List<Courses> listCourses;
 
     public Student() {
     }
 
-    public Student(long studentId, String studentName, String studentEmail, char gender, Date studentDOB) {
+    public Student(long studentId, String studentName, String studentEmail, char gender, Date studentDOB, String passWord) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentEmail = studentEmail;
         this.gender = gender;
         this.studentDOB = studentDOB;
+        this.passWord = passWord;
     }
 
     public long getStudentId() {
@@ -54,6 +58,14 @@ public class Student {
 
     public Date getStudentDOB() {
         return studentDOB;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
     public void setStudentDOB(Date studentDOB) {

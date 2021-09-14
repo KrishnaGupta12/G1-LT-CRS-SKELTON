@@ -13,9 +13,9 @@ public interface StudentInterface{
     public void viewReportCard();
     public boolean signUp(Student student);
 
-    public List<String> studentViewAllCourses();
-    public List<Courses> viewAvailableCourses();
-    public void registerToCourse() throws IOException;
+    public void studentViewAllCourses();
+    public void viewAvailableCourses();
+    public boolean registerToCourse(Courses courses);
     public void withdrawFromCourse() throws IOException;
     public List<Courses> viewAllRegisteredCourses();
 

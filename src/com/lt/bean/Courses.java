@@ -4,9 +4,23 @@ public class Courses {
     private long courseId;
     private String courseName;
     private double courseFee;
+    private String courseType;
+    private String courseDuration;
+    private String courseDetails;
+    private long noOfStudent;
+    private long professorId;
+
+    public Courses(long courseId, String courseName) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseFee = courseFee;
+        this.courseType = courseType;
+        this.courseDuration = courseDuration;
+        this.courseDetails = courseDetails;
+    }
 
     public Courses(){}
-    public Courses(long courseId, String courseName, double courseFee, String courseType, double courseDuration, String courseDetails, long noOfStudent, long professorId) {
+    public Courses(long courseId, String courseName, double courseFee, String courseType, String courseDuration, String courseDetails, long noOfStudent, long professorId) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseFee = courseFee;
@@ -17,11 +31,6 @@ public class Courses {
         this.professorId = professorId;
     }
 
-    private String courseType;
-    private double courseDuration;
-    private String courseDetails;
-    private long noOfStudent;
-    private long professorId;
 
     public long getCourseId() {
         return courseId;
@@ -55,11 +64,11 @@ public class Courses {
         this.courseType = courseType;
     }
 
-    public double getCourseDuration() {
+    public String getCourseDuration() {
         return courseDuration;
     }
 
-    public void setCourseDuration(double courseDuration) {
+    public void setCourseDuration(String courseDuration) {
         this.courseDuration = courseDuration;
     }
 
@@ -85,5 +94,17 @@ public class Courses {
 
     public void setProfessorId(long professorId) {
         this.professorId = professorId;
+    }
+
+    @Override
+    public String toString() {
+        return "Courses{" +
+                "courseId=" + courseId +
+                ", courseName='" + courseName + '\'' +
+                ", courseFee=" + courseFee +
+                ", courseType='" + courseType + '\'' +
+                ", courseDuration='" + courseDuration + '\'' +
+                ", courseDetails='" + courseDetails + '\'' +
+                '}';
     }
 }

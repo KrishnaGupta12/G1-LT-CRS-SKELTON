@@ -3,6 +3,7 @@ package com.lt.bean;
 public class Payment {
     private long billingId;
     private double billingAmount;
+   // private Boolean type;
 
     public Payment(){}
     public Payment(long billingId, double billingAmount) {
