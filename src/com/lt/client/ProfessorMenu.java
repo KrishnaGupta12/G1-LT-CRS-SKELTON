@@ -1,10 +1,18 @@
 package com.lt.client;
 
+import com.lt.bean.Courses;
+import com.lt.business.ProfessorImplService;
+import com.lt.business.ProfessorInterface;
+import com.lt.business.StudentImplService;
+
 import java.util.Scanner;
 
 public class ProfessorMenu {
-    public void professorSession() {
-        System.out.println("Welcome To Professor. Have a Good day!!");
+
+    public void professorSession(String userName) {
+        System.out.println("Welcome " + userName + " to your panel. Have a Good day!!");
+        System.out.println("------------------------------------------------------------");
+        ProfessorImplService professorImplService = new ProfessorImplService();
         Boolean permission = true;
         while (permission) {
             System.out.println("Choose your Tasks");
@@ -18,6 +26,9 @@ public class ProfessorMenu {
             switch (task) {
                 case 1:
                     System.out.println("View Course");
+                    Courses courses = new Courses();
+                    professorImplService.viewFullCourses();
+
                     break;
 
                 case 2:
