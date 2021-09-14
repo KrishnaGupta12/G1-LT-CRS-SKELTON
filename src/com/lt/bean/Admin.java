@@ -7,6 +7,17 @@ public class Admin {
     private String adminEmail;
     private String adminMobileNo;
 
+    public Admin()
+    {
+    }
+
+    public Admin(long adminId, String adminName, String adminEmail, String adminMobileNo) {
+        this.adminId = adminId;
+        this.adminName = adminName;
+        this.adminEmail = adminEmail;
+        this.adminMobileNo = adminMobileNo;
+    }
+
     public long getAdminId() {
         return adminId;
     }

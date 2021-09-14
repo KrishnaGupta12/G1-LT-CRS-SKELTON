@@ -5,6 +5,14 @@ public class Notification {
     private boolean notificationStatus;
     private String notificationMassages;
 
+    public Notification(){}
+
+    public Notification(long notificationId, boolean notificationStatus, String notificationMassages) {
+        this.notificationId = notificationId;
+        this.notificationStatus = notificationStatus;
+        this.notificationMassages = notificationMassages;
+    }
+
     public long getNotificationId() {
         return notificationId;
     }

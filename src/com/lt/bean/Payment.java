@@ -4,6 +4,12 @@ public class Payment {
     private long billingId;
     private double billingAmount;
 
+    public Payment(){}
+    public Payment(long billingId, double billingAmount) {
+        this.billingId = billingId;
+        this.billingAmount = billingAmount;
+    }
+
     public long getBillingId() {
         return billingId;
     }

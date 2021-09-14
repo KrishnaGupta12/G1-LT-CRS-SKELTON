@@ -5,6 +5,13 @@ public class CourseCatalog {
     private long professorId;
     private long courseCatalogId;
 
+    public  CourseCatalog(){}
+    public CourseCatalog(long courseId, long professorId, long courseCatalogId) {
+        this.courseId = courseId;
+        this.professorId = professorId;
+        this.courseCatalogId = courseCatalogId;
+    }
+
     public long getCourseId() {
         return courseId;
     }

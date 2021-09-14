@@ -4,6 +4,19 @@ public class Courses {
     private long courseId;
     private String courseName;
     private double courseFee;
+
+    public Courses(){}
+    public Courses(long courseId, String courseName, double courseFee, String courseType, double courseDuration, String courseDetails, long noOfStudent, long professorId) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseFee = courseFee;
+        this.courseType = courseType;
+        this.courseDuration = courseDuration;
+        this.courseDetails = courseDetails;
+        this.noOfStudent = noOfStudent;
+        this.professorId = professorId;
+    }
+
     private String courseType;
     private double courseDuration;
     private String courseDetails;

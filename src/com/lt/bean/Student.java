@@ -9,6 +9,17 @@ public class Student {
     private char gender;
     private Date studentDOB;
 
+    public Student() {
+    }
+
+    public Student(long studentId, String studentName, String studentEmail, char gender, Date studentDOB) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.studentEmail = studentEmail;
+        this.gender = gender;
+        this.studentDOB = studentDOB;
+    }
+
     public long getStudentId() {
         return studentId;
     }
@@ -47,5 +58,16 @@ public class Student {
 
     public void setStudentDOB(Date studentDOB) {
         this.studentDOB = studentDOB;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", studentName='" + studentName + '\'' +
+                ", studentEmail='" + studentEmail + '\'' +
+                ", gender=" + gender +
+                ", studentDOB=" + studentDOB +
+                '}';
     }
 }

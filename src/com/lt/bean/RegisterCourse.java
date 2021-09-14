@@ -8,6 +8,15 @@ public class RegisterCourse {
     private long numberOfStudents;
     private long professorId;
 
+    public RegisterCourse(){}
+    public RegisterCourse(long courseId, String courseName, String courseDetails, long numberOfStudents, long professorId) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseDetails = courseDetails;
+        this.numberOfStudents = numberOfStudents;
+        this.professorId = professorId;
+    }
+
     public long getCourseId() {
         return courseId;
     }

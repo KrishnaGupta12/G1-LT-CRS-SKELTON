@@ -5,6 +5,14 @@ public class Grade {
     private long studentId;
     private String grade;
 
+    public Grade(){}
+
+    public Grade(long courseId, long studentId, String grade) {
+        this.courseId = courseId;
+        this.studentId = studentId;
+        this.grade = grade;
+    }
+
     public long getCourseId() {
         return courseId;
     }

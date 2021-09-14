@@ -6,6 +6,13 @@ public class Professor {
     private String professorName;
     private String professorEmail;
 
+    public Professor(){}
+    public Professor(long professorId, String professorName, String professorEmail) {
+        this.professorId = professorId;
+        this.professorName = professorName;
+        this.professorEmail = professorEmail;
+    }
+
     public long getProfessorId() {
         return professorId;
     }
