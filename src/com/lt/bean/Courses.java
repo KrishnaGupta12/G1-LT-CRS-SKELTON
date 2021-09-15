@@ -10,16 +10,18 @@ public class Courses {
     private long noOfStudent;
     private long professorId;
 
-    public Courses(long courseId, String courseName) {
+
+    public Courses(){}
+
+    public Courses(long courseId, String courseName, double courseFee, String courseType, String courseDuration, String courseDetails) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseFee = courseFee;
         this.courseType = courseType;
         this.courseDuration = courseDuration;
         this.courseDetails = courseDetails;
-    }
 
-    public Courses(){}
+    }
     public Courses(long courseId, String courseName, double courseFee, String courseType, String courseDuration, String courseDetails, long noOfStudent, long professorId) {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -98,7 +100,7 @@ public class Courses {
 
     @Override
     public String toString() {
-        return "Courses{" +
+        return "\nCourses{" +
                 "courseId=" + courseId +
                 ", courseName='" + courseName + '\'' +
                 ", courseFee=" + courseFee +

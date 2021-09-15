@@ -83,7 +83,6 @@ public class CRSApplication {
                     String studEmail = sc.next();
                     System.out.println("Enter your New PassWord: ");
                     String stdPassword = sc.next();
-
                     System.out.println("Enter your Gender: ");
                     String studGender = sc.next();
                     char studGen = studGender.charAt(0);
