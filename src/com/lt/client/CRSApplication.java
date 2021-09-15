@@ -1,8 +1,10 @@
 
 package com.lt.client;
 
+import com.lt.bean.Professor;
 import com.lt.bean.Student;
 import com.lt.bean.User;
+import com.lt.business.ProfessorImplService;
 import com.lt.business.StudentImplService;
 import com.lt.constants.CommonData;
 
@@ -11,11 +13,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+import static com.lt.dao.ProfessorDao.professorMap;
 import static com.lt.dao.StudentDao.map;
 
 public class CRSApplication {
     public static void main(String[] args) throws ParseException {
         StudentImplService studentImplService = new StudentImplService();
+        ProfessorImplService professorImplService = new ProfessorImplService();
 
 
         System.out.println("Welcome to CRSApplication");
@@ -40,17 +44,20 @@ public class CRSApplication {
                     System.out.println("Enter Password : ");
                     String passWord = sc.next();
                     Student std = map.get(userName) ;
+                    Professor professor = professorMap.get(userName);
 
 
                     User user = new User(userName,passWord);
-                    if(std.getStudentEmail().equals(userName) && std.getPassWord().equals(passWord))
+
+                    if(std!=null && std.getStudentEmail().equals(userName) && std.getPassWord().equals(passWord))
                     {
                         StudentMenu studentmenu = new StudentMenu();
                         studentmenu.studentSession(std.getStudentName());
                     }
-                    else if(CommonData.profUserName.equals(userName) && CommonData.profPassWord.equals(passWord)) {
+                    else if(professor.getProfessorEmail().equals(userName) && professor.getPassWord().equals(passWord))
+                    {
                         ProfessorMenu professorMenu = new ProfessorMenu();
-                        professorMenu.professorSession();
+                        professorMenu.professorSession(professor.getProfessorName());
                     }
                     else if(CommonData.adminUserName.equals(userName) && CommonData.adminPassWord.equals(passWord)) {
                         AdminMenu admin = new AdminMenu();

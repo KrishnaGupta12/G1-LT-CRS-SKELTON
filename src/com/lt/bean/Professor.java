@@ -5,12 +5,14 @@ public class Professor {
     private long professorId;
     private String professorName;
     private String professorEmail;
+    private String passWord;
 
     public Professor(){}
-    public Professor(long professorId, String professorName, String professorEmail) {
+    public Professor(long professorId, String professorName, String professorEmail,String passWord) {
         this.professorId = professorId;
         this.professorName = professorName;
         this.professorEmail = professorEmail;
+        this.passWord = passWord;
     }
 
     public long getProfessorId() {
@@ -35,5 +37,13 @@ public class Professor {
 
     public void setProfessorEmail(String professorEmail) {
         this.professorEmail = professorEmail;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 }
