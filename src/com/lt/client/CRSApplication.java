@@ -1,25 +1,26 @@
 
 package com.lt.client;
 
-import com.lt.bean.Professor;
 import com.lt.bean.Student;
 import com.lt.bean.User;
 import com.lt.business.ProfessorImplService;
 import com.lt.business.StudentImplService;
-import com.lt.constants.CommonData;
+import com.lt.business.UserImplService;
+import com.lt.constants.Role;
+import com.lt.constants.SqlConstants;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import static com.lt.dao.ProfessorDao.professorMap;
-import static com.lt.dao.StudentDao.map;
 
 public class CRSApplication {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, SQLException {
         StudentImplService studentImplService = new StudentImplService();
         ProfessorImplService professorImplService = new ProfessorImplService();
+        UserImplService userImplService = new UserImplService();
 
 
         System.out.println("Welcome to CRSApplication");
@@ -37,31 +38,28 @@ public class CRSApplication {
             int role = sc.nextInt();
             switch(role) {
                 case 1:
+                    String rol ="" ;
                     System.out.println("Login");
                     System.out.println("-----------------------------------------------");
                     System.out.println("Enter UserName : ");
                     String userName = sc.next();
                     System.out.println("Enter Password : ");
                     String passWord = sc.next();
-                    Student std = map.get(userName) ;
-                    Professor professor = professorMap.get(userName);
+                    rol = userImplService.login(userName,passWord);
 
-
-                    User user = new User(userName,passWord);
-
-                    if(std!=null && std.getStudentEmail().equals(userName) && std.getPassWord().equals(passWord))
+                    if(rol.equalsIgnoreCase(Role.STUDENT.toString()))
                     {
                         StudentMenu studentmenu = new StudentMenu();
-                        studentmenu.studentSession(std.getStudentName());
+                        studentmenu.studentSession(rol);
                     }
-                    else if(professor.getProfessorEmail().equals(userName) && professor.getPassWord().equals(passWord))
+                    else if(rol.equalsIgnoreCase(Role.PROFESSOR.toString()))
                     {
                         ProfessorMenu professorMenu = new ProfessorMenu();
-                        professorMenu.professorSession(professor.getProfessorName());
+                        professorMenu.professorSession(rol);
                     }
-                    else if(CommonData.adminUserName.equals(userName) && CommonData.adminPassWord.equals(passWord)) {
+                    else if(rol.equalsIgnoreCase(Role.ADMIN.toString())) {
                         AdminMenu admin = new AdminMenu();
-                        admin.adminSession();
+                        admin.adminSession(rol);
                     }
                     else
                     {
@@ -81,15 +79,19 @@ public class CRSApplication {
                     String studName = sc.next();
                     System.out.println("Enter your Email: ");
                     String studEmail = sc.next();
-                    System.out.println("Enter your New PassWord: ");
-                    String stdPassword = sc.next();
                     System.out.println("Enter your Gender: ");
                     String studGender = sc.next();
                     char studGen = studGender.charAt(0);
                     System.out.println("Enter your DOB: ");
                     String studDobs = sc.next();
                     Date studDob=new SimpleDateFormat("dd/MM/yyyy").parse(studDobs);
-                    Student student = new Student(studId,studName,studEmail,studGen,studDob,stdPassword);
+                    System.out.println("Enter your Contact No: ");
+                    Long studContact = sc.nextLong();
+                    System.out.println("Enter Semester id: ");
+                    Long studSemester = sc.nextLong();
+                    System.out.println("Enter your New PassWord: ");
+                    String stdPassword = sc.next();
+                    Student student = new Student(studId,studName,studEmail,studGen,studDob,studContact,studSemester);
                     boolean flag = studentImplService.signUp(student);
                     if(flag){
                         System.out.println("SignUp SuccessFul");

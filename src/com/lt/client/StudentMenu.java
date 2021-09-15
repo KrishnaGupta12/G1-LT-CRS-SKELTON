@@ -23,59 +23,59 @@ public class StudentMenu {
             System.out.println("6. Logout");
             Scanner sc = new Scanner(System.in);
             int task = sc.nextInt();
-            switch (task) {
-                case 1:
-                    System.out.println("Register Course");
-                    System.out.println("-----------------------------------------------");
-                    System.out.println("Choose a Course from the Below List : ");
-                    List<Courses> availableList = studentImplService.viewAvailableCourses();
-                    System.out.println("Enter Course Id of course you want to register: ");
-                    Long courseId = sc.nextLong();
-                    Courses selectedCourse = studentImplService.getDetailsofSelectedCourse(courseId);
-                    System.out.println("selected " +selectedCourse);
-                    RegisterCourse newCourse = new RegisterCourse(selectedCourse.getCourseId(), selectedCourse.getCourseName(), selectedCourse.getCourseFee(), selectedCourse.getCourseType(), selectedCourse.getCourseDuration(), selectedCourse.getCourseDetails());
-                    boolean flag = studentImplService.registerToCourse(newCourse);
-                    if(flag){
-                        System.out.println("Course Register SuccessFully..!");
-                    }else
-                        System.out.println("Sorry!! Seats are Full!! Try Different Course..");
-
-                    System.out.println("***************************************************");
-                    break;
-                case 2:
-                    System.out.println("Remove course");
-                    System.out.println("-----------------------------------------------");
-                    System.out.println("Your Registered Courses are : \n");
-                    studentImplService.studentViewRegisteredCourses();
-                    System.out.println("Enter Course Id of course you want to Delete: ");
-                    Long deleteCourseId = sc.nextLong();
-                    boolean status = studentImplService.withdrawFromCourse(deleteCourseId);
-                    if(status)
-                        System.out.println("Course deleted SuccessFully..!");
-                    else
-                        System.out.println("Invalid CourseId");
-                    System.out.println("***************************************************");
-                    break;
-                case 3:
-                    System.out.println("View Registered Courses");
-                    studentImplService.studentViewRegisteredCourses();
-                    System.out.println("***************************************************");
-                    break;
-                case 4:
-                    System.out.println("Pay Fees");
-                    System.out.println("***************************************************");
-                    break;
-//                case 5:
-//                    System.out.println("Update Profile");
+//            switch (task) {
+//                case 1:
+//                    System.out.println("Register Course");
+//                    System.out.println("-----------------------------------------------");
+//                    System.out.println("Choose a Course from the Below List : ");
+//                    List<Courses> availableList = studentImplService.viewAvailableCourses();
+//                    System.out.println("Enter Course Id of course you want to register: ");
+//                    Long courseId = sc.nextLong();
+//                    Courses selectedCourse = studentImplService.getDetailsofSelectedCourse(courseId);
+//                    System.out.println("selected " +selectedCourse);
+//                    RegisterCourse newCourse = new RegisterCourse(selectedCourse.getCourseId(), selectedCourse.getCourseName(), selectedCourse.getCourseFee(), selectedCourse.getCourseType(), selectedCourse.getCourseDuration(), selectedCourse.getCourseDetails());
+//                    boolean flag = studentImplService.registerToCourse(newCourse);
+//                    if(flag){
+//                        System.out.println("Course Register SuccessFully..!");
+//                    }else
+//                        System.out.println("Sorry!! Seats are Full!! Try Different Course..");
+//
 //                    System.out.println("***************************************************");
 //                    break;
-                case 5:
-                    System.out.println("Exit");
-                    System.out.println("***************************************************");
-                    System.exit(0);
-                default:
-                    System.out.println("No task for the day");
-            }
+//                case 2:
+//                    System.out.println("Remove course");
+//                    System.out.println("-----------------------------------------------");
+//                    System.out.println("Your Registered Courses are : \n");
+//                    studentImplService.studentViewRegisteredCourses();
+//                    System.out.println("Enter Course Id of course you want to Delete: ");
+//                    Long deleteCourseId = sc.nextLong();
+//                    boolean status = studentImplService.withdrawFromCourse(deleteCourseId);
+//                    if(status)
+//                        System.out.println("Course deleted SuccessFully..!");
+//                    else
+//                        System.out.println("Invalid CourseId");
+//                    System.out.println("***************************************************");
+//                    break;
+//                case 3:
+//                    System.out.println("View Registered Courses");
+//                    studentImplService.studentViewRegisteredCourses();
+//                    System.out.println("***************************************************");
+//                    break;
+//                case 4:
+//                    System.out.println("Pay Fees");
+//                    System.out.println("***************************************************");
+//                    break;
+////                case 5:
+////                    System.out.println("Update Profile");
+////                    System.out.println("***************************************************");
+////                    break;
+//                case 5:
+//                    System.out.println("Exit");
+//                    System.out.println("***************************************************");
+//                    System.exit(0);
+//                default:
+//                    System.out.println("No task for the day");
+//            }
         }
     }
 }

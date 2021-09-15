@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class AdminMenu {
 
 
-    public void adminSession() {
-        System.out.println("Welcome To Admin. Have a Good day!!");
+    public void adminSession(String username) {
+        System.out.println("Welcome " +username+ ". Have a Good day!!");
         Boolean permission = true;
         while (permission) {
             System.out.println("Choose your Tasks");

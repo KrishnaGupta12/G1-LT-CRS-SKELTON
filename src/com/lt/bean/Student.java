@@ -9,19 +9,23 @@ public class Student extends User {
     private String studentEmail;
     private char gender;
     private Date studentDOB;
-    private String passWord;
+    private long contact_no;
+    private long semester_id ;
+  //  private String passWord;
     private List<Courses> listCourses;
 
     public Student() {
     }
 
-    public Student(long studentId, String studentName, String studentEmail, char gender, Date studentDOB, String passWord) {
+    public Student(long studentId, String studentName, String studentEmail, char gender, Date studentDOB,long contact_no,long semester_id) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentEmail = studentEmail;
         this.gender = gender;
         this.studentDOB = studentDOB;
-        this.passWord = passWord;
+        this.contact_no=contact_no;
+        this.semester_id = semester_id;
+    //    this.passWord = passWord;
     }
 
     public long getStudentId() {
@@ -60,12 +64,37 @@ public class Student extends User {
         return studentDOB;
     }
 
-    public String getPassWord() {
-        return passWord;
+//    public String getPassWord() {
+//        return passWord;
+//    }
+//
+//    public void setPassWord(String passWord) {
+//        this.passWord = passWord;
+//    }
+
+
+    public long getContact_no() {
+        return contact_no;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setContact_no(long contact_no) {
+        this.contact_no = contact_no;
+    }
+
+    public long getSemester_id() {
+        return semester_id;
+    }
+
+    public void setSemester_id(long semester_id) {
+        this.semester_id = semester_id;
+    }
+
+    public List<Courses> getListCourses() {
+        return listCourses;
+    }
+
+    public void setListCourses(List<Courses> listCourses) {
+        this.listCourses = listCourses;
     }
 
     public void setStudentDOB(Date studentDOB) {
@@ -80,6 +109,7 @@ public class Student extends User {
                 ", studentEmail='" + studentEmail + '\'' +
                 ", gender=" + gender +
                 ", studentDOB=" + studentDOB +
+                ", contact_no=" + contact_no +
                 '}';
     }
 }
