@@ -1,20 +1,109 @@
 package com.lt.business;
 
 import com.lt.bean.Courses;
+import com.lt.bean.RegisterCourse;
 import com.lt.bean.Student;
 import com.lt.bean.User;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
-import static com.lt.dao.CourseCatalogDao.coursesList;
-import static com.lt.dao.CourseCatalogDao.coursesMap;
+import static com.lt.dao.CourseCatalogDao.*;
+import static com.lt.dao.RegisterCourseDao.registerCourseMap;
 import static com.lt.dao.StudentDao.map;
 //import static com.lt.dao.StudentDao.studentsList;
 
 public class StudentImplService extends User implements StudentInterface {
+    public  Set<RegisterCourse> registerCourseList = new HashSet<RegisterCourse>();
+
+    @Override
+    public boolean signUp(Student student) {
+        map.put(student.getStudentEmail(),student);
+        Set<String> set= map.keySet();
+        Iterator iterator= set.iterator();
+        while (iterator.hasNext()){
+            System.out.println(map.get(iterator.next()));
+        }
+        return true;
+    }
+
+    @Override
+    public boolean registerToCourse(RegisterCourse newCourses) {
+
+        if(registerCourseMap.size()==0)
+        {
+            registerCourseMap.put(newCourses.getCourseId(), newCourses);
+        }
+        registerCourseMap.put(newCourses.getCourseId(), newCourses);
+        Set<Long> set= registerCourseMap.keySet();
+        Iterator<Long> iterator= set.iterator();
+        while (iterator.hasNext()){
+            Long id = iterator.next();
+            RegisterCourse registerCourse = registerCourseMap.get(id);
+            System.out.println(registerCourse);
+            registerCourseList.add(registerCourse);
+        }
+        return true;
+
+    }
+
+    //show the list of courses registered by Students
+    @Override
+    public List<RegisterCourse> studentViewRegisteredCourses() {
+
+        System.out.println(registerCourseList.stream().collect(Collectors.toList()));
+        return registerCourseList.stream().collect(Collectors.toList());
+    }
+
+
+    //get the list of available courses from Course Catalog map
+    @Override
+    public List<Courses> viewAvailableCourses() {
+        List<Courses>  availableCoursesList = null;
+        Set<Long> set= courseCatalogMap.keySet();
+        Iterator<Long> iterator = set.iterator();
+        while (iterator.hasNext()){
+            Long courseIdFetch = iterator.next();
+            availableCoursesList =courseCatalogMap.get(courseIdFetch).getCoursesList();
+        }
+        System.out.println(availableCoursesList);
+        return availableCoursesList;
+    }
+
+
+    //get details of selected course from Course map
+    @Override
+    public Courses getDetailsofSelectedCourse(Long id) {
+        Courses selectedCourse = null;
+        Set<Long> set= coursesMap.keySet();
+        Iterator<Long> iterator = set.iterator();
+        while (iterator.hasNext()){
+            Long courseIdFetch = iterator.next();
+            if(courseIdFetch == id) {
+                selectedCourse = coursesMap.get(courseIdFetch);
+                break;
+            }
+        }
+        return selectedCourse;
+    }
+
+    // delete course from  registered course map
+    @Override
+    public boolean withdrawFromCourse(Long id) {
+        Set<Long> set = registerCourseMap.keySet();
+        Iterator<Long> iterator = set.iterator();
+        while (iterator.hasNext()) {
+            Long courseIdDelete = iterator.next();
+            RegisterCourse course = registerCourseMap.get(courseIdDelete);
+            if (courseIdDelete == id) {
+                registerCourseMap.remove(courseIdDelete);
+                registerCourseList.remove(course);
+                break;
+            }
+        }
+        return true;
+    }
 
     @Override
     public void payFees() {
@@ -31,52 +120,5 @@ public class StudentImplService extends User implements StudentInterface {
 
     }
 
-    @Override
-    public boolean signUp(Student student) {
-        map.put(student.getStudentEmail(),student);
-        Set<String> set= map.keySet();
-        Iterator iterator= set.iterator();
-        while (iterator.hasNext()){
-            System.out.println(map.get(iterator.next()));
-        }
-        return true;
-    }
 
-    @Override
-    public void studentViewAllCourses() {
-        for (Courses courses:coursesList) {
-            System.out.println(courses);
-        }
-    }
-
-
-    @Override
-    public void viewAvailableCourses() {
-        for (Courses courses:coursesList) {
-            System.out.println(courses);
-        }
-    }
-
-    @Override
-    public boolean registerToCourse(Courses newCourses) {
-
-        coursesMap.put(newCourses.getCourseId(), newCourses);
-        Set<Long> set= coursesMap.keySet();
-        Iterator iterator= set.iterator();
-        while (iterator.hasNext()){
-            System.out.println(coursesMap.get(iterator.next()));
-        }
-        return true;
-
-    }
-
-    @Override
-    public void withdrawFromCourse() throws IOException {
-
-    }
-
-    @Override
-    public List<Courses> viewAllRegisteredCourses() {
-        return null;
-    }
 }

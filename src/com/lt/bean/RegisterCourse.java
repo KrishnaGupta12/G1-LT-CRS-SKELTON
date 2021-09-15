@@ -1,21 +1,29 @@
 package com.lt.bean;
 
-public class RegisterCourse {
+import java.util.Objects;
+
+public class RegisterCourse  {
 
     private long courseId;
     private String courseName;
+    private double courseFee;
+    private String courseType;
+    private String courseDuration;
     private String courseDetails;
     private long numberOfStudents;
     private long professorId;
 
     public RegisterCourse(){}
-    public RegisterCourse(long courseId, String courseName, String courseDetails, long numberOfStudents, long professorId) {
+
+    public RegisterCourse(long courseId, String courseName, double courseFee, String courseType, String courseDuration, String courseDetails) {
         this.courseId = courseId;
         this.courseName = courseName;
+        this.courseFee = courseFee;
+        this.courseType = courseType;
+        this.courseDuration = courseDuration;
         this.courseDetails = courseDetails;
-        this.numberOfStudents = numberOfStudents;
-        this.professorId = professorId;
     }
+
 
     public long getCourseId() {
         return courseId;
@@ -31,6 +39,15 @@ public class RegisterCourse {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+
+    public double getCourseFee() {
+        return courseFee;
+    }
+
+    public void setCourseFee(double courseFee) {
+        this.courseFee = courseFee;
     }
 
     public String getCourseDetails() {
@@ -55,5 +72,31 @@ public class RegisterCourse {
 
     public void setProfessorId(long professorId) {
         this.professorId = professorId;
+    }
+
+    @Override
+    public String toString() {
+        return "\n RegisterCourse{" +
+                "courseId=" + courseId +
+                ", courseName='" + courseName + '\'' +
+                ", courseFee=" + courseFee +
+                ", courseType='" + courseType + '\'' +
+                ", courseDuration='" + courseDuration + '\'' +
+                ", courseDetails='" + courseDetails + '\'' +
+                '}';
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RegisterCourse)) return false;
+        RegisterCourse that = (RegisterCourse) o;
+        return getCourseId() == that.getCourseId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCourseId());
     }
 }

@@ -1,7 +1,9 @@
 package com.lt.client;
 import com.lt.bean.Courses;
+import com.lt.bean.RegisterCourse;
 import com.lt.bean.Student;
 import com.lt.business.StudentImplService;
+import com.sun.javafx.image.BytePixelSetter;
 
 import java.util.*;
 public class StudentMenu {
@@ -26,42 +28,48 @@ public class StudentMenu {
                     System.out.println("Register Course");
                     System.out.println("-----------------------------------------------");
                     System.out.println("Choose a Course from the Below List : ");
-                    studentImplService.studentViewAllCourses();
-                    System.out.println("Enter  Selected CourseId: ");
+                    List<Courses> availableList = studentImplService.viewAvailableCourses();
+                    System.out.println("Enter Course Id of course you want to register: ");
                     Long courseId = sc.nextLong();
-                    System.out.println("Enter  Selected Course Name : ");
-
-                    String courseName = sc.next();
-
-                    Courses newCourse =new Courses(courseId,courseName);
+                    Courses selectedCourse = studentImplService.getDetailsofSelectedCourse(courseId);
+                    System.out.println("selected " +selectedCourse);
+                    RegisterCourse newCourse = new RegisterCourse(selectedCourse.getCourseId(), selectedCourse.getCourseName(), selectedCourse.getCourseFee(), selectedCourse.getCourseType(), selectedCourse.getCourseDuration(), selectedCourse.getCourseDetails());
                     boolean flag = studentImplService.registerToCourse(newCourse);
                     if(flag){
-                        System.out.println("Course Register SuccessFully Done");
+                        System.out.println("Course Register SuccessFully..!");
                     }else
-                        System.out.println("Sorry Seats Already Full Try Different Course");
+                        System.out.println("Sorry!! Seats are Full!! Try Different Course..");
 
                     System.out.println("***************************************************");
                     break;
                 case 2:
                     System.out.println("Remove course");
+                    System.out.println("-----------------------------------------------");
+                    System.out.println("Your Registered Courses are : \n");
+                    studentImplService.studentViewRegisteredCourses();
+                    System.out.println("Enter Course Id of course you want to Delete: ");
+                    Long deleteCourseId = sc.nextLong();
+                    boolean status = studentImplService.withdrawFromCourse(deleteCourseId);
+                    if(status)
+                        System.out.println("Course deleted SuccessFully..!");
+                    else
+                        System.out.println("Invalid CourseId");
                     System.out.println("***************************************************");
                     break;
                 case 3:
-                    System.out.println("View Course");
-
-
-
+                    System.out.println("View Registered Courses");
+                    studentImplService.studentViewRegisteredCourses();
                     System.out.println("***************************************************");
                     break;
                 case 4:
                     System.out.println("Pay Fees");
                     System.out.println("***************************************************");
                     break;
+//                case 5:
+//                    System.out.println("Update Profile");
+//                    System.out.println("***************************************************");
+//                    break;
                 case 5:
-                    System.out.println("Update Profile");
-                    System.out.println("***************************************************");
-                    break;
-                case 6:
                     System.out.println("Exit");
                     System.out.println("***************************************************");
                     System.exit(0);

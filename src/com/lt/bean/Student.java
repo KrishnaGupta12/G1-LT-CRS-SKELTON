@@ -3,7 +3,7 @@ package com.lt.bean;
 import java.util.Date;
 import java.util.List;
 
-public class Student {
+public class Student extends User {
     private long studentId;
     private String studentName;
     private String studentEmail;

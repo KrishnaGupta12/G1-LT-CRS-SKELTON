@@ -17,7 +17,7 @@ public class CourseCatalogDao {
     static {
        Courses course1 = new Courses(101,"Java",3000l,"FullTime","3 Months","Programming Language",150,701);
        Courses course2 = new Courses(102,"Advance Java",2000l,"FullTime","3 Months","Programming Language",150,702);
-       Courses course3 = new Courses(103,"Pythan",5000l,"FullTime","3 Months","Programming Language",150,703);
+       Courses course3 = new Courses(103,"Python",5000l,"FullTime","3 Months","Programming Language",150,703);
 
        coursesMap.put(course1.getCourseId(), course1);
        coursesMap.put(course2.getCourseId(), course2);
