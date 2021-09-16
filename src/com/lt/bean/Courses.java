@@ -11,6 +11,7 @@ public class Courses {
     private long professorId;
 
 
+
     public Courses(){}
 
     public Courses(long courseId, String courseName, double courseFee, String courseType, String courseDuration, String courseDetails) {

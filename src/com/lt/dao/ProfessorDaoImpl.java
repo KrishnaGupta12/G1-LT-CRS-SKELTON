@@ -85,7 +85,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
                 student.setStudentId(rs.getInt(1));
                 student.setStudentName(rs.getString(2));
                 student.setStudentEmail(rs.getString(3));
-                student.setGender(rs.getString(4));
+                student.setGender(rs.getString(4).charAt(0));
                 student.setStudentDOB(rs.getDate(5));
                 student.setContact_no(rs.getLong(6));
                 student.setSemester_id(rs.getLong(7));

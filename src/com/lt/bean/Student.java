@@ -11,7 +11,7 @@ public class Student extends User {
     private Date studentDOB;
     private long contact_no;
     private long semester_id ;
-  //  private String passWord;
+    private String passWord;
     private List<Courses> listCourses;
 
     public Student() {
@@ -88,15 +88,14 @@ public class Student extends User {
     public void setSemester_id(long semester_id) {
         this.semester_id = semester_id;
     }
-
-    public List<Courses> getListCourses() {
+     /*public List<Courses> getListCourses() {
         return listCourses;
-    }
+    }*/
 
-    public void setListCourses(List<Courses> listCourses) {
+    /*public void setListCourses(List<Courses> listCourses) {
         this.listCourses = listCourses;
     }
-
+*/
     public void setStudentDOB(Date studentDOB) {
         this.studentDOB = studentDOB;
     }

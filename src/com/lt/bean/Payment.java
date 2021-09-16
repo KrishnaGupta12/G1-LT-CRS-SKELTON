@@ -1,22 +1,23 @@
 package com.lt.bean;
 
 public class Payment {
-    private long billingId;
+    private  long billId;
     private double billingAmount;
-   // priva
+    private String billingMode;
 
     public Payment(){}
-    public Payment(long billingId, double billingAmount) {
-        this.billingId = billingId;
+
+    public long getBillId() {
+        return billId;
+    }
+
+    public void setBillId(long billId) {
+        this.billId = billId;
+    }
+
+    public Payment(double billingAmount, String billingMode) {
         this.billingAmount = billingAmount;
-    }
-
-    public long getBillingId() {
-        return billingId;
-    }
-
-    public void setBillingId(long billingId) {
-        this.billingId = billingId;
+        this.billingMode = billingMode;
     }
 
     public double getBillingAmount() {
@@ -25,5 +26,13 @@ public class Payment {
 
     public void setBillingAmount(double billingAmount) {
         this.billingAmount = billingAmount;
+    }
+
+    public String getBillingMode() {
+        return billingMode;
+    }
+
+    public void setBillingMode(String billingMode) {
+        this.billingMode = billingMode;
     }
 }
