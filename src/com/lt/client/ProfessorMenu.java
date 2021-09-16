@@ -3,20 +3,24 @@ package com.lt.client;
 import com.lt.bean.Courses;
 import com.lt.bean.Grade;
 import com.lt.bean.Professor;
+import com.lt.bean.Student;
 import com.lt.business.ProfessorImplService;
 import com.lt.business.ProfessorInterface;
 import com.lt.business.StudentImplService;
 
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class ProfessorMenu {
 
 
 
-    public void professorSession(String userName) {
+    public void professorSession(String userName,long professorId) throws SQLException {
         System.out.println("Welcome " + userName + " to your panel. Have a Good day!!");
         System.out.println("------------------------------------------------------------");
         ProfessorImplService professorImplService = new ProfessorImplService();
+
         Boolean permission = true;
         while (permission) {
             System.out.println("Choose your Tasks");
@@ -48,7 +52,8 @@ public class ProfessorMenu {
 
                 case 3:
                     System.out.println("View Registered Course");
-                    professorImplService.viewRegisteredStudents();
+                    List<Student> studList = professorImplService.viewRegisteredStudents (professorId);
+                    System.out.println(studList);
                     break;
 
                 /*case 4:

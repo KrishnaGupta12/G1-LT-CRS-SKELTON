@@ -14,7 +14,10 @@ public interface SqlConstants {
     public final static String INSERT_TO_PROFESSOR = "insert into Professor values (?,?,?,?,?,?,?)";
     public final static String VIEW_COURSE = "select * from course";
     public final static  String ADD_GRADES=" insert into grade values (?,?,?) ";
-    public final static String VIEW_REG_STUDENT =
+    public final static String VIEW_REG_STUDENT ="select  * from Student where stud_id IN (select reg_stud_id from RegisterCourses where reg_course_id IN ( select course_id from Professor where professor_id = ?))";
+    public final static String GET_PROFESSOR_DATA = "select professor_id from Professor where professor_email = ? ";
+    public final static String LIST_REG_COURSES_SEM ="select course_id,course_name from Course where course_id IN (Select reg_course_id from RegisterCourses where reg_stud_id = 101 and reg_semester_id = 1)";
+    public final static String GENERATE_REPORT_CARD="Select s.stud_id,s.stud_name,g.courseId,g.semesterId,g.grade from Student s INNER JOIN Grade g On stud_id  = studentId";
 
     //Semester Table queries
 

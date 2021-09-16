@@ -41,13 +41,15 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
         return list;
     }
 
+
     @Override
-    public boolean addGrades() {
+    public boolean addGrades(long professorId,Grade grade) {
         Connection con = null;
         PreparedStatement ps = null;
-        Grade grade = new Grade();
+       // Grade grade = new Grade();
         int status = 0;
         boolean result = false;
+        List<Student> registeredStudent = getStudentList(professorId);
         String sql = SqlConstants.ADD_GRADES;
         try
         {
@@ -69,8 +71,9 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
         return result;
     }
 
+    //List f students registered for a courses taught by the professor
     @Override
-    public List<Student> getStudentList() {
+    public List<Student> getStudentList(long professorId) {
         List<Student> list = new ArrayList<Student>();
         Connection con = null;
         PreparedStatement ps = null;
@@ -79,6 +82,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
         {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);
+            ps.setInt(1, (int)professorId);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Student student = new Student();
@@ -97,5 +101,21 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
             e.getMessage();
         }
         return list;
+    }
+
+    //get user data
+    @Override
+    public long getProfessorId(String username) throws SQLException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        long prof_id=0L ;
+        con = DBUtil.getConnection();
+        ps = con.prepareStatement(SqlConstants.GET_PROFESSOR_DATA);
+        ps.setString(1,username);
+        ResultSet rs =  ps.executeQuery();
+        while(rs.next()){
+            prof_id= (long)rs.getInt(1);
+        }
+        return prof_id;
     }
 }

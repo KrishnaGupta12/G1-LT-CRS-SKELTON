@@ -51,7 +51,8 @@ public class CRSApplication {
                         studentmenu.studentSession(rol, stud_id);
                     } else if (rol.equalsIgnoreCase(Role.PROFESSOR.toString())) {
                         ProfessorMenu professorMenu = new ProfessorMenu();
-                        professorMenu.professorSession(rol);
+                        long professorId = professorImplService.getProfessorId(userName);
+                        professorMenu.professorSession(rol,professorId);
                     } else if (rol.equalsIgnoreCase(Role.ADMIN.toString())) {
                         AdminMenu admin = new AdminMenu();
                         admin.adminSession(rol);
