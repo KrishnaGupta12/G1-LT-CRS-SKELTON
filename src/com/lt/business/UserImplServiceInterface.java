@@ -1,11 +1,11 @@
 package com.lt.business;
 
-import com.lt.dao.UserDao;
+import com.lt.dao.UserDaoInterface;
 import com.lt.dao.UserDaoImpl;
 
 import java.sql.SQLException;
 
-public class UserImplService  implements UserDao {
+public class UserImplServiceInterface implements UserDaoInterface {
 
 //    @Override
 //    public void getUserName() {

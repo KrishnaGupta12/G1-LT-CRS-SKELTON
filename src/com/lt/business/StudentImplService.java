@@ -1,24 +1,22 @@
 package com.lt.business;
 
 import com.lt.bean.Courses;
+import com.lt.bean.Payment;
 import com.lt.bean.RegisterCourse;
 import com.lt.bean.Student;
-import com.lt.bean.User;
+import com.lt.dao.CourseDaoImpl;
 import com.lt.dao.StudentDaoImpl;
 import com.lt.dao.StudentDaoInterface;
 
 import java.sql.SQLException;
 import java.util.*;
-import java.util.stream.Collectors;
-
-import static com.lt.dao.CourseCatalogDao.*;
-import static com.lt.dao.RegisterCourseDao.registerCourseMap;
 //import static com.lt.dao.StudentDao.studentsList;
 
-public class StudentImplService extends User implements StudentDaoInterface {
+public class StudentImplService implements StudentDaoInterface {
     //public  Set<RegisterCourse> registerCourseList = new HashSet<RegisterCourse>();
 
     StudentDaoImpl studentDao = null;
+    CourseDaoImpl courseDao = null;
     boolean flag = false;
 
     //this method will do Student Sign up
@@ -30,19 +28,54 @@ public class StudentImplService extends User implements StudentDaoInterface {
 
     }
 
+    //register for course
     @Override
-    public boolean registerForCourse(Long semesterId, Long courseId) {
-        return false;
+    public boolean registerForCourse(long student_id, long semesterId,long courseId) throws SQLException {
+        studentDao = new StudentDaoImpl();
+        flag = studentDao.registerForCourse(student_id,semesterId,courseId);
+        return flag;
+    }
+
+    // show list of registered courses by student
+    @Override
+    public Set<RegisterCourse> viewRegisteredCourses(long studentId, long semesterId) throws SQLException {
+        studentDao = new StudentDaoImpl();
+        Set<RegisterCourse> registeredList = studentDao.viewRegisteredCourses(studentId,semesterId);
+        return registeredList;
     }
 
     @Override
-    public List<Courses> viewRegisteredCourses(Long semesterId) {
-        return null;
+    public boolean removeCourse(long courseId) throws SQLException {
+        return studentDao.removeCourse(courseId);
     }
 
     @Override
-    public boolean removeCourse(Long courseId) {
-        return false;
+    public long getStudent(String username) throws SQLException {
+        studentDao = new StudentDaoImpl();
+        long id = studentDao.getStudent(username);
+        return id;
+    }
+
+    @Override
+    public List<Courses> showAvailableCourses(long semesterId) throws SQLException {
+        List<Courses> list = new ArrayList<>();
+        studentDao = new StudentDaoImpl();
+        list = studentDao.showAvailableCourses(semesterId);
+        return list;
+    }
+
+    @Override
+    public Set<RegisterCourse> showListofPendingPayment(long student_id) throws SQLException {
+        Set<RegisterCourse> list = new HashSet<RegisterCourse>();
+        studentDao = new StudentDaoImpl();
+        list = studentDao.showListofPendingPayment(student_id);
+        return list;
+    }
+
+    @Override
+    public boolean payfees(long courseId, Payment payment) throws SQLException {
+        studentDao = new StudentDaoImpl();
+        return studentDao.payfees(courseId,payment);
     }
 
 //    @Override

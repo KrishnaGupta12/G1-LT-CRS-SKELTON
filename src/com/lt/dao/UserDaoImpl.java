@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDaoInterface {
     Connection con = DBUtil.getConnection();
     PreparedStatement smt = null;
 

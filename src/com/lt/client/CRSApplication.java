@@ -2,12 +2,10 @@
 package com.lt.client;
 
 import com.lt.bean.Student;
-import com.lt.bean.User;
 import com.lt.business.ProfessorImplService;
 import com.lt.business.StudentImplService;
-import com.lt.business.UserImplService;
+import com.lt.business.UserImplServiceInterface;
 import com.lt.constants.Role;
-import com.lt.constants.SqlConstants;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -20,11 +18,11 @@ public class CRSApplication {
     public static void main(String[] args) throws ParseException, SQLException {
         StudentImplService studentImplService = new StudentImplService();
         ProfessorImplService professorImplService = new ProfessorImplService();
-        UserImplService userImplService = new UserImplService();
+        UserImplServiceInterface userImplService = new UserImplServiceInterface();
 
 
         System.out.println("Welcome to CRSApplication");
-        System.out.println("-----------------------------------------------");
+        System.out.println("----------------------------------------------------------------------");
 
         Boolean permission = true;
         while(permission)
@@ -40,7 +38,7 @@ public class CRSApplication {
                 case 1:
                     String rol ="" ;
                     System.out.println("Login");
-                    System.out.println("-----------------------------------------------");
+                    System.out.println("----------------------------------------------------------");
                     System.out.println("Enter UserName : ");
                     String userName = sc.next();
                     System.out.println("Enter Password : ");
@@ -50,7 +48,8 @@ public class CRSApplication {
                     if(rol.equalsIgnoreCase(Role.STUDENT.toString()))
                     {
                         StudentMenu studentmenu = new StudentMenu();
-                        studentmenu.studentSession(rol);
+                        long stud_id = studentImplService.getStudent(userName);
+                        studentmenu.studentSession(rol,stud_id);
                     }
                     else if(rol.equalsIgnoreCase(Role.PROFESSOR.toString()))
                     {
@@ -68,32 +67,30 @@ public class CRSApplication {
                     System.out.println("***************************************************");
                     break;
 
-
-
                 case 2:
-                    System.out.println("Sign up Student");
+                    System.out.println("Sign up ");
                     System.out.println("-----------------------------------------------");
                     System.out.println("Enter your Id: ");
-                    Long studId = sc.nextLong();
+                    Long Id = sc.nextLong();
                     System.out.println("Enter your Name : ");
-                    String studName = sc.next();
+                    String Name = sc.next();
                     System.out.println("Enter your Email: ");
-                    String studEmail = sc.next();
+                    String Email = sc.next();
                     System.out.println("Enter your Gender: ");
-                    String studGender = sc.next();
-                    char studGen = studGender.charAt(0);
+                    String Gender = sc.next();
+                    char Gen = Gender.charAt(0);
                     System.out.println("Enter your DOB: ");
-                    String studDobs = sc.next();
-                    Date studDob=new SimpleDateFormat("dd/MM/yyyy").parse(studDobs);
+                    String Dobs = sc.next();
+                    Date Dob=new SimpleDateFormat("dd/MM/yyyy").parse(Dobs);
                     System.out.println("Enter your Contact No: ");
-                    Long studContact = sc.nextLong();
+                    Long Contact = sc.nextLong();
                     System.out.println("Enter Semester id: ");
-                    Long studSemester = sc.nextLong();
+                    Long Semester = sc.nextLong();
                     System.out.println("Enter your New PassWord: ");
                     String stdPassword = sc.next();
-                    Student student = new Student(studId,studName,studEmail,studGen,studDob,studContact,studSemester);
-                    boolean flag = studentImplService.signUp(student);
-                    if(flag){
+                    Student student = new Student(Id,Name,Email,Gen,Dob,Contact,Semester);
+                    boolean flagStudentSignUp = studentImplService.signUp(student);
+                    if(flagStudentSignUp){
                         System.out.println("SignUp SuccessFul");
                     }else
                         System.out.println("Approval is Pending from Admin");
