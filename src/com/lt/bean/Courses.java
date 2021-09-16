@@ -22,7 +22,7 @@ public class Courses {
         this.courseDetails = courseDetails;
 
     }
-    public Courses(long courseId, String courseName, double courseFee, String courseType, String courseDuration, String courseDetails, long noOfStudent, long professorId) {
+    /*public Courses(long courseId, String courseName, double courseFee, String courseType, String courseDuration, String courseDetails, long noOfStudent, long professorId) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseFee = courseFee;
@@ -31,7 +31,7 @@ public class Courses {
         this.courseDetails = courseDetails;
         this.noOfStudent = noOfStudent;
         this.professorId = professorId;
-    }
+    }*/
 
 
     public long getCourseId() {

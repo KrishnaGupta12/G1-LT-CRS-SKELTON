@@ -1,6 +1,7 @@
 
 package com.lt.client;
 
+import com.lt.bean.Professor;
 import com.lt.bean.Student;
 import com.lt.bean.User;
 import com.lt.business.ProfessorImplService;
@@ -30,7 +31,7 @@ public class CRSApplication {
         while(permission)
         {
             System.out.println("1. Login");
-            System.out.println("2. Sign up Student");
+            System.out.println("2. Sign up");
             System.out.println("3. Update password");
             System.out.println("4. Exit");
             System.out.println("Choose your Choice");
@@ -71,32 +72,36 @@ public class CRSApplication {
 
 
                 case 2:
-                    System.out.println("Sign up Student");
+                    System.out.println("Sign up");
                     System.out.println("-----------------------------------------------");
                     System.out.println("Enter your Id: ");
-                    Long studId = sc.nextLong();
+                    Long Id = sc.nextLong();
                     System.out.println("Enter your Name : ");
-                    String studName = sc.next();
+                    String Name = sc.next();
                     System.out.println("Enter your Email: ");
-                    String studEmail = sc.next();
+                    String Email = sc.next();
                     System.out.println("Enter your Gender: ");
-                    String studGender = sc.next();
-                    char studGen = studGender.charAt(0);
+                    String Gen = sc.next();
+                    //char Gen = studGender.charAt(0);
                     System.out.println("Enter your DOB: ");
-                    String studDobs = sc.next();
-                    Date studDob=new SimpleDateFormat("dd/MM/yyyy").parse(studDobs);
+                    String Dobs = sc.next();
+                    Date Dob=new SimpleDateFormat("dd/MM/yyyy").parse(Dobs);
                     System.out.println("Enter your Contact No: ");
-                    Long studContact = sc.nextLong();
+                    Long Contact = sc.nextLong();
                     System.out.println("Enter Semester id: ");
-                    Long studSemester = sc.nextLong();
+                    Long Semester = sc.nextLong();
                     System.out.println("Enter your New PassWord: ");
-                    String stdPassword = sc.next();
-                    Student student = new Student(studId,studName,studEmail,studGen,studDob,studContact,studSemester);
-                    boolean flag = studentImplService.signUp(student);
-                    if(flag){
-                        System.out.println("SignUp SuccessFul");
-                    }else
+                    String Password = sc.next();
+                    Student student = new Student(Id,Name,Email,Gen,Dob,Contact,Semester);
+
+                    boolean studFlagSignup = studentImplService.signUp(student);
+
+                    if(studFlagSignup){
+                        System.out.println("SignUp SuccessFul for student");
+                    }
+                    else {
                         System.out.println("Approval is Pending from Admin");
+                    }
                     System.out.println("***************************************************");
                     break;
 
