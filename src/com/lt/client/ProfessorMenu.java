@@ -12,6 +12,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * @author 
+ * Professor Individual Menu with all the professor functionality 
+ *
+ */
 public class ProfessorMenu {
 
 

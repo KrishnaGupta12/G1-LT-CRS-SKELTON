@@ -9,6 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author 
+ *Course DAO Interface for getting list of register courses  
+ *
+ */
 public interface CourseDaoInterface {
 
 

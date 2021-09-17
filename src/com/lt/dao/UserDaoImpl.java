@@ -8,10 +8,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author 
+ *User DAO implementation method for login to interacts with DB
+ */
+
 public class UserDaoImpl implements UserDaoInterface {
     Connection con = DBUtil.getConnection();
     PreparedStatement smt = null;
 
+    /**
+     * User Login Method 
+     *
+     */
     @Override
     public String login(String username, String password) throws SQLException {
         smt = con.prepareStatement(SqlConstants.USER_TABLE_DATA);

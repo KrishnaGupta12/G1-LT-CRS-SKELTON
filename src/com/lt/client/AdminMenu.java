@@ -1,7 +1,11 @@
 package com.lt.client;
 
 import java.util.Scanner;
-
+/**
+ * @author 
+ * Admin Individual Menu with all the Admin functionality 
+ *
+ */
 public class AdminMenu {
 
 

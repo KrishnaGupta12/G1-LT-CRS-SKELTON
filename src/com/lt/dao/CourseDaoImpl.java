@@ -11,18 +11,31 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+/**
+ * @author 
+ * Implementation of DAO interface method to interacts with DB
+ *
+ */
 public class CourseDaoImpl implements CourseDaoInterface{
     Connection con = DBUtil.getConnection();
     PreparedStatement smt = null;
     List<Courses> availableList = null;
 
-    //Student register for course
+    
+    /**
+     *Student register for course
+     */
     @Override
     public boolean registerCourse(long courseId,long semester_id) throws SQLException {
         return false;
     }
 
-    //Provide list of available courses in catalog
+    
+    /**
+     *Provide list of available courses in catalog
+     */
     @Override
     public List<Courses> showAvailableCourses(long semesterId) throws SQLException {
        availableList = new ArrayList<Courses>();

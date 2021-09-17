@@ -8,6 +8,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * @author 
+ * JDBC Connectivity 
+ *
+ */
 public class DBUtil {
 
     private static Connection connection = null;

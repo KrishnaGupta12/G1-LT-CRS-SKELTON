@@ -7,6 +7,11 @@ import com.lt.bean.Student;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * @author 
+ * Student Interface with all the its methods.
+ *
+ */
 public interface StudentInterface{
 
 

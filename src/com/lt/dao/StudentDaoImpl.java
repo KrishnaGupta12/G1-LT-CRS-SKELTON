@@ -11,11 +11,21 @@ import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
+/**
+ * @author 
+ * Implementation of Student DAO Interface all methods to interacts with DB
+ *
+ */
+
 public class StudentDaoImpl implements StudentDaoInterface {
     Connection con  = DBUtil.getConnection();
     PreparedStatement smt = null;
     static int count  = 10001;
 
+    /**
+     * Student signup method 
+     *
+     */
     @Override
     public boolean signUp(Student student) throws SQLException {
        smt= con.prepareStatement(SqlConstants.INSERT_TO_STUDENT);
@@ -31,7 +41,11 @@ public class StudentDaoImpl implements StudentDaoInterface {
           return true;
         return false;
     }
-
+    
+    /**
+     * Student Register for Courses Method Implementation
+     *
+     */
     @Override
     public boolean registerForCourse(long student_id, long semesterId, long courseId) throws SQLException {
         smt = con.prepareStatement(SqlConstants.REGISTER_COURSE);
@@ -44,7 +58,10 @@ public class StudentDaoImpl implements StudentDaoInterface {
         return false;
     }
 
-    // show list of registered courses by student
+    /**
+     * Show list of registered courses by student
+     *
+     */
     @Override
     public Set<RegisterCourse> viewRegisteredCourses(long studentId,long semesterId) throws SQLException {
        Set<RegisterCourse> registeredList = new HashSet<RegisterCourse>();
@@ -67,7 +84,10 @@ public class StudentDaoImpl implements StudentDaoInterface {
         return registeredList;
     }
 
-//remove courses
+    
+    /**
+     * Student removing courses method implementation
+     */
     @Override
     public boolean removeCourse(long courseId) throws SQLException {
         smt = con.prepareStatement(SqlConstants.REMOVE_COURSE);
@@ -78,6 +98,9 @@ public class StudentDaoImpl implements StudentDaoInterface {
         return false;
     }
 
+    /**
+     * Show list of student
+     */
     @Override
     public long getStudent(String username) throws SQLException {
       //  Student student = null;
@@ -91,7 +114,11 @@ public class StudentDaoImpl implements StudentDaoInterface {
         return stud_id;
     }
 
-    //Show list of student
+    
+    
+    /**
+     *Show available courses method
+     */
     @Override
     public List<Courses> showAvailableCourses(long semesterId) throws SQLException {
         List<Courses> availableList = new ArrayList<Courses>();
@@ -111,6 +138,9 @@ public class StudentDaoImpl implements StudentDaoInterface {
         return availableList;
     }
 
+    /**
+     *Show List of Courses with Pending payment status
+     */
     @Override
     public  Set<RegisterCourse> showListofPendingPayment(long student_id) throws SQLException {
         Set<RegisterCourse> list = new HashSet<RegisterCourse>();
@@ -132,6 +162,9 @@ public class StudentDaoImpl implements StudentDaoInterface {
         return list;
     }
 
+    /**
+     * Registered Course Payfees Method 
+     */
     @Override
     public boolean payfees(long courseId, Payment payment) throws SQLException {
         smt =con.prepareStatement(SqlConstants.INSERT_PAYMENT_STATUS);

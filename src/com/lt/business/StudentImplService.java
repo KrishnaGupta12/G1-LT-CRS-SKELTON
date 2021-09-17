@@ -12,6 +12,12 @@ import java.sql.SQLException;
 import java.util.*;
 //import static com.lt.dao.StudentDao.studentsList;
 
+/**
+ * @author 
+ * 
+ * Student Business Layer implementing student DAO.
+ *
+ */
 public class StudentImplService implements StudentDaoInterface {
     //public  Set<RegisterCourse> registerCourseList = new HashSet<RegisterCourse>();
 
@@ -19,7 +25,10 @@ public class StudentImplService implements StudentDaoInterface {
     CourseDaoImpl courseDao = null;
     boolean flag = false;
 
-    //this method will do Student Sign up
+    
+    /**
+     *this method will do Student Sign up
+     */
     @Override
     public boolean signUp(Student student) throws SQLException {
         studentDao = new StudentDaoImpl();
@@ -28,7 +37,10 @@ public class StudentImplService implements StudentDaoInterface {
 
     }
 
-    //register for course
+    
+    /**
+     *register for course
+     */
     @Override
     public boolean registerForCourse(long student_id, long semesterId,long courseId) throws SQLException {
         studentDao = new StudentDaoImpl();
@@ -36,26 +48,38 @@ public class StudentImplService implements StudentDaoInterface {
         return flag;
     }
 
-    // show list of registered courses by student
+    
+    /**
+     *show list of registered courses by student
+     */
     @Override
     public Set<RegisterCourse> viewRegisteredCourses(long studentId, long semesterId) throws SQLException {
         studentDao = new StudentDaoImpl();
         Set<RegisterCourse> registeredList = studentDao.viewRegisteredCourses(studentId,semesterId);
         return registeredList;
     }
-
+    
+    /**
+     *remove registered courses method 
+     */
     @Override
     public boolean removeCourse(long courseId) throws SQLException {
         return studentDao.removeCourse(courseId);
     }
-
+    
+    /**
+     *get student ID method
+     */
     @Override
     public long getStudent(String username) throws SQLException {
         studentDao = new StudentDaoImpl();
         long id = studentDao.getStudent(username);
         return id;
     }
-
+    
+    /**
+     *show list of available courses 
+     */
     @Override
     public List<Courses> showAvailableCourses(long semesterId) throws SQLException {
         List<Courses> list = new ArrayList<>();
@@ -63,7 +87,10 @@ public class StudentImplService implements StudentDaoInterface {
         list = studentDao.showAvailableCourses(semesterId);
         return list;
     }
-
+    
+    /**
+     *show list of registered courses with pending payment status
+     */
     @Override
     public Set<RegisterCourse> showListofPendingPayment(long student_id) throws SQLException {
         Set<RegisterCourse> list = new HashSet<RegisterCourse>();
@@ -71,7 +98,10 @@ public class StudentImplService implements StudentDaoInterface {
         list = studentDao.showListofPendingPayment(student_id);
         return list;
     }
-
+    
+    /**
+     *payfees method
+     */
     @Override
     public boolean payfees(long courseId, Payment payment) throws SQLException {
         studentDao = new StudentDaoImpl();

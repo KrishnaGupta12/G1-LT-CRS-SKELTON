@@ -15,6 +15,13 @@ import java.util.Date;
 import java.util.Scanner;
 
 
+/**
+ * @author 
+ * 
+ * CRS Applicaion Menu Class. Its main method class to run the application.
+ * Bases on Options all the methods get called.
+ *
+ */
 public class CRSApplication {
     public static void main(String[] args) throws ParseException, SQLException {
         StudentImplService studentImplService = new StudentImplService();

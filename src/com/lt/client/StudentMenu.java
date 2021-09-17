@@ -7,6 +7,13 @@ import com.lt.constants.ModeOfPayment;
 
 import java.sql.SQLException;
 import java.util.*;
+
+
+/**
+ * @author 
+ * Student Individual Menu with all the Student functionality 
+ *
+ */
 public class StudentMenu {
     public void studentSession(String userName,long student_id) throws SQLException {
         System.out.println("Welcome " +userName + " to your panel. Have a Good day!!");
