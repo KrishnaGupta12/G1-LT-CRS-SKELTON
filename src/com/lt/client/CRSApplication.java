@@ -1,12 +1,11 @@
 
 package com.lt.client;
 
-import com.lt.bean.Professor;
+import com.lt.bean.Roles;
 import com.lt.bean.Student;
 import com.lt.business.ProfessorImplService;
 import com.lt.business.StudentImplService;
 import com.lt.business.UserImplServiceInterface;
-import com.lt.constants.Role;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -43,29 +42,15 @@ public class CRSApplication {
             int role = sc.nextInt();
             switch (role) {
                 case 1:
-                    String rol = "";
+
                     System.out.println("Login");
                     System.out.println("----------------------------------------------------------");
                     System.out.println("Enter UserName : ");
                     String userName = sc.next();
                     System.out.println("Enter Password : ");
                     String passWord = sc.next();
-                    rol = userImplService.login(userName, passWord);
-
-                    if (rol.equalsIgnoreCase(Role.STUDENT.toString())) {
-                        StudentMenu studentmenu = new StudentMenu();
-                        long stud_id = studentImplService.getStudent(userName);
-                        studentmenu.studentSession(rol, stud_id);
-                    } else if (rol.equalsIgnoreCase(Role.PROFESSOR.toString())) {
-                        ProfessorMenu professorMenu = new ProfessorMenu();
-                        long professorId = professorImplService.getProfessorId(userName);
-                        professorMenu.professorSession(rol,professorId);
-                    } else if (rol.equalsIgnoreCase(Role.ADMIN.toString())) {
-                        AdminMenu admin = new AdminMenu();
-                        admin.adminSession(rol);
-                    } else {
-                        System.out.println("Invalid user");
-                    }
+                    int rol = userImplService.login(userName, passWord);
+                    userImplService.getUserMenu(rol,userName);
                     System.out.println("***************************************************");
                     break;
 
@@ -89,7 +74,6 @@ public class CRSApplication {
                     System.out.println("Enter Semester id: ");
                     Long Semester = sc.nextLong();
                     System.out.println("Enter your New PassWord: ");
-                    String Password = sc.next();
                     String stdPassword = sc.next();
                     Student student = new Student(Id, Name, Email, Gen, Dob, Contact, Semester);
                     boolean flagStudentSignUp = studentImplService.signUp(student);
