@@ -3,6 +3,7 @@ package com.lt.constants;
 public interface SqlConstants {
 
     //User table queries
+
     public final static String USER_TABLE_DATA = "select role_id from user where username =? && password=?";
     public final static String GET_ROLE = "select role_id,role from role where role_id=?";
     public final static String INSERT_TO_USER = "insert into user values (?,?,?)";
@@ -13,23 +14,23 @@ public interface SqlConstants {
 
     //Professor Table queries
     public final static String VIEW_COURSE = "select * from course where course_professor_id = ?";
-    public final static  String ADD_GRADES=" insert into grade values (?,?,?) ";
-    public final static String VIEW_REG_STUDENT ="select  * from Student where stud_id IN (select reg_stud_id from RegisterCourses where reg_course_id IN ( select course_id from Professor where professor_id = ?))";
+    public final static String ADD_GRADES = " insert into grade values (?,?,?) ";
+    public final static String VIEW_REG_STUDENT = "select  * from Student where stud_id IN (select reg_stud_id from RegisterCourses where reg_course_id IN ( select course_id from Professor where professor_id = ?))";
     public final static String GET_PROFESSOR_DATA = "select professor_id from Professor where professor_email = ? ";
-    public final static String LIST_REG_COURSES_SEM ="select course_id,course_name from Course where course_id IN (Select reg_course_id from RegisterCourses where reg_stud_id = 101 and reg_semester_id = 1)";
-    public final static String GENERATE_REPORT_CARD="Select s.stud_id,s.stud_name,g.courseId,g.semesterId,g.grade from Student s INNER JOIN Grade g On stud_id  = studentId";
+    public final static String LIST_REG_COURSES_SEM = "select course_id,course_name from Course where course_id IN (Select reg_course_id from RegisterCourses where reg_stud_id = 101 and reg_semester_id = 1)";
+    public final static String GENERATE_REPORT_CARD = "Select s.stud_id,s.stud_name,g.courseId,g.semesterId,g.grade from Student s INNER JOIN Grade g On stud_id  = studentId";
 
     //Semester Table queries
 
     //Course Table queries
     public final static String AVAILABLE_COURSES = "select course_id,course_name,course_fee, course_duration, " +
-            "course_type,course_details from Course where course_id IN (Select course_id from CourseCatalog where isAvailable = 'true')"+
+            "course_type,course_details from Course where course_id IN (Select course_id from CourseCatalog where isAvailable = 'true')" +
             "and course_semester_id = ?";
-    public static String LIST_REGISTERED_COURSES ="select c.course_id,c.course_name,c.course_fee, c.course_duration,c.course_type,c.course_details,r.payment_status,r.reg_semester_Id,r.reg_stud_id from Course c INNER JOIN RegisterCourses r ON c.course_id =r.reg_course_id ";
+    public static String LIST_REGISTERED_COURSES = "select c.course_id,c.course_name,c.course_fee, c.course_duration,c.course_type,c.course_details,r.payment_status,r.reg_semester_Id,r.reg_stud_id from Course c INNER JOIN RegisterCourses r ON c.course_id =r.reg_course_id ";
 
     //RegisterCourse Table queries
     public final static String REGISTER_COURSE = "insert into RegisterCourses values (?,?,?,'pending')";
-    public final static String REMOVE_COURSE= "delete from RegisterCourses where reg_course_id =?";
+    public final static String REMOVE_COURSE = "delete from RegisterCourses where reg_course_id =?";
     //public final static String PENDING_PAYMENT_LIST = "select c.course_id,c.course_name,c.course_fee, c.course_duration,c.course_type,c.course_details,r.payment_status from Course c INNER JOIN RegisterCourses r ON c.course_id IN ( Select reg_course_id from RegisterCourses where payment_status = 'pending' )";
     public final static String PENDING_PAYMENT_LIST = "select c.course_id,c.course_name,c.course_fee, c.course_duration,c.course_type,c.course_details,r.payment_status,r.reg_stud_id from Course c INNER JOIN RegisterCourses r ON c.course_id = r.reg_course_id ";
 
