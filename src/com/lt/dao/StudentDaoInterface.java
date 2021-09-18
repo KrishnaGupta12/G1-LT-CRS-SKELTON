@@ -23,7 +23,7 @@ public interface StudentDaoInterface {
     public long getStudent(String username) throws SQLException;
     public List<Courses> showAvailableCourses(long semesterId) throws SQLException;
     public Set<RegisterCourse> showListofPendingPayment(long student_id) throws SQLException;
-    public boolean payfees(long courseId,Payment payment) throws SQLException;
+    public boolean payfees(long courseId,Payment payment,long studentid) throws SQLException;
 
 
 

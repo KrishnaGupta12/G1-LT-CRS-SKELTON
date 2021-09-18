@@ -89,7 +89,6 @@ public class CRSApplication {
                     System.out.println("Enter Semester id: ");
                     Long Semester = sc.nextLong();
                     System.out.println("Enter your New PassWord: ");
-                    String Password = sc.next();
                     String stdPassword = sc.next();
                     Student student = new Student(Id, Name, Email, Gen, Dob, Contact, Semester);
                     boolean flagStudentSignUp = studentImplService.signUp(student);

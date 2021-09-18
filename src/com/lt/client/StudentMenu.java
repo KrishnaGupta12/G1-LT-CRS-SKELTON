@@ -78,6 +78,7 @@ public class StudentMenu {
                 case 4:
                     System.out.println("Pay Fees");
                    Set<RegisterCourse> pendingPaymentList = studentImplService.showListofPendingPayment(student_id);
+                    System.out.println(pendingPaymentList);
                    if(pendingPaymentList.size() == 0){
                        System.out.println("No courses pending for payment");
                    }
@@ -85,11 +86,12 @@ public class StudentMenu {
                        System.out.println("Enter Course id");
                        long course_Id = Long.parseLong(sc.next());
                        System.out.println("Enter Mode of Payment");
-                       String modepayment = sc.next();
+                       String modePayment = sc.next();
                        System.out.println("Enter Amount to pay");
                        double amount = Double.parseDouble(sc.next());
-                       Payment payment = new Payment(amount, modepayment);
-                       boolean paymentFlag = studentImplService.payfees(course_Id, payment);
+                       long transactionId = Long.parseLong(studentImplService.generateTransactionId());
+                       Payment payment = new Payment(amount, modePayment,transactionId);
+                       boolean paymentFlag = studentImplService.payfees(course_Id, payment,student_id);
                        if (paymentFlag) {
                            System.out.println("Payment Successful..!");
                        } else {

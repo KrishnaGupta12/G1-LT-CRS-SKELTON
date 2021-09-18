@@ -12,10 +12,9 @@ import java.util.Set;
 
 public class ProfessorImplService extends User implements ProfessorInterface {
     @Override
-    public void viewFullCourses() {
-        System.out.println("View Full courses");
+    public void viewFullCourses(long professorId) {
         ProfessorDaoImpl pdo = new ProfessorDaoImpl();
-        List<Courses> courseList = pdo.getCourseList();
+        List<Courses> courseList = pdo.getCourseList(professorId);
         System.out.println(courseList);
     }
 

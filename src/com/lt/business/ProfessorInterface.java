@@ -12,7 +12,7 @@ import java.util.List;
 public interface ProfessorInterface {
     //public boolean signUp(Professor professor) throws SQLException;
 
-    public void viewFullCourses();
+    public void viewFullCourses(long professorId);
     public  void addGrade(long courseId,long studentId, String grade);
     public List<Student> viewRegisteredStudents(long professorId);
     public long getProfessorId(String username) throws SQLException;

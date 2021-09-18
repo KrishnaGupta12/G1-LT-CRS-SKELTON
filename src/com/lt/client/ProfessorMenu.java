@@ -37,9 +37,8 @@ public class ProfessorMenu {
             int task = sc.nextInt();
             switch (task) {
                 case 1:
-                    System.out.println("View Course");
-                    Courses courses = new Courses();
-                    professorImplService.viewFullCourses();
+                    System.out.println("View Your Courses");
+                    professorImplService.viewFullCourses(professorId);
 
                     break;
 
@@ -56,7 +55,7 @@ public class ProfessorMenu {
                     break;
 
                 case 3:
-                    System.out.println("View Registered Course");
+                    System.out.println("View Registered Students");
                     List<Student> studList = professorImplService.viewRegisteredStudents (professorId);
                     System.out.println(studList);
                     break;

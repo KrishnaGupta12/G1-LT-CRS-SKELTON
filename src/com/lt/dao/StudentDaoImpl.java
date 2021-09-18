@@ -132,7 +132,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
             String course_duration = rs.getString(4);
             String course_type=rs.getString(5);
             String course_details =rs.getString(6);
-            Courses neWCourse = new Courses(course_id ,course_name,course_fees,course_duration,course_details,course_type);
+            Courses neWCourse = new Courses(course_id ,course_name,course_fees,course_duration,course_type,course_details);
             availableList.add(neWCourse);
         }
         return availableList;
@@ -166,14 +166,18 @@ public class StudentDaoImpl implements StudentDaoInterface {
      * Registered Course Payfees Method 
      */
     @Override
-    public boolean payfees(long courseId, Payment payment) throws SQLException {
+    public boolean payfees(long courseId, Payment payment, long studentId) throws SQLException {
         smt =con.prepareStatement(SqlConstants.INSERT_PAYMENT_STATUS);
         smt.setString(1,payment.getBillingMode());
         smt.setDouble(2,payment.getBillingAmount());
         smt.setInt(3,(int)courseId);
+        smt.setInt(4,(int)studentId);
+        smt.setInt(5, (int) payment.getTransactionId());
+
         if(smt.executeUpdate() !=0){
             smt = con.prepareStatement(SqlConstants.UPDATE_PAYMENT_STATUS);
             smt.setInt(1,(int)courseId);
+            smt.setInt(2,(int)studentId);
             int flag = smt.executeUpdate();
             System.out.println("Billing details updated");
             return true;

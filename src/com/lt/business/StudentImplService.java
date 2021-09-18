@@ -82,7 +82,7 @@ public class StudentImplService implements StudentDaoInterface {
      */
     @Override
     public List<Courses> showAvailableCourses(long semesterId) throws SQLException {
-        List<Courses> list = new ArrayList<>();
+        List<Courses> list = null;
         studentDao = new StudentDaoImpl();
         list = studentDao.showAvailableCourses(semesterId);
         return list;
@@ -103,9 +103,15 @@ public class StudentImplService implements StudentDaoInterface {
      *payfees method
      */
     @Override
-    public boolean payfees(long courseId, Payment payment) throws SQLException {
+    public boolean payfees(long courseId, Payment payment,long studentId) throws SQLException {
         studentDao = new StudentDaoImpl();
-        return studentDao.payfees(courseId,payment);
+        return studentDao.payfees(courseId,payment,studentId);
+    }
+
+    public String generateTransactionId(){
+        Random rnd = new Random();
+        int number = rnd.nextInt(999999);
+       return String.format("%05d", number);
     }
 
 //    @Override

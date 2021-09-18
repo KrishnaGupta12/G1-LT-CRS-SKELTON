@@ -11,10 +11,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author
+ * Implementation of Professor DAO Interface all methods to interacts with DB
+ *
+ */
 public class ProfessorDaoImpl implements ProfessorDaoInterface {
 
     @Override
-    public List<Courses> getCourseList() {
+    public List<Courses> getCourseList(long professorId) {
         List<Courses> list = new ArrayList<Courses>();
         Connection con = null;
         PreparedStatement ps = null;
@@ -23,6 +28,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
         {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);
+            ps.setInt(1, (int) professorId);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Courses cs = new Courses();
