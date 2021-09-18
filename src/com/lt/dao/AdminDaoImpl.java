@@ -38,7 +38,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
     public void addProfessor(Professor professor) throws SQLException {
         try {
 
-            long id = professor.getProfessorId();
+           // long id = professor.getProfessorId();
             String name = professor.getProfessorName();
             String email = professor.getProfessorEmail();
             long courseid = professor.getCourseId();
@@ -46,12 +46,12 @@ public class AdminDaoImpl implements AdminDaoInterface {
             String password = professor.getPassword();
 
             statement = con.prepareStatement(SqlConstants.ADD_PROFESSOR);
-            statement.setLong(1, id);
-            statement.setString(2, name);
-            statement.setString(3, email);
-            statement.setLong(4, courseid);
-            statement.setString(5, department);
-            statement.setString(6, password);
+          //  statement.setLong(1, id);
+            statement.setString(1, name);
+            statement.setString(2, email);
+            statement.setLong(3, courseid);
+            statement.setString(4, department);
+            statement.setString(5, password);
 
             int status = statement.executeUpdate();
             if (status != 0) {
@@ -133,14 +133,14 @@ public class AdminDaoImpl implements AdminDaoInterface {
     public void addCourse(Courses course) throws SQLException {
 
         statement = con.prepareStatement(SqlConstants.ADD_COURSES);
-        statement.setLong(1, course.getCourseId());
-        statement.setString(2, course.getCourseName());
-        statement.setDouble(3, course.getCourseFee());
-        statement.setString(4, course.getCourseDuration());
-        statement.setString(5, course.getCourseType());
-        statement.setString(6, course.getCourseDetails());
-        statement.setLong(7, course.getCourseSemesterId());
-        statement.setLong(8, course.getProfessorId());
+       // statement.setLong(1, course.getCourseId());
+        statement.setString(1, course.getCourseName());
+        statement.setDouble(2, course.getCourseFee());
+        statement.setString(3, course.getCourseDuration());
+        statement.setString(4, course.getCourseType());
+        statement.setString(5, course.getCourseDetails());
+        statement.setLong(6, course.getCourseSemesterId());
+        statement.setLong(7, course.getProfessorId());
         int updateStatus = statement.executeUpdate();
         if (updateStatus == 0)
             System.out.println(" Record not updated...try again !!");
@@ -170,16 +170,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
             int del = statement.executeUpdate();
             if (del != 0)
                 System.out.println("Course  deleted successfully : ");
-
         }
-
-
-    }
-
-
-    @Override
-    public void editCourse() throws IOException {
-
     }
 
     @Override

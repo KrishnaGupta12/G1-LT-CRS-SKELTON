@@ -13,6 +13,16 @@ public class Courses {
     public Courses() {
     }
 
+    public Courses(String courseName, double courseFee, String courseDuration, String courseType, String courseDetails, long courseSemesterId, long professorId) {
+        this.courseName = courseName;
+        this.courseFee = courseFee;
+        this.courseDuration = courseDuration;
+        this.courseType = courseType;
+        this.courseDetails = courseDetails;
+        this.courseSemesterId = courseSemesterId;
+        this.professorId = professorId;
+    }
+
     public Courses(long courseId, String courseName, double courseFee, String courseDuration, String courseType, String courseDetails) {
         this.courseId = courseId;
         this.courseName = courseName;

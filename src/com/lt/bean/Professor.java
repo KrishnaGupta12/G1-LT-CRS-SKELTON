@@ -21,6 +21,15 @@ public class Professor {
         this.password = password;
     }
 
+    public Professor(String professorName, String professorEmail, long courseId, String professorDPTName, String password) {
+        this.professorId = professorId;
+        this.professorName = professorName;
+        this.professorEmail = professorEmail;
+        this.courseId = courseId;
+        this.professorDPTName = professorDPTName;
+        this.password = password;
+    }
+
     public long getProfessorId() {
         return professorId;
     }

@@ -39,10 +39,11 @@ public interface SqlConstants {
     public final static String INSERT_PAYMENT_STATUS = "insert into payment values (?,?,?,?,?)";
 
     //Admin Table queries
-    public static final String ADD_PROFESSOR = "insert into professor  values (?,?,?,?,?,?)";
+    //public static final String ADD_PROFESSOR = "insert into professor  values (?,?,?,?,?)";
     //Admin Table queries
     public final static String INSERT_TO_ADMIN = "insert into Admin values (?,?,?,?,?,?,?,?)";
-    public static final String ADD_COURSES = "insert into course(course_id,course_name,course_fee,course_duration, course_type,course_details,course_semester_id,course_professor_id) values(?,?,?,?,?,?,?,?)";
+    public static final String ADD_PROFESSOR = "insert into professor(professor_name,professor_email,course_id,professor_dept,password) values(?,?,?,?,?)";
+    public static final String ADD_COURSES = "insert into course(course_name,course_fee,course_duration, course_type,course_details,course_semester_id,course_professor_id) values(?,?,?,?,?,?,?)";
     public static final String DEL_COURSES = "delete from course where course_id=?";
     public static final String APPROVE_STUDENT = "update student set isApprove = ? where stud_id=?";
     public static final String INSERT_USER = "insert into user values(?,?,?)";
