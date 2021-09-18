@@ -3,7 +3,7 @@ package com.lt.bean;
 public class User {
     private String userName;
     private String userPassword;
-    private String  role;
+    private String role;
 
     public User() {
     }

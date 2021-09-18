@@ -12,7 +12,8 @@ public class RegisterCourse {
     private String courseDetails;
     private String paymentStatus;
 
-    public RegisterCourse(){}
+    public RegisterCourse() {
+    }
 
 //    public RegisterCourse(long courseId, String courseName, double courseFee, String courseType, String courseDuration, String courseDetails, String paymentStatsu) {
 //        super( courseId,  courseName,  courseFee,  courseType,  courseDuration,  courseDetails);

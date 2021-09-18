@@ -9,9 +9,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * @author 
- * JDBC Connectivity 
- *
+ * @author JDBC Connectivity
  */
 public class DBUtil {
 

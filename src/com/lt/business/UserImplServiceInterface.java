@@ -4,15 +4,15 @@ import com.lt.bean.Roles;
 import com.lt.dao.UserDaoInterface;
 import com.lt.dao.UserDaoImpl;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * @author 
- *User Implementation with DAO Layer
+ * @author User Implementation with DAO Layer
  */
-public class UserImplServiceInterface{
+public class UserImplServiceInterface {
 
-//    @Override
+    //    @Override
 //    public void getUserName() {
 //
 //    }
@@ -25,12 +25,11 @@ public class UserImplServiceInterface{
 
 
     public int login(String username, String password) throws SQLException {
-        return userDao.login(username,password);
+        return userDao.login(username, password);
     }
 
 
-
-    public void getUserMenu(int role,String userName) throws SQLException {
-    userDao.getUserMenu(role, userName);
+    public void getUserMenu(int role, String userName) throws SQLException, IOException {
+        userDao.getUserMenu(role, userName);
     }
 }

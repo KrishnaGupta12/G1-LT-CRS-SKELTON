@@ -1,29 +1,24 @@
 package com.lt.bean;
 
-import java.util.Date;
-
 public class Professor {
 
     private long professorId;
     private String professorName;
     private String professorEmail;
-    private char gender;
-    private Date professorDOB;
-    private long contact_no;
-    private long course_id;
-    private String passWord;
+    private long courseId;
+    private String professorDPTName;
+    private String password;
 
     public Professor() {
     }
 
-    public Professor(long professorId, String professorName, String professorEmail, char gender, Date professorDOB, long contact_no, long course_id) {
+    public Professor(long professorId, String professorName, String professorEmail, long courseId, String professorDPTName, String password) {
         this.professorId = professorId;
         this.professorName = professorName;
         this.professorEmail = professorEmail;
-        this.gender = gender;
-        this.professorDOB = professorDOB;
-        this.contact_no = contact_no;
-        this.course_id = course_id;
+        this.courseId = courseId;
+        this.professorDPTName = professorDPTName;
+        this.password = password;
     }
 
     public long getProfessorId() {
@@ -50,48 +45,28 @@ public class Professor {
         this.professorEmail = professorEmail;
     }
 
-    public char getGender() {
-        return gender;
+    public long getCourseId() {
+        return courseId;
     }
 
-    public void setGender(char gender) {
-        this.gender = gender;
+    public void setCourseId(long courseId) {
+        this.courseId = courseId;
     }
 
-    public Date getProfessorDOB() {
-        return professorDOB;
+    public String getPassword() {
+        return password;
     }
 
-    public void setProfessorDOB(Date professorDOB) {
-        this.professorDOB = professorDOB;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public long getContact_no() {
-        return contact_no;
+    public String getProfessorDPTName() {
+        return professorDPTName;
     }
 
-    public void setContact_no(long contact_no) {
-        this.contact_no = contact_no;
+    public void setProfessorDPTName(String professorDPTName) {
+        this.professorDPTName = professorDPTName;
     }
 
-    public long getCourse_id() {
-        return course_id;
-    }
-
-    public void setCourse_id(long course_id) {
-        this.course_id = course_id;
-    }
-
-    @Override
-    public String toString() {
-        return "Professor{" +
-                "professorId=" + professorId +
-                ", professorName='" + professorName + '\'' +
-                ", professorEmail='" + professorEmail + '\'' +
-                ", gender=" + gender +
-                ", professorDOB=" + professorDOB +
-                ", contact_no=" + contact_no +
-                ", course_id=" + course_id +
-                '}';
-    }
 }

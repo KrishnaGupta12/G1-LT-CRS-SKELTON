@@ -1,11 +1,12 @@
 package com.lt.bean;
 
 public class Payment {
-    private  long transactionId;
+    private long transactionId;
     private double billingAmount;
     private String billingMode;
 
-    public Payment(){}
+    public Payment() {
+    }
 
     public long getTransactionId() {
         return transactionId;
@@ -15,7 +16,7 @@ public class Payment {
         this.transactionId = transactionId;
     }
 
-    public Payment(double billingAmount, String billingMode,long transactionId) {
+    public Payment(double billingAmount, String billingMode, long transactionId) {
         this.billingAmount = billingAmount;
         this.billingMode = billingMode;
         this.transactionId = transactionId;

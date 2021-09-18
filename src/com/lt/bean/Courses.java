@@ -4,27 +4,35 @@ public class Courses {
     private long courseId;
     private String courseName;
     private double courseFee;
-    private String courseType;
     private String courseDuration;
+    private String courseType;
     private String courseDetails;
-    private long noOfStudent;
+    private long courseSemesterId;
     private long professorId;
 
+    public Courses() {
+    }
 
-
-    public Courses(){}
-
-    public Courses(long courseId, String courseName, double courseFee,  String courseDuration,String courseType, String courseDetails) {
+    public Courses(long courseId, String courseName, double courseFee, String courseDuration, String courseType, String courseDetails) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseFee = courseFee;
-        this.courseType = courseType;
         this.courseDuration = courseDuration;
+        this.courseType = courseType;
         this.courseDetails = courseDetails;
-
     }
 
-
+    public Courses(long courseId, String courseName, double courseFee, String courseDuration,
+                   String courseType, String courseDetails, long courseSemesterId, long professorId) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseFee = courseFee;
+        this.courseDuration = courseDuration;
+        this.courseType = courseType;
+        this.courseDetails = courseDetails;
+        this.courseSemesterId = courseSemesterId;
+        this.professorId = professorId;
+    }
 
     public long getCourseId() {
         return courseId;
@@ -50,20 +58,20 @@ public class Courses {
         this.courseFee = courseFee;
     }
 
-    public String getCourseType() {
-        return courseType;
-    }
-
-    public void setCourseType(String courseType) {
-        this.courseType = courseType;
-    }
-
     public String getCourseDuration() {
         return courseDuration;
     }
 
     public void setCourseDuration(String courseDuration) {
         this.courseDuration = courseDuration;
+    }
+
+    public String getCourseType() {
+        return courseType;
+    }
+
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
     }
 
     public String getCourseDetails() {
@@ -74,12 +82,12 @@ public class Courses {
         this.courseDetails = courseDetails;
     }
 
-    public long getNoOfStudent() {
-        return noOfStudent;
+    public long getCourseSemesterId() {
+        return courseSemesterId;
     }
 
-    public void setNoOfStudent(long noOfStudent) {
-        this.noOfStudent = noOfStudent;
+    public void setCourseSemesterId(long courseSemesterId) {
+        this.courseSemesterId = courseSemesterId;
     }
 
     public long getProfessorId() {
@@ -92,13 +100,16 @@ public class Courses {
 
     @Override
     public String toString() {
-        return "\nCourses{" +
+        return "Course{" +
                 "courseId=" + courseId +
                 ", courseName='" + courseName + '\'' +
                 ", courseFee=" + courseFee +
-                ", courseType='" + courseType + '\'' +
                 ", courseDuration='" + courseDuration + '\'' +
+                ", courseType='" + courseType + '\'' +
                 ", courseDetails='" + courseDetails + '\'' +
+                ", courseSemesterId=" + courseSemesterId +
+                ", professorId=" + professorId +
                 '}';
     }
+
 }

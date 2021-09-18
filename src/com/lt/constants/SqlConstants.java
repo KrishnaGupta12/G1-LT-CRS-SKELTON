@@ -3,13 +3,12 @@ package com.lt.constants;
 public interface SqlConstants {
 
     //User table queries
-
     public final static String USER_TABLE_DATA = "select role_id from user where username =? && password=?";
     public final static String GET_ROLE = "select role_id,role from role where role_id=?";
     public final static String INSERT_TO_USER = "insert into user values (?,?,?)";
 
     //Student Table queries
-    public final static String INSERT_TO_STUDENT = "insert into Student values (?,?,?,?,?,?,?)";
+    public final static String INSERT_TO_STUDENT = "insert into Student values (?,?,?,?,?,?,?,?,?)";
     public final static String GET_STUDENT_DATA = "select stud_id from Student where stud_email = ?";
 
     //Professor Table queries
@@ -40,7 +39,17 @@ public interface SqlConstants {
     public final static String INSERT_PAYMENT_STATUS = "insert into payment values (?,?,?,?,?)";
 
     //Admin Table queries
-
+    public static final String ADD_PROFESSOR = "insert into professor  values (?,?,?,?,?,?)";
+    //Admin Table queries
+    public final static String INSERT_TO_ADMIN = "insert into Admin values (?,?,?,?,?,?,?,?)";
+    public static final String ADD_COURSES = "insert into course(course_id,course_name,course_fee,course_duration, course_type,course_details,course_semester_id,course_professor_id) values(?,?,?,?,?,?,?,?)";
+    public static final String DEL_COURSES = "delete from course where course_id=?";
+    public static final String APPROVE_STUDENT = "update student set isApprove = ? where stud_id=?";
+    public static final String INSERT_USER = "insert into user values(?,?,?)";
+    public static final String UNAPPROVE_STUDENT = "select stud_id,stud_name,stud_email,stud_password from student where isApprove = 0";
+    public static final String VIEW_ALL_COURSES = "select * from course";
+    public static final String INSERT_COURSE_CATALOG = "insert into coursecatalog values (?,?)";
+    public static final String DEL_COURSES_CATALOG = "delete from coursecatalog where course_id=?";
     //CourseCatalog Table queries
 
     //GradeCard Table queries

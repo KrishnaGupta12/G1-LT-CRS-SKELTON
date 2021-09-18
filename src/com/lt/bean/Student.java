@@ -10,22 +10,23 @@ public class Student extends User {
     private char gender;
     private Date studentDOB;
     private long contact_no;
-    private long semester_id ;
+    private long semester_id;
     private String passWord;
     private List<Courses> listCourses;
 
     public Student() {
     }
 
-    public Student(long studentId, String studentName, String studentEmail, char gender, Date studentDOB,long contact_no,long semester_id) {
+    public Student(long studentId, String studentName, String studentEmail, char gender, Date studentDOB,
+                   long contact_no, long semester_id, String passWord) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentEmail = studentEmail;
         this.gender = gender;
         this.studentDOB = studentDOB;
-        this.contact_no=contact_no;
+        this.contact_no = contact_no;
         this.semester_id = semester_id;
-    //    this.passWord = passWord;
+        this.passWord = passWord;
     }
 
     public long getStudentId() {
@@ -64,13 +65,13 @@ public class Student extends User {
         return studentDOB;
     }
 
-//    public String getPassWord() {
-//        return passWord;
-//    }
-//
-//    public void setPassWord(String passWord) {
-//        this.passWord = passWord;
-//    }
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
 
 
     public long getContact_no() {

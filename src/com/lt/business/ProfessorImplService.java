@@ -23,7 +23,7 @@ public class ProfessorImplService extends User implements ProfessorInterface {
         System.out.println("Add grades");
         ProfessorDaoImpl pdo = new ProfessorDaoImpl();
         //boolean addgrades = pdo.addGrades();
-      //  System.out.println(addgrades);
+        //  System.out.println(addgrades);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ProfessorImplService extends User implements ProfessorInterface {
     @Override
     public long getProfessorId(String username) throws SQLException {
         ProfessorDaoImpl pdo = new ProfessorDaoImpl();
-       long prof_id= pdo.getProfessorId(username);
+        long prof_id = pdo.getProfessorId(username);
         return prof_id;
     }
 

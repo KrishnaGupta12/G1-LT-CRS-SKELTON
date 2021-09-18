@@ -1,4 +1,4 @@
-package com.lt.business;
+package com.lt.dao;
 
 import com.lt.bean.Courses;
 import com.lt.bean.Professor;
@@ -8,8 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface AdminInterface {
-
+public interface AdminDaoInterface {
 
     public void addProfessor(Professor professor) throws SQLException;
 
@@ -26,5 +25,6 @@ public interface AdminInterface {
     public List<Courses> adminViewAllCourses() throws SQLException;
 
     public List<Student> viewRegisteredStudents() throws IOException;
+
 
 }

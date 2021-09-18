@@ -13,12 +13,10 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * @author 
- * Professor Individual Menu with all the professor functionality 
- *
+ * @author Professor Individual Menu with all the professor functionality
  */
 public class ProfessorMenu {
-    public void professorSession(String userName,long professorId) throws SQLException {
+    public void professorSession(String userName, long professorId) throws SQLException {
         System.out.println("Welcome " + userName + " to your panel. Have a Good day!!");
         System.out.println("------------------------------------------------------------");
         ProfessorImplService professorImplService = new ProfessorImplService();
@@ -48,12 +46,12 @@ public class ProfessorMenu {
                     long studentId = sc.nextLong();
                     System.out.println("Enter Grade : ");
                     String grade = sc.nextLine();
-                    professorImplService.addGrade(courseId,studentId,grade);
+                    professorImplService.addGrade(courseId, studentId, grade);
                     break;
 
                 case 3:
                     System.out.println("View Registered Students");
-                    List<Student> studList = professorImplService.viewRegisteredStudents (professorId);
+                    List<Student> studList = professorImplService.viewRegisteredStudents(professorId);
                     System.out.println(studList);
                     break;
 

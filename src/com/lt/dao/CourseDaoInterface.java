@@ -10,14 +10,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author 
- *Course DAO Interface for getting list of register courses  
- *
+ * @author Course DAO Interface for getting list of register courses
  */
 public interface CourseDaoInterface {
 
 
     public boolean registerCourse(long course_id, long semester_id) throws SQLException;
+
     public List<Courses> showAvailableCourses(long semesterId) throws SQLException;
 
 

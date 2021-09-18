@@ -12,9 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author
- * Implementation of Professor DAO Interface all methods to interacts with DB
- *
+ * @author Implementation of Professor DAO Interface all methods to interacts with DB
  */
 public class ProfessorDaoImpl implements ProfessorDaoInterface {
 
@@ -24,13 +22,12 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
         Connection con = null;
         PreparedStatement ps = null;
         String sql = SqlConstants.VIEW_COURSE;
-        try
-        {
+        try {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);
             ps.setInt(1, (int) professorId);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Courses cs = new Courses();
                 cs.setCourseId(rs.getLong(1));
                 cs.setCourseName(rs.getString(2));
@@ -40,8 +37,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
                 cs.setCourseDetails(rs.getString(6));
                 list.add(cs);
             }
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.getMessage();
         }
         return list;
@@ -49,30 +45,26 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 
 
     @Override
-    public boolean addGrades(long professorId,Grade grade) {
+    public boolean addGrades(long professorId, Grade grade) {
         Connection con = null;
         PreparedStatement ps = null;
-       // Grade grade = new Grade();
+        // Grade grade = new Grade();
         int status = 0;
         boolean result = false;
         List<Student> registeredStudent = getStudentList(professorId);
         String sql = SqlConstants.ADD_GRADES;
-        try
-        {
+        try {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setLong(1,grade.getCourseId());
-            ps.setLong(2,grade.getStudentId());
-            ps.setString(3,grade.getGrade());
+            ps.setLong(1, grade.getCourseId());
+            ps.setLong(2, grade.getStudentId());
+            ps.setString(3, grade.getGrade());
             status = ps.executeUpdate();
-            if(status>0)
-            {
+            if (status > 0) {
                 result = true;
             }
-        }
-        catch(Exception e)
-        {
-           e.getMessage();
+        } catch (Exception e) {
+            e.getMessage();
         }
         return result;
     }
@@ -84,13 +76,12 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
         Connection con = null;
         PreparedStatement ps = null;
         String sql = SqlConstants.VIEW_REG_STUDENT;
-        try
-        {
+        try {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setInt(1, (int)professorId);
+            ps.setInt(1, (int) professorId);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Student student = new Student();
                 student.setStudentId(rs.getInt(1));
                 student.setStudentName(rs.getString(2));
@@ -101,9 +92,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
                 student.setSemester_id(rs.getLong(7));
                 list.add(student);
             }
-            }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.getMessage();
         }
         return list;
@@ -114,13 +103,13 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
     public long getProfessorId(String username) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
-        long prof_id=0L ;
+        long prof_id = 0L;
         con = DBUtil.getConnection();
         ps = con.prepareStatement(SqlConstants.GET_PROFESSOR_DATA);
-        ps.setString(1,username);
-        ResultSet rs =  ps.executeQuery();
-        while(rs.next()){
-            prof_id= (long)rs.getInt(1);
+        ps.setString(1, username);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            prof_id = (long) rs.getInt(1);
         }
         return prof_id;
     }

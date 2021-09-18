@@ -7,6 +7,7 @@ import com.lt.business.ProfessorImplService;
 import com.lt.business.StudentImplService;
 import com.lt.business.UserImplServiceInterface;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,14 +16,11 @@ import java.util.Scanner;
 
 
 /**
- * @author 
- * 
- * CRS Applicaion Menu Class. Its main method class to run the application.
+ * @author CRS Applicaion Menu Class. Its main method class to run the application.
  * Bases on Options all the methods get called.
- *
  */
 public class CRSApplication {
-    public static void main(String[] args) throws ParseException, SQLException {
+    public static void main(String[] args) throws ParseException, SQLException, IOException {
         StudentImplService studentImplService = new StudentImplService();
         ProfessorImplService professorImplService = new ProfessorImplService();
         UserImplServiceInterface userImplService = new UserImplServiceInterface();
@@ -50,7 +48,7 @@ public class CRSApplication {
                     System.out.println("Enter Password : ");
                     String passWord = sc.next();
                     int rol = userImplService.login(userName, passWord);
-                    userImplService.getUserMenu(rol,userName);
+                    userImplService.getUserMenu(rol, userName);
                     System.out.println("***************************************************");
                     break;
 
@@ -75,7 +73,7 @@ public class CRSApplication {
                     Long Semester = sc.nextLong();
                     System.out.println("Enter your New PassWord: ");
                     String stdPassword = sc.next();
-                    Student student = new Student(Id, Name, Email, Gen, Dob, Contact, Semester);
+                    Student student = new Student(Id, Name, Email, Gen, Dob, Contact, Semester, stdPassword);
                     boolean flagStudentSignUp = studentImplService.signUp(student);
                     if (flagStudentSignUp) {
                         System.out.println("SignUp SuccessFul");

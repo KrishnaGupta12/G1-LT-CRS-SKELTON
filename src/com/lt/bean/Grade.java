@@ -5,7 +5,8 @@ public class Grade {
     private long studentId;
     private String grade;
 
-    public Grade(){}
+    public Grade() {
+    }
 
     public Grade(long courseId, long studentId, String grade) {
         this.courseId = courseId;

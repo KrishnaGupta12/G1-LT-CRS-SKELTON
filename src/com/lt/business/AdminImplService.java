@@ -1,28 +1,38 @@
 package com.lt.business;
 
-import com.lt.bean.Courses;
-import com.lt.bean.Student;
+import com.lt.bean.*;
+import com.lt.dao.AdminDaoImpl;
+import com.lt.dao.AdminDaoInterface;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
-public class AdminImplService implements AdminInterface{
+public class AdminImplService extends User implements AdminDaoInterface {
+
+    AdminDaoImpl adminDao = new AdminDaoImpl();
+    boolean flag = false;
 
 
     @Override
-    public void adminLogin() {
+    public void addProfessor(Professor professor) throws SQLException {
+
+        adminDao.addProfessor(professor);
 
     }
 
     @Override
-    public void addProfessor() {
+    public void approveStudent(int studentId) throws SQLException {
+
+        adminDao.approveStudent(studentId);
 
     }
 
     @Override
-    public boolean approveStudent() {
-        return false;
+    public List<Student> showListOfPendingStudent() throws SQLException {
+
+        List<Student> pendingStudent = adminDao.showListOfPendingStudent();
+        return pendingStudent;
     }
 
     @Override
@@ -31,42 +41,30 @@ public class AdminImplService implements AdminInterface{
     }
 
     @Override
-    public void createCourse() throws IOException {
+    public void addCourse(Courses course) throws SQLException {
+        adminDao.addCourse(course);
 
     }
 
     @Override
-    public void deleteCourse() throws IOException {
+    public void deleteCourse(long courseId) throws IOException, SQLException {
+        adminDao.deleteCourse(courseId);
 
     }
 
-    @Override
-    public void editCourse() throws IOException {
-
-    }
 
     @Override
-    public List<Courses> displayACourse() throws IOException {
-        return null;
-    }
+    public List<Courses> adminViewAllCourses() throws SQLException {
 
-    @Override
-    public void registerStudent() throws IOException {
+        List<Courses> viewAllCourses = adminDao.adminViewAllCourses();
 
-    }
-
-    @Override
-    public List<Courses> adminViewAllCourses() {
-        return null;
-    }
-
-    @Override
-    public List<Courses> viewFullCourses() {
-        return null;
+        return viewAllCourses;
     }
 
     @Override
     public List<Student> viewRegisteredStudents() throws IOException {
         return null;
     }
+
+
 }
