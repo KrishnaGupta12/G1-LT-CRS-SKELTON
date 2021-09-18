@@ -18,9 +18,6 @@ import java.util.Scanner;
  *
  */
 public class ProfessorMenu {
-
-
-
     public void professorSession(String userName,long professorId) throws SQLException {
         System.out.println("Welcome " + userName + " to your panel. Have a Good day!!");
         System.out.println("------------------------------------------------------------");
