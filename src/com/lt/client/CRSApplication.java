@@ -48,7 +48,12 @@ public class CRSApplication {
                     System.out.println("Enter Password : ");
                     String passWord = sc.next();
                     int rol = userImplService.login(userName, passWord);
-                    userImplService.getUserMenu(rol, userName);
+                    if(rol ==0){
+                        System.out.println("User details not found..! Contact admin");
+                    }
+                    else {
+                        userImplService.getUserMenu(rol, userName);
+                    }
                     System.out.println("***************************************************");
                     break;
 

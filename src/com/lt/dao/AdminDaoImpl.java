@@ -220,7 +220,6 @@ public class AdminDaoImpl implements AdminDaoInterface {
             course.setCourseSemesterId(resultSet.getLong(7));
             course.setProfessorId(resultSet.getLong(8));
             courses.add(course);
-            System.out.println(course);
 
         }
         return courses;

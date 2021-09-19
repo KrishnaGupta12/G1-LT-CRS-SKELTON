@@ -15,7 +15,14 @@ public class ProfessorImplService extends User implements ProfessorInterface {
     public void viewFullCourses(long professorId) {
         ProfessorDaoImpl pdo = new ProfessorDaoImpl();
         List<Courses> courseList = pdo.getCourseList(professorId);
-        System.out.println(courseList);
+        //System.out.println(courseList);
+        System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------")) ;
+        System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","COURSE ID","COURSE NAME","DETAILS","FEES"));
+        System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------"));
+        for (Courses c : courseList ){
+            System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s ",
+                    c.getCourseId(),c.getCourseName(),c.getCourseDetails(),c.getCourseFee()));
+        }
     }
 
     @Override

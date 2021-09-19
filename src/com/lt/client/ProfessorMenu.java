@@ -1,9 +1,6 @@
 package com.lt.client;
 
-import com.lt.bean.Courses;
-import com.lt.bean.Grade;
-import com.lt.bean.Professor;
-import com.lt.bean.Student;
+import com.lt.bean.*;
 import com.lt.business.ProfessorImplService;
 import com.lt.business.ProfessorInterface;
 import com.lt.business.StudentImplService;
@@ -33,7 +30,8 @@ public class ProfessorMenu {
             switch (task) {
                 case 1:
                     System.out.println("View Your Courses");
-                    professorImplService.viewFullCourses(professorId);
+                   professorImplService.viewFullCourses(professorId);
+
 
                     break;
 
@@ -44,7 +42,14 @@ public class ProfessorMenu {
                     System.out.println("Enter StudentId : ");
                     long studentId = sc.nextLong();
                     List<Courses>  registeredStudentList = professorImplService.getListofStudents(studentId,semesterId);
-                    System.out.println(registeredStudentList);
+                  //  System.out.println(registeredStudentList);
+                    System.out.println(String.format("|%-10s | %-10s |","-----------","-----------")) ;
+                    System.out.println(String.format("|%-10s | %-10s |","COURSE ID","COURSE NAME"));
+                    System.out.println(String.format("|%-10s | %-10s |","-----------","-----------")) ;
+                    for (Courses c : registeredStudentList ){
+                        System.out.println(String.format("|%-11s | %-11s|  ",
+                                c.getCourseId(),c.getCourseName()));
+                    }
                     for (Courses c : registeredStudentList ){
                         System.out.println("Enter CourseId : ");
                         long courseId = (int) sc.nextLong();
@@ -58,16 +63,21 @@ public class ProfessorMenu {
                 case 3:
                     System.out.println("View Registered Students");
                     List<Student> studList = professorImplService.viewRegisteredStudents(professorId);
-                    System.out.println(studList);
+                    //System.out.println(studList);
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------","--------------" )) ;
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","STUD ID","STUD NAME","SEMESTER ID"));
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------","--------------" )) ;
+                    for (Student c : studList ){
+                        System.out.println(String.format("|%-11s | %-11s | %-11s|",
+                                c.getStudentId(),c.getStudentName(),c.getSemester_id()));
+                    }
                     break;
 
-                /*case 4:
-                    System.out.println("View Student data");
-                    break;*/
 
 
                 case 4:
                     System.out.println("Exit");
+                    System.out.println("**********************SESSION LOGGED OUT*****************************");
                     System.exit(0);
 
                 default:

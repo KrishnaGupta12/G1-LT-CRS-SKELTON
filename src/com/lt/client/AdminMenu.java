@@ -2,10 +2,12 @@ package com.lt.client;
 
 import com.lt.bean.Courses;
 import com.lt.bean.Professor;
+import com.lt.bean.Student;
 import com.lt.business.AdminImplService;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class AdminMenu {
@@ -23,8 +25,7 @@ public class AdminMenu {
             System.out.println("4. Delete course");
             System.out.println("5. Generate report cards");
             System.out.println("6. View All Courses");
-            System.out.println("7. View Registered Student for Courses");
-            System.out.println("8. Exit");
+            System.out.println("7. Exit");
             Scanner sc = new Scanner(System.in);
             int task = sc.nextInt();
             switch (task) {
@@ -50,13 +51,17 @@ public class AdminMenu {
 
                 case 2:
                     System.out.println("List Of Students waiting for Approval :  ");
-                    System.out.println(adminImplService.showListOfPendingStudent());
-
+                    List<Student> studList = adminImplService.showListOfPendingStudent();
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------","--------------" )) ;
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","STUD ID","STUD NAME","SEMESTER ID"));
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------","--------------" )) ;
+                    for (Student c : studList ){
+                        System.out.println(String.format("|%-11s | %-11s | %-11s|",
+                                c.getStudentId(),c.getStudentName(),c.getSemester_id()));
+                    }
                     System.out.println("Enter the Student id ");
                     int studentid = sc.nextInt();
-                    System.out.println(adminImplService.showListOfPendingStudent());
                     adminImplService.approveStudent(studentid);
-
 
                     break;
 
@@ -91,14 +96,13 @@ public class AdminMenu {
                     System.out.println(" Delete The Course................");
                     System.out.println("Enter The courseId");
                     long crsId = sc.nextLong();
-                    // Course courses1 = new Course(crsId);
-                    // AdminDaoImpl adminDaoImpl1 = new AdminDaoImpl();
+
                     adminImplService.deleteCourse(crsId);
 
                     break;
 
                 case 5:
-                    System.out.println("Do you want to Generate report card for below students");
+                    System.out.println("Do you want to Generate report card for  students");
                     System.out.println("Enter yes/no : ");
                     String choice = sc.next();
                     if(choice.equalsIgnoreCase("yes"))
@@ -109,11 +113,19 @@ public class AdminMenu {
 
                 case 6:
                     System.out.println("View All Courses");
-                    adminImplService.adminViewAllCourses();
+                   List<Courses> coursesList = adminImplService.adminViewAllCourses();
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------")) ;
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","COURSE ID","COURSE NAME","DETAILS","FEES"));
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------"));
+                    for (Courses c : coursesList ){
+                        System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s ",
+                                c.getCourseId(),c.getCourseName(),c.getCourseDetails(),c.getCourseFee()));
+                    }
                     break;
 
                 case 7:
                     System.out.println("Exit");
+                    System.out.println("**********************SESSION LOGGED OUT*****************************");
                     System.exit(0);
                 default:
                     System.out.println("No task for the day");

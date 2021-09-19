@@ -39,7 +39,14 @@ public class StudentMenu {
                     long semester_id = sc.nextLong();
                     System.out.println("Choose a Course from the Below List available for selected semester : ");
                     List<Courses> availableList = studentImplService.showAvailableCourses(semester_id);
-                    System.out.println(availableList);
+                   // System.out.println(availableList);
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------")) ;
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","COURSE ID","COURSE NAME","DETAILS","FEES"));
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------"));
+                    for (Courses c : availableList ){
+                        System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s ",
+                               c.getCourseId(),c.getCourseName(),c.getCourseDetails(),c.getCourseFee()));
+                    }
                     System.out.println("Enter Course Id of course you want to register: ");
                     long courseId = sc.nextLong();
                     boolean flag = studentImplService.registerForCourse(student_id, semester_id, courseId);
@@ -57,7 +64,15 @@ public class StudentMenu {
                     long s_id = sc.nextLong();
                     System.out.println("Your Registered Courses are : \n");
                     Set<RegisterCourse> list = studentImplService.viewRegisteredCourses(student_id, s_id);
-                    System.out.println(list);
+                   // System.out.println(list);
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------")) ;
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","COURSE ID","COURSE NAME","DETAILS","FEES"));
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------"));
+                    for (RegisterCourse c : list ){
+                        System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s ",
+                                c.getCourseId(),c.getCourseName(),c.getCourseDuration(),c.getCourseFee()));
+                    }
+
                     System.out.println("Enter Course Id of course you want to Delete: ");
                     Long deleteCourseId = sc.nextLong();
                     boolean status = studentImplService.removeCourse(deleteCourseId);
@@ -72,30 +87,54 @@ public class StudentMenu {
                     long sem_id = sc.nextLong();
                     System.out.println("View Registered Courses");
                     Set<RegisterCourse> registeredCourses = studentImplService.viewRegisteredCourses(student_id, sem_id);
-                    System.out.println(registeredCourses);
-                    System.out.println("***************************************************");
+                    //System.out.println(registeredCourses);
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","-----------","-----------","--------------" ,"-------","----------------")) ;
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","COURSE ID","COURSE NAME","DETAILS","FEES","PAYMENT STATUS"));
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","-----------","-----------","--------------" ,"-------","----------------"));
+                    for (RegisterCourse c : registeredCourses ){
+                        System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s| %-11s ",
+                                c.getCourseId(),c.getCourseName(),c.getCourseDuration(),c.getCourseFee(),c.getPaymentStatus()));
+                    }
+                    System.out.println("*******************************************************************");
                     break;
                 case 4:
                     System.out.println("Pay Fees");
                     Set<RegisterCourse> pendingPaymentList = studentImplService.showListofPendingPayment(student_id);
-                    System.out.println(pendingPaymentList);
+                    //System.out.println(pendingPaymentList);
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","-----------","-----------","--------------" ,"-------","----------------")) ;
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","COURSE ID","COURSE NAME","DETAILS","FEES","PAYMENT STATUS"));
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","-----------","-----------","--------------" ,"-------","----------------"));
+                    for (RegisterCourse c : pendingPaymentList ){
+                        System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s| %-11s ",
+                                c.getCourseId(),c.getCourseName(),c.getCourseDuration(),c.getCourseFee(),c.getPaymentStatus()));
+                    }
+
                     if (pendingPaymentList.size() == 0) {
                         System.out.println("No courses pending for payment");
                     } else {
-                        System.out.println("Enter Course id");
-                        long course_Id = Long.parseLong(sc.next());
-                        System.out.println("Enter Mode of Payment");
-                        String modePayment = sc.next();
-                        System.out.println("Enter Amount to pay");
-                        double amount = Double.parseDouble(sc.next());
-                        long transactionId = Long.parseLong(studentImplService.generateTransactionId());
-                        Payment payment = new Payment(amount, modePayment, transactionId);
-                        boolean paymentFlag = studentImplService.payfees(course_Id, payment, student_id);
-                        if (paymentFlag) {
-                            System.out.println("Payment Successful..!");
-                        } else {
-                            System.out.println("Payment failed..!");
+                        System.out.println("Do you want to pay");
+                        System.out.println("Enter yes/no : ");
+                        String choice = sc.next();
+                        if(choice.equalsIgnoreCase("yes")){
+                            System.out.println("Enter Course id");
+                            long course_Id = Long.parseLong(sc.next());
+                            System.out.println("Enter Mode of Payment");
+                            String modePayment = sc.next();
+                            System.out.println("Enter Amount to pay");
+                            double amount = Double.parseDouble(sc.next());
+                            long transactionId = Long.parseLong(studentImplService.generateTransactionId());
+                            Payment payment = new Payment(amount, modePayment, transactionId);
+                            boolean paymentFlag = studentImplService.payfees(course_Id, payment, student_id);
+                            if (paymentFlag) {
+                                System.out.println("Payment Successful..!");
+                            } else {
+                                System.out.println("Payment failed..!");
+                            }
                         }
+                        else{
+                            System.out.println("Note : Pay fees to get your seat confirmed ..!!");
+                        }
+
                     }
                     System.out.println("***************************************************");
                     break;
@@ -104,14 +143,14 @@ public class StudentMenu {
                     System.out.println("Enter Semester id");
                     long semester_Id = Long.parseLong(sc.next());
                     List<GradeCard> viewGradeCard = studentImplService.viewGradeCard(semester_Id,student_id);
-                    System.out.println(viewGradeCard);
+                    //System.out.println(viewGradeCard);
                     System.out.println("Your Report Card for semester "+semester_Id+":-");
-                    System.out.println("-------------------------------------\n");
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------","--------------" )) ;
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","COURSE CODE","COURSE CODE","GRADE OBTAINED"));
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------","--------------" ));
                     for (GradeCard g : viewGradeCard ){
-                        System.out.println("Course id : "+g.getCourseId());
-                        System.out.println("Course name : "+g.getCourseName());
-                        System.out.println("Grade : "+g.getGrade());
-                        System.out.println("-------------------------------------\n");
+                        System.out.println(String.format("|%-11s | %-11s | %-11s|",
+                                g.getCourseId(), g.getCourseName(), g.getGrade()));
                     }
                     System.out.println("***************************************************");
                     break;
