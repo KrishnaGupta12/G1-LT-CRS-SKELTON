@@ -13,7 +13,7 @@ public class AdminMenu {
     public void adminSession(String username) throws SQLException, IOException {
 
         AdminImplService adminImplService = new AdminImplService();
-        System.out.println("Welcome " + username + ". Have a Good day!!");
+        System.out.println("Welcome ADMIN. Have a Good day!!");
         Boolean permission = true;
         while (permission) {
             System.out.println("Choose your Tasks");
@@ -64,12 +64,12 @@ public class AdminMenu {
                     System.out.println("Create course ");
                     System.out.println(" Insert the Course  Details  ....!!!");
                     System.out.println("------------------------------------------");
-                   /* System.out.println("Enter the Course Id: ");
-                    long courseId = (int)sc.nextLong();*/
+                   System.out.println("Enter the Course Id: ");
+                    long courseId = (int)sc.nextLong();
                     System.out.println("Enter the Course Name : ");
                     String courseName = sc.next();
                     System.out.println("Enter the Course Fees : ");
-                    Double courseFees = sc.nextDouble();
+                    Double courseFees = Double.parseDouble(sc.next());
                     System.out.println("Enter the CourseDuration : ");
                     String courseDuration = sc.next();
                     System.out.println("Enter the Course Type : ");
@@ -77,13 +77,14 @@ public class AdminMenu {
                     System.out.println("Enter the Course Details : ");
                     String courseDetails = sc.next();
                     System.out.println("Enter the Course Semester Id  : ");
-                    long courseSemesterId =(int) sc.nextLong();
+                    long courseSemesterId =Long.parseLong(sc.next());
                     System.out.println("Enter the professor Id  :");
                     long professorId = sc.nextLong();
 
-                    Courses courses = new Courses(courseName, courseFees, courseDuration, courseType, courseDetails, courseSemesterId, professorId);
+                  //  Courses courses = new Courses(courseName, courseFees, courseDuration, courseType, courseDetails, courseSemesterId, professorId);
+                    Courses courses = new Courses(courseId,courseName, courseFees, courseDuration, courseType, courseDetails, courseSemesterId, professorId);
+
                     adminImplService.addCourse(courses);
-                    System.out.println(" Course Details Updated SuccessFully  !!!");
                     break;
 
                 case 4:
@@ -97,22 +98,21 @@ public class AdminMenu {
                     break;
 
                 case 5:
-                    System.out.println("Generate report cards");
+                    System.out.println("Do you want to Generate report card for below students");
+                    System.out.println("Enter yes/no : ");
+                    String choice = sc.next();
+                    if(choice.equalsIgnoreCase("yes"))
+                        adminImplService.generateReportCard();
+                    else
+                        System.out.println("Report Card not generated..");
                     break;
 
                 case 6:
                     System.out.println("View All Courses");
-                   /* AdminDaoImpl adminDao = new AdminDaoImpl();
-                    adminDao.adminViewAllCourses();*/
                     adminImplService.adminViewAllCourses();
                     break;
 
                 case 7:
-                    System.out.println("View Registered Student for Courses");
-                    break;
-
-
-                case 8:
                     System.out.println("Exit");
                     System.exit(0);
                 default:

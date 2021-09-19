@@ -1,6 +1,7 @@
 package com.lt.client;
 
 import com.lt.bean.Courses;
+import com.lt.bean.GradeCard;
 import com.lt.bean.Payment;
 import com.lt.bean.RegisterCourse;
 import com.lt.business.StudentImplService;
@@ -15,7 +16,7 @@ import java.util.*;
  */
 public class StudentMenu {
     public void studentSession(String userName, long student_id) throws SQLException {
-        System.out.println("Welcome " + userName + " to your panel. Have a Good day!!");
+        System.out.println("Welcome STUDENT to your panel. Have a Good day!!");
         System.out.println("---------------------------------------------------------------");
         StudentImplService studentImplService = new StudentImplService();
 
@@ -95,6 +96,22 @@ public class StudentMenu {
                         } else {
                             System.out.println("Payment failed..!");
                         }
+                    }
+                    System.out.println("***************************************************");
+                    break;
+                case 5:
+                    System.out.println("View Report card");
+                    System.out.println("Enter Semester id");
+                    long semester_Id = Long.parseLong(sc.next());
+                    List<GradeCard> viewGradeCard = studentImplService.viewGradeCard(semester_Id,student_id);
+                    System.out.println(viewGradeCard);
+                    System.out.println("Your Report Card for semester "+semester_Id+":-");
+                    System.out.println("-------------------------------------\n");
+                    for (GradeCard g : viewGradeCard ){
+                        System.out.println("Course id : "+g.getCourseId());
+                        System.out.println("Course name : "+g.getCourseName());
+                        System.out.println("Grade : "+g.getGrade());
+                        System.out.println("-------------------------------------\n");
                     }
                     System.out.println("***************************************************");
                     break;

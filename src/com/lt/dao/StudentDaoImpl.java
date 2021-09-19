@@ -1,9 +1,6 @@
 package com.lt.dao;
 
-import com.lt.bean.Courses;
-import com.lt.bean.Payment;
-import com.lt.bean.RegisterCourse;
-import com.lt.bean.Student;
+import com.lt.bean.*;
 import com.lt.constants.SqlConstants;
 import com.lt.util.DBUtil;
 
@@ -180,14 +177,35 @@ public class StudentDaoImpl implements StudentDaoInterface {
         }
         return false;
     }
+
+    @Override
+    public List<GradeCard> viewGradeCard(long semesterId, long studentId) throws SQLException {
+        List<GradeCard> gradeCardLits = new ArrayList<GradeCard>();
+        smt = con.prepareStatement(SqlConstants.VIEW_GRADE_CARD_STUDENT);
+        smt.setLong(1,studentId);
+        smt.setLong(2,semesterId);
+        ResultSet rs = smt.executeQuery();
+        while (rs.next()) {
+            long stud_id = rs.getInt(1);
+            String stud_name = rs.getString(2);
+            long course_id = rs.getInt(3);
+            String course_name = rs.getString(4);
+            long sem_id = rs.getInt(5);
+            String grade_name = rs.getString(6);
+            GradeCard grade = new GradeCard(stud_id, stud_name, course_id, course_name, sem_id, grade_name);
+            gradeCardLits.add(grade);
+        }
+        return gradeCardLits;
+    }
+
+    @Override
+    public void showReportCard() throws SQLException {
+
+
+    }
 }
 
-//  public static   Map<String,Student> map = new HashMap<String,Student>();
-//    static {
-//        map.put("krishna@gmail.com",new Student(1002,"Krishna","krishna@gmail.com",'M',new Date("04/10/1992"),"root"));
-//        map.put("sneha@gmail.com",new Student(1003,"Sneha","sneha@gmail.com",'F',new Date("04/09/1995"),"root"));
-//        map.put("satyam@gmail.com",new Student(1004,"satyam","satyam@gmail.com",'M',new Date("04/09/1998"),"root"));
-//    }
+
 
 
 

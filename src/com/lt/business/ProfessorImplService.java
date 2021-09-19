@@ -19,11 +19,16 @@ public class ProfessorImplService extends User implements ProfessorInterface {
     }
 
     @Override
-    public void addGrade(long courseId, long studentId, String grade) {
-        System.out.println("Add grades");
+    public void addGrade(Grade grade) throws SQLException{
         ProfessorDaoImpl pdo = new ProfessorDaoImpl();
-        //boolean addgrades = pdo.addGrades();
-        //  System.out.println(addgrades);
+        pdo.addGrade(grade);
+    }
+
+    @Override
+    public List<Courses> getListofStudents( long studentId,long semesterId) throws SQLException{
+        ProfessorDaoImpl pdo = new ProfessorDaoImpl();
+        List<Courses> studentList = pdo.getListofStudents(studentId,semesterId);
+        return studentList;
     }
 
     @Override

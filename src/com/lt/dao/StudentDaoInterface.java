@@ -28,5 +28,9 @@ public interface StudentDaoInterface {
 
     public boolean payfees(long courseId, Payment payment, long studentid) throws SQLException;
 
+    public List<GradeCard> viewGradeCard(long semesterId,long studentId) throws SQLException;
+
+    public void showReportCard() throws SQLException;
+
 
 }

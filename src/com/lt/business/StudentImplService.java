@@ -1,9 +1,6 @@
 package com.lt.business;
 
-import com.lt.bean.Courses;
-import com.lt.bean.Payment;
-import com.lt.bean.RegisterCourse;
-import com.lt.bean.Student;
+import com.lt.bean.*;
 import com.lt.dao.CourseDaoImpl;
 import com.lt.dao.StudentDaoImpl;
 import com.lt.dao.StudentDaoInterface;
@@ -105,114 +102,23 @@ public class StudentImplService implements StudentDaoInterface {
         return studentDao.payfees(courseId, payment, studentId);
     }
 
+    @Override
+    public List<GradeCard> viewGradeCard(long semesterId,long studentId) throws SQLException {
+        studentDao = new StudentDaoImpl();
+        List<GradeCard> gradecard = studentDao.viewGradeCard(semesterId,studentId);
+        return gradecard;
+    }
+
+    @Override
+    public void showReportCard() throws SQLException {
+        studentDao = new StudentDaoImpl();
+        studentDao.showReportCard();
+    }
+
     public String generateTransactionId() {
         Random rnd = new Random();
         int number = rnd.nextInt(999999);
         return String.format("%05d", number);
     }
-
-//    @Override
-//    public boolean signUp(Student student) {
-//        map.put(student.getStudentEmail(),student);
-//        Set<String> set= map.keySet();
-//        Iterator iterator= set.iterator();
-//        while (iterator.hasNext()){
-//            System.out.println(map.get(iterator.next()));
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean registerToCourse(RegisterCourse newCourses) {
-//
-//        if(registerCourseMap.size()==0)
-//        {
-//            registerCourseMap.put(newCourses.getCourseId(), newCourses);
-//        }
-//        registerCourseMap.put(newCourses.getCourseId(), newCourses);
-//        Set<Long> set= registerCourseMap.keySet();
-//        Iterator<Long> iterator= set.iterator();
-//        while (iterator.hasNext()){
-//            Long id = iterator.next();
-//            RegisterCourse registerCourse = registerCourseMap.get(id);
-//            System.out.println(registerCourse);
-//            registerCourseList.add(registerCourse);
-//        }
-//        return true;
-//
-//    }
-//
-//    //show the list of courses registered by Students
-//    @Override
-//    public List<RegisterCourse> studentViewRegisteredCourses() {
-//
-//        System.out.println(registerCourseList.stream().collect(Collectors.toList()));
-//        return registerCourseList.stream().collect(Collectors.toList());
-//    }
-//
-//
-//    //get the list of available courses from Course Catalog map
-//    @Override
-//    public List<Courses> viewAvailableCourses() {
-//        List<Courses>  availableCoursesList = null;
-//        Set<Long> set= courseCatalogMap.keySet();
-//        Iterator<Long> iterator = set.iterator();
-//        while (iterator.hasNext()){
-//            Long courseIdFetch = iterator.next();
-//            availableCoursesList =courseCatalogMap.get(courseIdFetch).getCoursesList();
-//        }
-//        System.out.println(availableCoursesList);
-//        return availableCoursesList;
-//    }
-//
-//
-//    //get details of selected course from Course map
-//    @Override
-//    public Courses getDetailsofSelectedCourse(Long id) {
-//        Courses selectedCourse = null;
-//        Set<Long> set= coursesMap.keySet();
-//        Iterator<Long> iterator = set.iterator();
-//        while (iterator.hasNext()){
-//            Long courseIdFetch = iterator.next();
-//            if(courseIdFetch == id) {
-//                selectedCourse = coursesMap.get(courseIdFetch);
-//                break;
-//            }
-//        }
-//        return selectedCourse;
-//    }
-//
-//    // delete course from  registered course map
-//    @Override
-//    public boolean withdrawFromCourse(Long id) {
-//        Set<Long> set = registerCourseMap.keySet();
-//        Iterator<Long> iterator = set.iterator();
-//        while (iterator.hasNext()) {
-//            Long courseIdDelete = iterator.next();
-//            RegisterCourse course = registerCourseMap.get(courseIdDelete);
-//            if (courseIdDelete == id) {
-//                registerCourseMap.remove(courseIdDelete);
-//                registerCourseList.remove(course);
-//                break;
-//            }
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public void payFees() {
-//
-//    }
-//
-//    @Override
-//    public void updateDetails() {
-//
-//    }
-//
-//    @Override
-//    public void viewReportCard() {
-//
-//    }
-//
 
 }

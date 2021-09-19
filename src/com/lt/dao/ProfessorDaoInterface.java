@@ -14,8 +14,10 @@ import java.util.List;
 public interface ProfessorDaoInterface {
 
     public List<Courses> getCourseList(long professorId);
+    public List<Courses> getListofStudents( long studentId,long semesterId) throws SQLException;
 
-    public boolean addGrades(long professorId, Grade grade);
+
+    public void addGrade(Grade grade) throws SQLException;
 
     public List<Student> getStudentList(long professor_id);
 

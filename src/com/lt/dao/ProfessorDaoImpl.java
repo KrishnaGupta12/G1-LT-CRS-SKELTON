@@ -43,30 +43,43 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
         return list;
     }
 
-
     @Override
-    public boolean addGrades(long professorId, Grade grade) {
+    public List<Courses> getListofStudents( long studentId,long semesterId) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
-        // Grade grade = new Grade();
-        int status = 0;
-        boolean result = false;
-        List<Student> registeredStudent = getStudentList(professorId);
-        String sql = SqlConstants.ADD_GRADES;
-        try {
-            con = DBUtil.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setLong(1, grade.getCourseId());
-            ps.setLong(2, grade.getStudentId());
-            ps.setString(3, grade.getGrade());
-            status = ps.executeUpdate();
-            if (status > 0) {
-                result = true;
-            }
-        } catch (Exception e) {
-            e.getMessage();
+        con = DBUtil.getConnection();
+        List<Courses> registeredStudentList = new ArrayList<Courses>();
+        ps = con.prepareStatement(SqlConstants.LIST_REG_COURSES_SEM);
+        ps.setInt(1, (int) studentId);
+        ps.setInt(2, (int) semesterId);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            long courseId = rs.getLong(1);
+           String courseName = rs.getString(2);
+           Courses cs = new Courses(courseId,courseName);
+            registeredStudentList.add(cs);
         }
-        return result;
+        return registeredStudentList;
+    }
+
+
+    @Override
+
+    public void addGrade(Grade grade) throws SQLException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        con = DBUtil.getConnection();
+        ps = con.prepareStatement(SqlConstants.ADD_GRADES);
+        ps.setLong(1, grade.getCourseId());
+        ps.setString(2, grade.getCourseName());
+        ps.setLong(3, grade.getStudentId());
+        ps.setLong(4, grade.getSemesterId());
+        ps.setString(5, grade.getGrade());
+        int flag = ps.executeUpdate();
+        if(flag != 0)
+         System.out.println(" Grade added  successfully for course id : "+ grade.getCourseId());
+        else
+            System.out.println("Data not inserted.. : "+ grade.getCourseId());
     }
 
     //List f students registered for a courses taught by the professor

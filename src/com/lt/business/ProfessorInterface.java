@@ -14,7 +14,9 @@ public interface ProfessorInterface {
 
     public void viewFullCourses(long professorId);
 
-    public void addGrade(long courseId, long studentId, String grade);
+    public void addGrade(Grade grade) throws SQLException;
+
+    public List<Courses> getListofStudents( long studentId,long semesterId) throws SQLException;
 
     public List<Student> viewRegisteredStudents(long professorId);
 

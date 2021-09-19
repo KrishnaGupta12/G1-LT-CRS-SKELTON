@@ -1,6 +1,7 @@
 package com.lt.dao;
 
 import com.lt.bean.Courses;
+import com.lt.bean.GradeCard;
 import com.lt.bean.Professor;
 import com.lt.bean.Student;
 import com.lt.constants.SqlConstants;
@@ -124,7 +125,34 @@ public class AdminDaoImpl implements AdminDaoInterface {
 
 
     @Override
-    public void generateReportCard() {
+    public void generateReportCard() throws SQLException {
+        statement = con.prepareStatement(SqlConstants.GENERATE_REPORT_CARD);
+        List<GradeCard> studentList = new ArrayList<GradeCard>();
+        ResultSet rs = statement.executeQuery();
+        int flag=0;
+        while (rs.next()) {
+            long studId = rs.getInt(1);
+            String studName = rs.getString(2);
+            long courseId= rs.getInt(3);
+            String courseName = rs.getString(4);
+            long semesterId= rs.getInt(5);
+            String grade = rs.getString(6);
+            GradeCard gradeCard = new GradeCard(studId,studName,courseId,courseName,semesterId,grade);
+            studentList.add(gradeCard);
+        }
+        System.out.println(studentList);
+        for (GradeCard grade : studentList) {
+            statement = con.prepareStatement(SqlConstants.INSERT_GRADE_CARD);
+            statement.setLong(1,grade.getStudentId());
+            statement.setString(2,grade.getStudentName());
+            statement.setLong(3,grade.getCourseId());
+            statement.setString(4,grade.getCourseName());
+            statement.setLong(5,grade.getSemesterId());
+            statement.setString(6,grade.getGrade());
+            flag= statement.executeUpdate();
+        }
+        if(flag !=0)
+            System.out.println("Report card generated");
 
     }
 
@@ -133,14 +161,14 @@ public class AdminDaoImpl implements AdminDaoInterface {
     public void addCourse(Courses course) throws SQLException {
 
         statement = con.prepareStatement(SqlConstants.ADD_COURSES);
-       // statement.setLong(1, course.getCourseId());
-        statement.setString(1, course.getCourseName());
-        statement.setDouble(2, course.getCourseFee());
-        statement.setString(3, course.getCourseDuration());
-        statement.setString(4, course.getCourseType());
-        statement.setString(5, course.getCourseDetails());
-        statement.setLong(6, course.getCourseSemesterId());
-        statement.setLong(7, course.getProfessorId());
+        statement.setLong(1, course.getCourseId());
+        statement.setString(2, course.getCourseName());
+        statement.setDouble(3, course.getCourseFee());
+        statement.setString(4, course.getCourseDuration());
+        statement.setString(5, course.getCourseType());
+        statement.setString(6, course.getCourseDetails());
+        statement.setLong(7, course.getCourseSemesterId());
+        statement.setLong(8, course.getProfessorId());
         int updateStatus = statement.executeUpdate();
         if (updateStatus == 0)
             System.out.println(" Record not updated...try again !!");

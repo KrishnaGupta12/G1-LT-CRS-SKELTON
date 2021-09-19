@@ -17,7 +17,7 @@ import java.util.Scanner;
  */
 public class ProfessorMenu {
     public void professorSession(String userName, long professorId) throws SQLException {
-        System.out.println("Welcome " + userName + " to your panel. Have a Good day!!");
+        System.out.println("Welcome PROFESSOR to your panel. Have a Good day!!");
         System.out.println("------------------------------------------------------------");
         ProfessorImplService professorImplService = new ProfessorImplService();
 
@@ -39,14 +39,20 @@ public class ProfessorMenu {
 
                 case 2:
                     System.out.println("Add grades");
-                    Grade grades = new Grade();
-                    System.out.println("Enter CourseId : ");
-                    int courseId = sc.nextInt();
+                    System.out.println("Enter Semester Id : ");
+                    int semesterId = sc.nextInt();
                     System.out.println("Enter StudentId : ");
                     long studentId = sc.nextLong();
-                    System.out.println("Enter Grade : ");
-                    String grade = sc.nextLine();
-                    professorImplService.addGrade(courseId, studentId, grade);
+                    List<Courses>  registeredStudentList = professorImplService.getListofStudents(studentId,semesterId);
+                    System.out.println(registeredStudentList);
+                    for (Courses c : registeredStudentList ){
+                        System.out.println("Enter CourseId : ");
+                        long courseId = (int) sc.nextLong();
+                        System.out.println("Enter Grade : ");
+                        String grade = sc.next();
+                        Grade gradeObj = new Grade(c.getCourseId(),c.getCourseName(),studentId,semesterId,grade);
+                        professorImplService.addGrade(gradeObj);
+                    }
                     break;
 
                 case 3:

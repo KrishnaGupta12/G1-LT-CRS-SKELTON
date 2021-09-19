@@ -36,7 +36,8 @@ public class AdminImplService extends User implements AdminDaoInterface {
     }
 
     @Override
-    public void generateReportCard() {
+    public void generateReportCard() throws SQLException{
+        adminDao.generateReportCard();
 
     }
 

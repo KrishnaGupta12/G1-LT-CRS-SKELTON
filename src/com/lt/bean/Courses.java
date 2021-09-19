@@ -13,6 +13,12 @@ public class Courses {
     public Courses() {
     }
 
+    public Courses(long courseId, String courseName){
+        this.courseId = courseId;
+        this.courseName = courseName;
+
+    }
+
     public Courses(String courseName, double courseFee, String courseDuration, String courseType, String courseDetails, long courseSemesterId, long professorId) {
         this.courseName = courseName;
         this.courseFee = courseFee;
@@ -110,7 +116,7 @@ public class Courses {
 
     @Override
     public String toString() {
-        return "Course{" +
+        return "\nCourse{" +
                 "courseId=" + courseId +
                 ", courseName='" + courseName + '\'' +
                 ", courseFee=" + courseFee +

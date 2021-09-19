@@ -103,7 +103,7 @@ public class Student extends User {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "\nStudent{" +
                 "studentId=" + studentId +
                 ", studentName='" + studentName + '\'' +
                 ", studentEmail='" + studentEmail + '\'' +

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface AdminInterface {
+public interface AdminInterface  {
 
 
     public void addProfessor(Professor professor) throws SQLException;
@@ -17,7 +17,7 @@ public interface AdminInterface {
 
     public List<Student> showListOfPendingStudent() throws SQLException;
 
-    public void generateReportCard();
+    public void generateReportCard() throws SQLException;
 
     public void addCourse(Courses course) throws SQLException;
 

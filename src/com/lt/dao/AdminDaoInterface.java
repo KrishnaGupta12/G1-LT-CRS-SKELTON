@@ -16,7 +16,7 @@ public interface AdminDaoInterface {
 
     public List<Student> showListOfPendingStudent() throws SQLException;
 
-    public void generateReportCard();
+    public void generateReportCard() throws SQLException;
 
     public void addCourse(Courses course) throws SQLException;
 
