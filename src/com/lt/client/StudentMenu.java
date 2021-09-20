@@ -113,18 +113,43 @@ public class StudentMenu {
                         if(choice.equalsIgnoreCase("yes")){
                             System.out.println("Enter Course id");
                             long course_Id = Long.parseLong(sc.next());
-                            System.out.println("Enter Mode of Payment");
-                            String modePayment = sc.next();
-                            System.out.println("Enter Amount to pay");
-                            double amount = Double.parseDouble(sc.next());
-                            long transactionId = Long.parseLong(studentImplService.generateTransactionId());
-                            Payment payment = new Payment(amount, modePayment, transactionId);
-                            boolean paymentFlag = studentImplService.payfees(course_Id, payment, student_id);
+                            System.out.println("Select Mode of Payment");
+                            System.out.println("1. CASH");
+                            System.out.println("2. CREDIT_CARD");
+                            System.out.println("3. DEBIT_CARD");
+                            int mode = sc.nextInt();
+                           ModeOfPayment modePayment=  ModeOfPayment.getModeofPayment(mode);
+                            boolean paymentFlag = false;
+                           if(modePayment.toString().equalsIgnoreCase("CASH")) {
+                               System.out.println("Enter Amount to pay");
+                               double amount = Double.parseDouble(sc.next());
+                               long transactionId = Long.parseLong(studentImplService.generateTransactionId());
+                               Payment payment = new Payment(amount, modePayment.toString(), transactionId);
+                               paymentFlag = studentImplService.payfees(course_Id, payment, student_id);
+
+                           }
+                           else if(modePayment.toString().equalsIgnoreCase("CREDIT_CARD") || modePayment.toString().equalsIgnoreCase("DEBIT_CARD")){
+                               System.out.println("Enter Credit/Debit Card Number");
+                               String cardNo = sc.next();
+                               if(!StudentImplService.validateCard(cardNo)){
+                                   System.out.println("Card is not Valid");
+                               }else{
+                                   System.out.println("Enter Expiry of Card(MM/YYYY)");
+                                   String expiry = sc.next();
+                                   System.out.println("Enter Amount to pay");
+                                   double amount = Double.parseDouble(sc.next());
+                                   long transactionId = Long.parseLong(studentImplService.generateTransactionId());
+                                   Payment payment = new Payment(transactionId,amount, modePayment.toString(), cardNo,expiry);
+                                   paymentFlag = studentImplService.payfeesCard(course_Id, payment, student_id);
+                               }
+
+                           }
                             if (paymentFlag) {
                                 System.out.println("Payment Successful..!");
                             } else {
                                 System.out.println("Payment failed..!");
                             }
+
                         }
                         else{
                             System.out.println("Note : Pay fees to get your seat confirmed ..!!");

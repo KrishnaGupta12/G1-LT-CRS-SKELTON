@@ -178,6 +178,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
      */
     @Override
     public boolean payfees(long courseId, Payment payment, long studentId) throws SQLException {
+
         smt = con.prepareStatement(SqlConstants.INSERT_PAYMENT_STATUS);
         smt.setString(1, payment.getBillingMode());
         smt.setDouble(2, payment.getBillingAmount());
@@ -214,6 +215,28 @@ public class StudentDaoImpl implements StudentDaoInterface {
             gradeCardLits.add(grade);
         }
         return gradeCardLits;
+    }
+
+    @Override
+    public boolean payfeesCard(long courseId, Payment payment, long studentId) throws SQLException {
+        smt = con.prepareStatement(SqlConstants.INSERT_PAYMENT_STATUS_VIA_CARD);
+        smt.setString(1, payment.getBillingMode());
+        smt.setDouble(2, payment.getBillingAmount());
+        smt.setString(3,payment.getCard_no());
+        smt.setString(4,payment.getCard_expiry());
+        smt.setInt(5, (int) courseId);
+        smt.setInt(6, (int) studentId);
+        smt.setInt(7, (int) payment.getTransactionId());
+
+        if (smt.executeUpdate() != 0) {
+            smt = con.prepareStatement(SqlConstants.UPDATE_PAYMENT_STATUS);
+            smt.setInt(1, (int) courseId);
+            smt.setInt(2, (int) studentId);
+            int flag = smt.executeUpdate();
+            System.out.println("Billing details updated");
+            return true;
+        }
+        return false;
     }
 
 

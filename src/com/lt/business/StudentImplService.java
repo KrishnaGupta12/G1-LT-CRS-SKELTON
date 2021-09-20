@@ -108,11 +108,23 @@ public class StudentImplService implements StudentDaoInterface {
         return gradecard;
     }
 
+    @Override
+    public boolean payfeesCard(long courseId, Payment payment, long studentId) throws SQLException {
+        return studentDao.payfeesCard(courseId, payment, studentId);
+    }
+
 
     public String generateTransactionId() {
         Random rnd = new Random();
         int number = rnd.nextInt(999999);
         return String.format("%05d", number);
+    }
+
+
+    public static boolean  validateCard(String card){
+        if(card.length() == 16)
+            return true;
+        return false;
     }
 
 }

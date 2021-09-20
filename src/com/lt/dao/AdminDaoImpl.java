@@ -136,7 +136,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
             GradeCard gradeCard = new GradeCard(studId,studName,courseId,courseName,semesterId,grade);
             studentList.add(gradeCard);
         }
-        System.out.println(studentList);
+//        System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------")) ;
+//        System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","STUDENT ID","STUDENT NAME","DETAILS","FEES"));
+//        System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------"));
+       // studentList.stream().forEach(grade -> System.out.println(grade) );
         for (GradeCard grade : studentList) {
             statement = con.prepareStatement(SqlConstants.INSERT_GRADE_CARD);
             statement.setLong(1,grade.getStudentId());

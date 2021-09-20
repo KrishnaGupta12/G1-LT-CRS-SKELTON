@@ -14,4 +14,6 @@ public interface UserDaoInterface {
     public void getUserMenu(int role, String userName) throws SQLException, IOException;
 
     public String getLoginTime();
+
+
 }
