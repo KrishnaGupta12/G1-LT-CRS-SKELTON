@@ -20,6 +20,6 @@ public interface ProfessorInterface {
 
     public List<Student> viewRegisteredStudents(long professorId);
 
-    public long getProfessorId(String username) throws SQLException;
+    public Professor getProfessorId(String username) throws SQLException;
 
 }

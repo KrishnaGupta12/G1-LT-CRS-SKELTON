@@ -13,9 +13,25 @@ import java.util.*;
  */
 
 public class StudentDaoImpl implements StudentDaoInterface {
+
+    private static volatile StudentDaoImpl instance = null;
+    private StudentDaoImpl() {
+    }
+
+    public static StudentDaoImpl getInstance() {
+        if (instance == null) {
+            synchronized (StudentDaoImpl.class) {
+                instance = new StudentDaoImpl();
+            }
+        }
+        return instance;
+    }
+
     Connection con = DBUtil.getConnection();
     PreparedStatement smt = null;
     static int count = 10001;
+
+
 
     /**
      * Student signup method
@@ -96,16 +112,18 @@ public class StudentDaoImpl implements StudentDaoInterface {
      * Show list of student
      */
     @Override
-    public long getStudent(String username) throws SQLException {
-        //  Student student = null;
+    public Student getStudent(String username) throws SQLException {
+         Student student = null;
         long stud_id = 0L;
         smt = con.prepareStatement(SqlConstants.GET_STUDENT_DATA);
         smt.setString(1, username);
         ResultSet rs = smt.executeQuery();
         while (rs.next()) {
             stud_id = (long) rs.getInt(1);
+           String stude_name = rs.getString(2);
+            student = new Student(stud_id,stude_name);
         }
-        return stud_id;
+        return student;
     }
 
 

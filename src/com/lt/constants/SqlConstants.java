@@ -9,13 +9,13 @@ public interface SqlConstants {
 
     //Student Table queries
     public final static String INSERT_TO_STUDENT = "insert into Student values (?,?,?,?,?,?,?,?,?)";
-    public final static String GET_STUDENT_DATA = "select stud_id from Student where stud_email = ?";
+    public final static String GET_STUDENT_DATA = "select stud_id,stud_name from Student where stud_email = ?";
 
     //Professor Table queries
     public final static String VIEW_COURSE = "select * from course where course_professor_id = ?";
     public final static String ADD_GRADES = " insert into grade values (?,?,?,?,?) ";
     public final static String VIEW_REG_STUDENT = "select  * from Student where stud_id IN (select reg_stud_id from RegisterCourses where reg_course_id IN ( select course_id from Professor where professor_id = ?))";
-    public final static String GET_PROFESSOR_DATA = "select professor_id from Professor where professor_email = ? ";
+    public final static String GET_PROFESSOR_DATA = "select professor_id,professor_name from Professor where professor_email = ? ";
     public final static String LIST_REG_COURSES_SEM = "select course_id,course_name from Course where course_id IN (Select reg_course_id from RegisterCourses where reg_stud_id = ? and reg_semester_id = ?)";
 
 

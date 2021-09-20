@@ -52,7 +52,7 @@ public interface StudentDaoInterface {
      * @param username: username of student
      * @return boolean value if course is deleted
      */
-    public long getStudent(String username) throws SQLException;
+    public Student getStudent(String username) throws SQLException;
 
     /**
      * Method to show list of available course to  student from database

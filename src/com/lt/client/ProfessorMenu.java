@@ -6,6 +6,7 @@ import com.lt.business.ProfessorInterface;
 import com.lt.business.StudentImplService;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,26 +14,25 @@ import java.util.Scanner;
  * @author Professor Individual Menu with all the professor functionality
  */
 public class ProfessorMenu {
-    public void professorSession(String userName, long professorId) throws SQLException {
-        System.out.println("Welcome PROFESSOR to your panel. Have a Good day!!");
+    public void professorSession(String userName, long professorId, String professorName, String loginTime) throws SQLException {
+        System.out.println("Welcome "+professorName+" to your panel. Have a Good day!!");
+        System.out.println("Login at : "+loginTime);
         System.out.println("------------------------------------------------------------");
         ProfessorImplService professorImplService = new ProfessorImplService();
 
         Boolean permission = true;
         while (permission) {
             System.out.println("Choose your Tasks");
-            System.out.println("1. View List of Courses"); // those courses which a professor can teach added by admin
-            System.out.println("2. Add grades"); // for those courses that can be teach by him bases on student
-            System.out.println("3. View Registered courses"); // list of student registered under some course
+            System.out.println("1. View List of Courses");
+            System.out.println("2. Add grades");
+            System.out.println("3. View Registered courses");
             System.out.println("4. Logout");
             Scanner sc = new Scanner(System.in);
             int task = sc.nextInt();
             switch (task) {
                 case 1:
                     System.out.println("View Your Courses");
-                   professorImplService.viewFullCourses(professorId);
-
-
+                    professorImplService.viewFullCourses(professorId);
                     break;
 
                 case 2:
