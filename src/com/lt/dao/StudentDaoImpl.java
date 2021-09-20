@@ -198,11 +198,7 @@ public class StudentDaoImpl implements StudentDaoInterface {
         return gradeCardLits;
     }
 
-    @Override
-    public void showReportCard() throws SQLException {
 
-
-    }
 }
 
 

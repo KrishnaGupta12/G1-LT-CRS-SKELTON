@@ -13,7 +13,6 @@ import java.util.*;
  * @author Student Business Layer implementing student DAO.
  */
 public class StudentImplService implements StudentDaoInterface {
-    //public  Set<RegisterCourse> registerCourseList = new HashSet<RegisterCourse>();
 
     StudentDaoImpl studentDao = null;
     CourseDaoImpl courseDao = null;
@@ -109,11 +108,6 @@ public class StudentImplService implements StudentDaoInterface {
         return gradecard;
     }
 
-    @Override
-    public void showReportCard() throws SQLException {
-        studentDao = new StudentDaoImpl();
-        studentDao.showReportCard();
-    }
 
     public String generateTransactionId() {
         Random rnd = new Random();

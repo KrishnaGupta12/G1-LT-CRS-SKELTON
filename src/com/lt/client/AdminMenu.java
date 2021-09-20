@@ -52,9 +52,9 @@ public class AdminMenu {
                 case 2:
                     System.out.println("List Of Students waiting for Approval :  ");
                     List<Student> studList = adminImplService.showListOfPendingStudent();
-                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------","--------------" )) ;
-                    System.out.println(String.format("|%-10s | %-10s | %-10s|","STUD ID","STUD NAME","SEMESTER ID"));
-                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------","--------------" )) ;
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------")) ;
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","STUD ID","STUD NAME"));
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------")) ;
                     for (Student c : studList ){
                         System.out.println(String.format("|%-11s | %-11s | %-11s|",
                                 c.getStudentId(),c.getStudentName(),c.getSemester_id()));

@@ -44,7 +44,7 @@ public class StudentMenu {
                     System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","COURSE ID","COURSE NAME","DETAILS","FEES"));
                     System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------"));
                     for (Courses c : availableList ){
-                        System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s ",
+                        System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s| ",
                                c.getCourseId(),c.getCourseName(),c.getCourseDetails(),c.getCourseFee()));
                     }
                     System.out.println("Enter Course Id of course you want to register: ");
@@ -88,11 +88,11 @@ public class StudentMenu {
                     System.out.println("View Registered Courses");
                     Set<RegisterCourse> registeredCourses = studentImplService.viewRegisteredCourses(student_id, sem_id);
                     //System.out.println(registeredCourses);
-                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","-----------","-----------","--------------" ,"-------","----------------")) ;
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","-----------","-----------","-----------" ,"-----------","----------------")) ;
                     System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","COURSE ID","COURSE NAME","DETAILS","FEES","PAYMENT STATUS"));
-                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","-----------","-----------","--------------" ,"-------","----------------"));
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","-----------","-----------","-----------" ,"-----------","----------------"));
                     for (RegisterCourse c : registeredCourses ){
-                        System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s| %-11s ",
+                        System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s| %-11s| ",
                                 c.getCourseId(),c.getCourseName(),c.getCourseDuration(),c.getCourseFee(),c.getPaymentStatus()));
                     }
                     System.out.println("*******************************************************************");
@@ -105,7 +105,7 @@ public class StudentMenu {
                     System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","COURSE ID","COURSE NAME","DETAILS","FEES","PAYMENT STATUS"));
                     System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s| %-10s|","-----------","-----------","--------------" ,"-------","----------------"));
                     for (RegisterCourse c : pendingPaymentList ){
-                        System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s| %-11s ",
+                        System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s| %-11s| ",
                                 c.getCourseId(),c.getCourseName(),c.getCourseDuration(),c.getCourseFee(),c.getPaymentStatus()));
                     }
 
@@ -146,11 +146,16 @@ public class StudentMenu {
                     //System.out.println(viewGradeCard);
                     System.out.println("Your Report Card for semester "+semester_Id+":-");
                     System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------","--------------" )) ;
-                    System.out.println(String.format("|%-10s | %-10s | %-10s|","COURSE CODE","COURSE CODE","GRADE OBTAINED"));
+                    System.out.println(String.format("|%-10s | %-10s | %-10s|","COURSE CODE","COURSE CODE","GRADE "));
                     System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------","--------------" ));
-                    for (GradeCard g : viewGradeCard ){
-                        System.out.println(String.format("|%-11s | %-11s | %-11s|",
-                                g.getCourseId(), g.getCourseName(), g.getGrade()));
+                    if(viewGradeCard.size() == 0){
+                        System.out.println("Results are not out.. check with admin ");
+                    }
+                    else {
+                        for (GradeCard g : viewGradeCard) {
+                            System.out.println(String.format("|%-11s | %-11s | %-11s|",
+                                    g.getCourseId(), g.getCourseName(), g.getGrade()));
+                        }
                     }
                     System.out.println("***************************************************");
                     break;
