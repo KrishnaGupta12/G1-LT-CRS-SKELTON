@@ -30,6 +30,11 @@ public class Professor {
         this.password = password;
     }
 
+    public Professor(long prof_id, String prof_name) {
+        this.professorId =prof_id;
+        this.professorName=prof_name;
+    }
+
     public long getProfessorId() {
         return professorId;
     }

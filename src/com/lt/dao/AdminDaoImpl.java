@@ -15,25 +15,21 @@ import java.util.List;
 public class AdminDaoImpl implements AdminDaoInterface {
 
 
+    private static volatile AdminDaoImpl instance = null;
+    private AdminDaoImpl() {
+    }
+
+    public static AdminDaoImpl getInstance() {
+        if (instance == null) {
+            synchronized (AdminDaoImpl.class) {
+                instance = new AdminDaoImpl();
+            }
+        }
+        return instance;
+    }
+
     Connection con = DBUtil.getConnection();
     PreparedStatement statement = null;
-
-  /*  @Override
-    public boolean adminLogin(Admin admin) throws SQLException {
-        statement = con.prepareStatement(SqlConstants.INSERT_TO_ADMIN);
-        statement.setInt(1, (int) admin.getAdminId());
-        statement.setString(2, admin.getAdminName());
-        statement.setString(3, admin.getAdminEmail());
-        statement.setString(4, String.valueOf(admin.getAdminGender()));
-        statement.setDate(5, new Date(admin.getAdminDOB().getTime()));
-        statement.setInt(6, (int) admin.getAdminContactNo());
-        statement.setInt(7, (int) admin.getCourseId());
-        int flag = statement.executeUpdate();
-        if (flag != 0)
-            return true;
-        return false;
-    }*/
-
 
     @Override
     public void addProfessor(Professor professor) throws SQLException {
@@ -140,7 +136,10 @@ public class AdminDaoImpl implements AdminDaoInterface {
             GradeCard gradeCard = new GradeCard(studId,studName,courseId,courseName,semesterId,grade);
             studentList.add(gradeCard);
         }
-        System.out.println(studentList);
+//        System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------")) ;
+//        System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","STUDENT ID","STUDENT NAME","DETAILS","FEES"));
+//        System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------"));
+       // studentList.stream().forEach(grade -> System.out.println(grade) );
         for (GradeCard grade : studentList) {
             statement = con.prepareStatement(SqlConstants.INSERT_GRADE_CARD);
             statement.setLong(1,grade.getStudentId());
