@@ -16,6 +16,20 @@ import java.util.List;
  */
 public class ProfessorDaoImpl implements ProfessorDaoInterface {
 
+
+    private static volatile ProfessorDaoImpl instance = null;
+    private ProfessorDaoImpl() {
+    }
+
+    public static ProfessorDaoImpl getInstance() {
+        if (instance == null) {
+            synchronized (ProfessorDaoImpl.class) {
+                instance = new ProfessorDaoImpl();
+            }
+        }
+        return instance;
+    }
+
     @Override
     public List<Courses> getCourseList(long professorId) {
         List<Courses> list = new ArrayList<Courses>();
@@ -113,9 +127,10 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 
     //get user data
     @Override
-    public long getProfessorId(String username) throws SQLException {
+    public Professor getProfessorId(String username) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
+        Professor prof = null;
         long prof_id = 0L;
         con = DBUtil.getConnection();
         ps = con.prepareStatement(SqlConstants.GET_PROFESSOR_DATA);
@@ -123,7 +138,9 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             prof_id = (long) rs.getInt(1);
+           String prof_name = (String) rs.getString(2);
+           prof = new Professor(prof_id,prof_name);
         }
-        return prof_id;
+        return prof;
     }
 }

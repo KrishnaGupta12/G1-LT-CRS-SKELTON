@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class StudentImplService implements StudentDaoInterface {
 
-    StudentDaoImpl studentDao = null;
+    StudentDaoImpl studentDao = StudentDaoImpl.getInstance();
     CourseDaoImpl courseDao = null;
     boolean flag = false;
 
@@ -24,7 +24,7 @@ public class StudentImplService implements StudentDaoInterface {
      */
     @Override
     public boolean signUp(Student student) throws SQLException {
-        studentDao = new StudentDaoImpl();
+        //studentDao = new StudentDaoImpl();
         flag = studentDao.signUp(student);
         return flag;
 
@@ -36,7 +36,7 @@ public class StudentImplService implements StudentDaoInterface {
      */
     @Override
     public boolean registerForCourse(long student_id, long semesterId, long courseId) throws SQLException {
-        studentDao = new StudentDaoImpl();
+        //  studentDao = new StudentDaoImpl();
         flag = studentDao.registerForCourse(student_id, semesterId, courseId);
         return flag;
     }
@@ -47,7 +47,7 @@ public class StudentImplService implements StudentDaoInterface {
      */
     @Override
     public Set<RegisterCourse> viewRegisteredCourses(long studentId, long semesterId) throws SQLException {
-        studentDao = new StudentDaoImpl();
+        // studentDao = new StudentDaoImpl();
         Set<RegisterCourse> registeredList = studentDao.viewRegisteredCourses(studentId, semesterId);
         return registeredList;
     }
@@ -64,10 +64,10 @@ public class StudentImplService implements StudentDaoInterface {
      * get student ID method
      */
     @Override
-    public long getStudent(String username) throws SQLException {
-        studentDao = new StudentDaoImpl();
-        long id = studentDao.getStudent(username);
-        return id;
+    public Student getStudent(String username) throws SQLException {
+        // studentDao = new StudentDaoImpl();
+        Student st = studentDao.getStudent(username);
+        return st;
     }
 
     /**
@@ -76,7 +76,7 @@ public class StudentImplService implements StudentDaoInterface {
     @Override
     public List<Courses> showAvailableCourses(long semesterId) throws SQLException {
         List<Courses> list = null;
-        studentDao = new StudentDaoImpl();
+        // studentDao = new StudentDaoImpl();
         list = studentDao.showAvailableCourses(semesterId);
         return list;
     }
@@ -87,7 +87,7 @@ public class StudentImplService implements StudentDaoInterface {
     @Override
     public Set<RegisterCourse> showListofPendingPayment(long student_id) throws SQLException {
         Set<RegisterCourse> list = new HashSet<RegisterCourse>();
-        studentDao = new StudentDaoImpl();
+        //  studentDao = new StudentDaoImpl();
         list = studentDao.showListofPendingPayment(student_id);
         return list;
     }
@@ -97,15 +97,20 @@ public class StudentImplService implements StudentDaoInterface {
      */
     @Override
     public boolean payfees(long courseId, Payment payment, long studentId) throws SQLException {
-        studentDao = new StudentDaoImpl();
+        //  studentDao = new StudentDaoImpl();
         return studentDao.payfees(courseId, payment, studentId);
     }
 
     @Override
-    public List<GradeCard> viewGradeCard(long semesterId,long studentId) throws SQLException {
-        studentDao = new StudentDaoImpl();
-        List<GradeCard> gradecard = studentDao.viewGradeCard(semesterId,studentId);
+    public List<GradeCard> viewGradeCard(long semesterId, long studentId) throws SQLException {
+        //  studentDao = new StudentDaoImpl();
+        List<GradeCard> gradecard = studentDao.viewGradeCard(semesterId, studentId);
         return gradecard;
+    }
+
+    @Override
+    public boolean payfeesCard(long courseId, Payment payment, long studentId) throws SQLException {
+        return studentDao.payfeesCard(courseId, payment, studentId);
     }
 
 
@@ -113,6 +118,13 @@ public class StudentImplService implements StudentDaoInterface {
         Random rnd = new Random();
         int number = rnd.nextInt(999999);
         return String.format("%05d", number);
+    }
+
+
+    public static boolean  validateCard(String card){
+        if(card.length() == 16)
+            return true;
+        return false;
     }
 
 }

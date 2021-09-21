@@ -21,7 +21,7 @@ public class UserImplServiceInterface {
 //    public void gatPassword() {
 //
 //    }
-    UserDaoImpl userDao = new UserDaoImpl();
+    UserDaoImpl userDao = UserDaoImpl.getInstance();
 
 
     public int login(String username, String password) throws SQLException {

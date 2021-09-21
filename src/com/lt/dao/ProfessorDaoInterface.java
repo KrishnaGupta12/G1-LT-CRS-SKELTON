@@ -24,11 +24,11 @@ public interface ProfessorDaoInterface {
     /**
      * Method to show list of students from database
      *
-     * @param studentId: studentId for which display list of students
+     * @param studentId:  studentId for which display list of students
      * @param semesterId: semesterId list for this student
      * @return some list  of students
      */
-    public List<Courses> getListofStudents( long studentId,long semesterId) throws SQLException;
+    public List<Courses> getListofStudents(long studentId, long semesterId) throws SQLException;
 
     /**
      * Method to add grade to database
@@ -52,7 +52,7 @@ public interface ProfessorDaoInterface {
      * @param username: username for which professor details will be fetch from db
      * @return some set  of pending payments
      */
-    public long getProfessorId(String username) throws SQLException;
+    public Professor getProfessorId(String username) throws SQLException;
 
 
 }

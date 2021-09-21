@@ -52,7 +52,7 @@ public interface StudentDaoInterface {
      * @param username: username of student
      * @return boolean value if course is deleted
      */
-    public long getStudent(String username) throws SQLException;
+    public Student getStudent(String username) throws SQLException;
 
     /**
      * Method to show list of available course to  student from database
@@ -71,7 +71,7 @@ public interface StudentDaoInterface {
     public Set<RegisterCourse> showListofPendingPayment(long student_id) throws SQLException;
 
     /**
-     * Method to show list of available course to  student from database
+     * Method to make payment  for   student and add to  database
      *
      * @param courseId: display list for this student
      * @param payment: display list for this student
@@ -89,5 +89,16 @@ public interface StudentDaoInterface {
      */
     public List<GradeCard> viewGradeCard(long semesterId, long studentId) throws SQLException;
 
+    /**
+     * Method to make payment  for   student and add to  database via card
+     *
+     * @param courseId: display list for this student
+     * @param payment: display list for this student
+     * @param studentId: display list for this student
+     * @return boolean if payment is done
+     */
+    public boolean payfeesCard(long courseId, Payment payment, long studentId) throws SQLException ;
 
-}
+
+
+    }

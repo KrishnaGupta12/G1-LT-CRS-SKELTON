@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AdminImplService extends User implements AdminDaoInterface {
 
-    AdminDaoImpl adminDao = new AdminDaoImpl();
+    AdminDaoImpl adminDao = AdminDaoImpl.getInstance();
     boolean flag = false;
 
 
