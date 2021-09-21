@@ -29,6 +29,11 @@ public class Student extends User {
         this.passWord = passWord;
     }
 
+    public Student(long stud_id, String stude_name) {
+        this.studentId =stud_id;
+        this.studentName = stude_name;
+    }
+
     public long getStudentId() {
         return studentId;
     }

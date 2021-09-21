@@ -7,15 +7,18 @@ import com.lt.business.AdminImplService;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
 public class AdminMenu {
 
-    public void adminSession(String username) throws SQLException, IOException {
+    public void adminSession(String username, String loginTime) throws SQLException, IOException {
 
         AdminImplService adminImplService = new AdminImplService();
-        System.out.println("Welcome ADMIN. Have a Good day!!");
+        String userName = username.substring(0,username.indexOf('@'));
+        System.out.println("Welcome "+userName+ ". Have a Good day!!");
+        System.out.println("Login at : "+loginTime);
         Boolean permission = true;
         while (permission) {
             System.out.println("Choose your Tasks");
@@ -25,7 +28,7 @@ public class AdminMenu {
             System.out.println("4. Delete course");
             System.out.println("5. Generate report cards");
             System.out.println("6. View All Courses");
-            System.out.println("7. Exit");
+            System.out.println("7. Logout");
             Scanner sc = new Scanner(System.in);
             int task = sc.nextInt();
             switch (task) {
@@ -52,12 +55,12 @@ public class AdminMenu {
                 case 2:
                     System.out.println("List Of Students waiting for Approval :  ");
                     List<Student> studList = adminImplService.showListOfPendingStudent();
-                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------")) ;
-                    System.out.println(String.format("|%-10s | %-10s | %-10s|","STUD ID","STUD NAME"));
-                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------")) ;
+                    System.out.println(String.format("|%-10s | %-10s | ","-----------","-----------")) ;
+                    System.out.println(String.format("|%-10s | %-10s | ","STUD ID","STUD NAME"));
+                    System.out.println(String.format("|%-10s | %-10s | ","-----------","-----------")) ;
                     for (Student c : studList ){
-                        System.out.println(String.format("|%-11s | %-11s | %-11s|",
-                                c.getStudentId(),c.getStudentName(),c.getSemester_id()));
+                        System.out.println(String.format("|%-11s | %-11s | ",
+                                c.getStudentId(),c.getStudentName()));
                     }
                     System.out.println("Enter the Student id ");
                     int studentid = sc.nextInt();
