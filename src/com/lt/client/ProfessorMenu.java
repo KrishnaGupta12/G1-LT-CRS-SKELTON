@@ -44,38 +44,38 @@ public class ProfessorMenu {
                     System.out.println("Enter StudentId : ");
                     long studentId = sc.nextLong();
                     List<Courses>  registeredStudentList = professorImplService.getListofStudents(studentId,semesterId);
-                  //  System.out.println(registeredStudentList);
-                    System.out.println(String.format("|%-10s | %-10s |","-----------","-----------")) ;
-                    System.out.println(String.format("|%-10s | %-10s |","COURSE ID","COURSE NAME"));
-                    System.out.println(String.format("|%-10s | %-10s |","-----------","-----------")) ;
-                    for (Courses c : registeredStudentList ){
-                        System.out.println(String.format("|%-11s | %-11s|  ",
-                                c.getCourseId(),c.getCourseName()));
-                    }
-                    for (Courses c : registeredStudentList ){
-                        System.out.println("Enter CourseId : ");
-                        long courseId = (int) sc.nextLong();
-                        System.out.println("Enter Grade : ");
-                        String grade = sc.next();
-                        Grade gradeObj = new Grade(c.getCourseId(),c.getCourseName(),studentId,semesterId,grade);
-                        professorImplService.addGrade(gradeObj);
+                    if(!registeredStudentList.isEmpty()) {
+                        System.out.println(String.format("|%-10s | %-10s |", "-----------", "-----------"));
+                        System.out.println(String.format("|%-10s | %-10s |", "COURSE ID", "COURSE NAME"));
+                        System.out.println(String.format("|%-10s | %-10s |", "-----------", "-----------"));
+                        for (Courses c : registeredStudentList) {
+                            System.out.println(String.format("|%-11s | %-11s|  ",
+                                    c.getCourseId(), c.getCourseName()));
+                        }
+                        for (Courses c : registeredStudentList) {
+                            System.out.println("Enter CourseId : ");
+                            long courseId = (int) sc.nextLong();
+                            System.out.println("Enter Grade : ");
+                            String grade = sc.next();
+                            Grade gradeObj = new Grade(c.getCourseId(), c.getCourseName(), studentId, semesterId, grade);
+                            professorImplService.addGrade(gradeObj);
+                        }
                     }
                     break;
 
                 case 3:
                     System.out.println("View Registered Students");
                     List<Student> studList = professorImplService.viewRegisteredStudents(professorId);
-                    //System.out.println(studList);
-                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------","--------------" )) ;
-                    System.out.println(String.format("|%-10s | %-10s | %-10s|","STUD ID","STUD NAME","SEMESTER ID"));
-                    System.out.println(String.format("|%-10s | %-10s | %-10s|","-----------","-----------","--------------" )) ;
-                    for (Student c : studList ){
-                        System.out.println(String.format("|%-11s | %-11s | %-11s|",
-                                c.getStudentId(),c.getStudentName(),c.getSemester_id()));
-                    }
+                   if(studList.isEmpty()) {
+                       System.out.println(String.format("|%-10s | %-10s | %-10s|", "-----------", "-----------", "--------------"));
+                       System.out.println(String.format("|%-10s | %-10s | %-10s|", "STUD ID", "STUD NAME", "SEMESTER ID"));
+                       System.out.println(String.format("|%-10s | %-10s | %-10s|", "-----------", "-----------", "--------------"));
+                       for (Student c : studList) {
+                           System.out.println(String.format("|%-11s | %-11s | %-11s|",
+                                   c.getStudentId(), c.getStudentName(), c.getSemester_id()));
+                       }
+                   }
                     break;
-
-
 
                 case 4:
                     System.out.println("Exit");

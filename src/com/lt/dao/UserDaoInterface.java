@@ -22,7 +22,7 @@ public interface UserDaoInterface {
 
     public Roles getRoleDetails(int roleId) throws SQLException, RoleNotFoundException;
 
-    public void getUserMenu(int role, String userName) throws SQLException, IOException, CourseNotFoundException, StudentNotFoundException, GradeNotAddedException, ProfessorNotFoundException, CourseNotAssignedToProfessorException, RoleNotFoundException;
+    public void getUserMenu(int role, String userName) throws SQLException, IOException;
 
     public String getLoginTime();
 

@@ -41,12 +41,7 @@ public class UserImplServiceInterface {
 
 
 
-    public void getUserMenu(int role, String userName) throws SQLException, IOException, StudentDetailsNotFoundException {
-        try {
-            userDao.getUserMenu(role, userName);
-        } catch (RoleNotFoundException e) {
-            logger.error(e.getMessage());
-
-        }
+    public void getUserMenu(int role, String userName) throws SQLException, IOException {
+       userDao.getUserMenu(role,userName);
     }
 }

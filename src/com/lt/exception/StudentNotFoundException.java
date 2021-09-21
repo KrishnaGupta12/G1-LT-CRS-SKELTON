@@ -23,11 +23,11 @@ private long semesterId;
 
 
 	public String getMessage(long professorId){
-		return "Student With "+ professorId +"Is Not Found!!!";
+		return "No Students Registered under you..!";
 	}
 	
 	public String getMessage(long studentId,long semesterId){
-		return "Student Id " + studentId + "for the semester" + semesterId + "is not found....";
+		return "Student Id :- " + studentId + " have not registered any courses for the semester " + semesterId ;
 	}
 
 }

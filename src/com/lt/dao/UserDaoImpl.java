@@ -7,10 +7,7 @@ import com.lt.client.AdminMenu;
 import com.lt.client.ProfessorMenu;
 import com.lt.client.StudentMenu;
 import com.lt.constants.SqlConstants;
-import com.lt.exception.RoleNotFoundException;
-
-import com.lt.exception.StudentDetailsNotFoundException;
-import com.lt.exception.UserNotFoundException;
+import com.lt.exception.*;
 import com.lt.util.DBUtil;
 import org.apache.log4j.Logger;
 
@@ -27,7 +24,7 @@ import java.time.LocalDateTime;
 
 public class UserDaoImpl implements UserDaoInterface {
 
-    private static Logger logger = Logger.getLogger(UserDaoImpl.class);
+    private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
     Connection con = DBUtil.getConnection();
     PreparedStatement smt = null;
     private static volatile UserDaoImpl instance = null;
@@ -46,7 +43,6 @@ public class UserDaoImpl implements UserDaoInterface {
 
     StudentDaoImpl studentDao = StudentDaoImpl.getInstance();
     ProfessorDaoImpl professorDao = ProfessorDaoImpl.getInstance();
-    AdminDaoImpl adminDao = AdminDaoImpl.getInstance();
 
 
     /**
@@ -71,12 +67,6 @@ public class UserDaoImpl implements UserDaoInterface {
         } catch (UserNotFoundException e) {
             logger.error(e.getMessage(username, password));
         }
-        if(role==0){
-            throw new UserNotFoundException(username,password);
-        }
-        }catch(UserNotFoundException e){
-           logger.error(e.getMessage(username,password));
-       }
         return role;
     }
 
@@ -102,8 +92,7 @@ public class UserDaoImpl implements UserDaoInterface {
     }
 
     @Override
-    public void getUserMenu(int role, String userName) throws SQLException, IOException, RoleNotFoundException, StudentDetailsNotFoundException {
-
+    public void getUserMenu(int role, String userName) throws SQLException, IOException {
         try {
             Roles roles = getRoleDetails(role);
             if(roles == null){
@@ -121,14 +110,14 @@ public class UserDaoImpl implements UserDaoInterface {
                 professorMenu.professorSession(userName, professor.getProfessorId(), professor.getProfessorName(), getLoginTime());
             } else if (roles.getRole_id() == role && roles.getRole_name().equalsIgnoreCase("ADMIN")) {
                 AdminMenu admin = new AdminMenu();
-                //  AdminDaoImpl adminDao = new AdminDaoImpl();
                 admin.adminSession(userName, getLoginTime());
             } else {
                 System.out.println("Invalid user");
             }
-            } catch (SQLException e) {
+            } catch (SQLException | IOException | RoleNotFoundException | ProfessorNotFoundException | CourseNotAssignedToProfessorException | StudentNotFoundException | StudentDetailsNotFoundException e) {
             logger.error(e.getMessage());
         }
+
     }
 
 
