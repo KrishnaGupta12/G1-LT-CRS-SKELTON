@@ -13,6 +13,7 @@ import com.lt.exception.ProfessorNotFoundException;
 import com.lt.exception.RoleNotFoundException;
 import com.lt.exception.StudentNotFoundException;
 import com.lt.exception.UserNotFoundException;
+import com.lt.exception.StudentDetailsNotFoundException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -28,6 +29,7 @@ import java.util.Scanner;
  */
 public class CRSApplication {
     public static void main(String[] args) throws ParseException, SQLException, IOException, UserNotFoundException, CourseNotFoundException, StudentNotFoundException, GradeNotAddedException, ProfessorNotFoundException, CourseNotAssignedToProfessorException, RoleNotFoundException {
+
         StudentImplService studentImplService = new StudentImplService();
         ProfessorImplService professorImplService = new ProfessorImplService();
         UserImplServiceInterface userImplService = new UserImplServiceInterface();

@@ -6,10 +6,12 @@ import com.lt.exception.CourseNotAssignedToProfessorException;
 import com.lt.exception.CourseNotFoundException;
 import com.lt.exception.GradeNotAddedException;
 import com.lt.exception.ProfessorNotFoundException;
-import com.lt.exception.RoleNotFoundException;
 import com.lt.exception.StudentNotFoundException;
 import com.lt.exception.UserNotFoundException;
 import com.lt.dao.UserDaoImpl;
+import com.lt.exception.RoleNotFoundException;
+import com.lt.exception.StudentDetailsNotFoundException;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,6 +20,8 @@ import java.sql.SQLException;
  * @author User Implementation with DAO Layer
  */
 public class UserImplServiceInterface {
+
+    private static Logger logger = Logger.getLogger(UserImplServiceInterface.class);
 
     //    @Override
 //    public void getUserName() {
@@ -36,8 +40,13 @@ public class UserImplServiceInterface {
     }
 
 
-    public void getUserMenu(int role, String userName) throws SQLException, IOException, CourseNotFoundException, StudentNotFoundException, GradeNotAddedException, ProfessorNotFoundException, CourseNotAssignedToProfessorException, RoleNotFoundException{
-        userDao.getUserMenu(role, userName);
-    
+
+    public void getUserMenu(int role, String userName) throws SQLException, IOException, StudentDetailsNotFoundException {
+        try {
+            userDao.getUserMenu(role, userName);
+        } catch (RoleNotFoundException e) {
+            logger.error(e.getMessage());
+
+        }
     }
 }

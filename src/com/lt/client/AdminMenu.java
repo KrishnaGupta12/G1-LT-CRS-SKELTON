@@ -4,16 +4,16 @@ import com.lt.bean.Courses;
 import com.lt.bean.Professor;
 import com.lt.bean.Student;
 import com.lt.business.AdminImplService;
+import com.lt.exception.StudentDetailsNotFoundException;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
 public class AdminMenu {
 
-    public void adminSession(String username, String loginTime) throws SQLException, IOException {
+    public void adminSession(String username, String loginTime) throws SQLException, IOException, StudentDetailsNotFoundException {
 
         AdminImplService adminImplService = new AdminImplService();
         String userName = username.substring(0,username.indexOf('@'));
@@ -55,17 +55,19 @@ public class AdminMenu {
                 case 2:
                     System.out.println("List Of Students waiting for Approval :  ");
                     List<Student> studList = adminImplService.showListOfPendingStudent();
-                    System.out.println(String.format("|%-10s | %-10s | ","-----------","-----------")) ;
-                    System.out.println(String.format("|%-10s | %-10s | ","STUD ID","STUD NAME"));
-                    System.out.println(String.format("|%-10s | %-10s | ","-----------","-----------")) ;
-                    for (Student c : studList ){
-                        System.out.println(String.format("|%-11s | %-11s | ",
-                                c.getStudentId(),c.getStudentName()));
-                    }
-                    System.out.println("Enter the Student id ");
-                    int studentid = sc.nextInt();
-                    adminImplService.approveStudent(studentid);
 
+                    if(!studList.isEmpty()) {
+                        System.out.println(String.format("|%-10s | %-10s | ", "-----------", "-----------"));
+                        System.out.println(String.format("|%-10s | %-10s | ", "STUD ID", "STUD NAME"));
+                        System.out.println(String.format("|%-10s | %-10s | ", "-----------", "-----------"));
+                        for (Student c : studList) {
+                            System.out.println(String.format("|%-11s | %-11s | ",
+                                    c.getStudentId(), c.getStudentName()));
+                        }
+                        System.out.println("Enter the Student id ");
+                        int studentid = sc.nextInt();
+                        adminImplService.approveStudent(studentid);
+                    }
                     break;
 
                 case 3:
@@ -97,11 +99,20 @@ public class AdminMenu {
 
                 case 4:
                     System.out.println(" Delete The Course................");
-                    System.out.println("Enter The courseId");
-                    long crsId = sc.nextLong();
-
-                    adminImplService.deleteCourse(crsId);
-
+                    System.out.println(" Choose a course id from below list you want to delete :");
+                    List<Courses> coursesList = adminImplService.adminViewAllCourses();
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------")) ;
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","COURSE ID","COURSE NAME","DETAILS","FEES"));
+                    System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------"));
+                    for (Courses c : coursesList ){
+                        System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s ",
+                                c.getCourseId(),c.getCourseName(),c.getCourseDetails(),c.getCourseFee()));
+                    }
+                    if(!coursesList.isEmpty()){
+                        System.out.println("Enter The courseId");
+                        long crsId = sc.nextLong();
+                        adminImplService.deleteCourse(crsId,coursesList);
+                    }
                     break;
 
                 case 5:
@@ -116,11 +127,11 @@ public class AdminMenu {
 
                 case 6:
                     System.out.println("View All Courses");
-                   List<Courses> coursesList = adminImplService.adminViewAllCourses();
+                   List<Courses> course_list = adminImplService.adminViewAllCourses();
                     System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------")) ;
                     System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","COURSE ID","COURSE NAME","DETAILS","FEES"));
                     System.out.println(String.format("|%-10s | %-10s | %-10s| %-10s|","-----------","-----------","---------" ,"-------"));
-                    for (Courses c : coursesList ){
+                    for (Courses c : course_list ){
                         System.out.println(String.format("|%-11s | %-11s | %-11s| %-11s ",
                                 c.getCourseId(),c.getCourseName(),c.getCourseDetails(),c.getCourseFee()));
                     }

@@ -3,6 +3,8 @@ package com.lt.dao;
 import com.lt.bean.Courses;
 import com.lt.bean.Professor;
 import com.lt.bean.Student;
+import com.lt.exception.CourseExistedException;
+import com.lt.exception.StudentDetailsNotFoundException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,7 +26,7 @@ public interface AdminDaoInterface {
      * @param studentId:   for which course
      * @return void and print message
      */
-    public void approveStudent(int studentId) throws SQLException;
+    public void approveStudent(int studentId) throws SQLException, StudentDetailsNotFoundException;
 
 
     /**
@@ -48,7 +50,7 @@ public interface AdminDaoInterface {
      * @param course: Course for which display list of students
      * @return void and print message
      */
-    public void addCourse(Courses course) throws SQLException;
+    public void addCourse(Courses course) throws SQLException, CourseExistedException, CourseExistedException;
 
     /**
      * Method to delete course to database
@@ -56,7 +58,7 @@ public interface AdminDaoInterface {
      * @param courseId: Course for which display list of students
      * @return void and print message
      */
-    public void deleteCourse(long courseId) throws IOException, SQLException;
+    public void deleteCourse(long courseId,List<Courses> coursesList) throws IOException, SQLException;
 
     /**
      * Method to show list of available course to  admin from database
@@ -65,7 +67,7 @@ public interface AdminDaoInterface {
      */
     public List<Courses> adminViewAllCourses() throws SQLException;
 
-    public List<Student> viewRegisteredStudents() throws IOException;
+
 
 
 }
