@@ -25,6 +25,5 @@ public interface AdminInterface  {
 
     public List<Courses> adminViewAllCourses() throws SQLException;
 
-    public List<Student> viewRegisteredStudents() throws IOException;
 
 }

@@ -6,6 +6,7 @@ import com.lt.bean.Student;
 import com.lt.business.ProfessorImplService;
 import com.lt.business.StudentImplService;
 import com.lt.business.UserImplServiceInterface;
+import com.lt.exception.StudentDetailsNotFoundException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ import java.util.Scanner;
  * Bases on Options all the methods get called.
  */
 public class CRSApplication {
-    public static void main(String[] args) throws ParseException, SQLException, IOException {
+    public static void main(String[] args) throws ParseException, SQLException, IOException, StudentDetailsNotFoundException {
         StudentImplService studentImplService = new StudentImplService();
         ProfessorImplService professorImplService = new ProfessorImplService();
         UserImplServiceInterface userImplService = new UserImplServiceInterface();
