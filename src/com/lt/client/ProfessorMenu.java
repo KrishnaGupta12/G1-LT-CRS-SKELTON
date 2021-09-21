@@ -4,6 +4,8 @@ import com.lt.bean.*;
 import com.lt.business.ProfessorImplService;
 import com.lt.business.ProfessorInterface;
 import com.lt.business.StudentImplService;
+import com.lt.exception.CourseNotAssignedToProfessorException;
+import com.lt.exception.StudentNotFoundException;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -14,7 +16,7 @@ import java.util.Scanner;
  * @author Professor Individual Menu with all the professor functionality
  */
 public class ProfessorMenu {
-    public void professorSession(String userName, long professorId, String professorName, String loginTime) throws SQLException {
+    public void professorSession(String userName, long professorId, String professorName, String loginTime) throws SQLException, CourseNotAssignedToProfessorException, StudentNotFoundException {
         System.out.println("Welcome "+professorName+" to your panel. Have a Good day!!");
         System.out.println("Login at : "+loginTime);
         System.out.println("------------------------------------------------------------");
