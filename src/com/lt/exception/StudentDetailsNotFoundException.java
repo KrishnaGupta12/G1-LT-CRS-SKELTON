@@ -8,6 +8,6 @@ public class StudentDetailsNotFoundException extends Exception{
 public StudentDetailsNotFoundException(){
 }
 public String getMsg(){
-    return " No Any Student Available for Approve";
+    return " Students details not found..!";
 }
 }

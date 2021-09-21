@@ -88,7 +88,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
                 statement.setInt(2, studentId);
                 int apprv_status = statement.executeUpdate();
                 if (apprv_status == 0)
-                    System.out.println("Approval unsuccessfull....");
+                    System.out.println("Approval unsuccessful....");
                 else {
                     statement = con.prepareStatement(SqlConstants.INSERT_USER);
                     for (Student student : list) {
@@ -100,7 +100,7 @@ public class AdminDaoImpl implements AdminDaoInterface {
                             int flag = statement.executeUpdate();
                             if (flag != 0) {
 
-                                System.out.println("Student approval succeeded....");
+                                System.out.println("Student is approved ....");
 
                             }
                         }

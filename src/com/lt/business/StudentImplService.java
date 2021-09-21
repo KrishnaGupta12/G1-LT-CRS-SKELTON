@@ -4,6 +4,7 @@ import com.lt.bean.*;
 import com.lt.dao.CourseDaoImpl;
 import com.lt.dao.StudentDaoImpl;
 import com.lt.dao.StudentDaoInterface;
+import com.lt.exception.CourseNotFoundException;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -121,9 +122,17 @@ public class StudentImplService implements StudentDaoInterface {
     }
 
 
-    public static boolean  validateCard(String card){
-        if(card.length() == 16)
+    public static boolean validateCard(String card) {
+        if (card.length() == 16)
             return true;
+        return false;
+    }
+
+    public boolean checkId(long id,Set<RegisterCourse> list ){
+        for (RegisterCourse c :list) {
+            if(c.getCourseId() == id)
+                return true;
+        }
         return false;
     }
 

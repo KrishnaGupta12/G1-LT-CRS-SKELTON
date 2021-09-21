@@ -11,7 +11,7 @@ public class UserNotFoundException extends Throwable {
     }
 
     public String getMessage(String username,String password){
-        return "Username and password is Invalid   : "+username+ " " +password;
+        return "Invalid username and password for userId "+username;
     }
 
 }
