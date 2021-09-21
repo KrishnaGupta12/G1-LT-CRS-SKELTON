@@ -15,7 +15,7 @@ import java.util.*;
 public class StudentDaoImpl implements StudentDaoInterface {
 
     private static volatile StudentDaoImpl instance = null;
-    private StudentDaoImpl() {
+    StudentDaoImpl() {
     }
 
     public static StudentDaoImpl getInstance() {

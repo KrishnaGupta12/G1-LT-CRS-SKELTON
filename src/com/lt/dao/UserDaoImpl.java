@@ -8,6 +8,7 @@ import com.lt.client.ProfessorMenu;
 import com.lt.client.StudentMenu;
 import com.lt.constants.SqlConstants;
 import com.lt.exception.RoleNotFoundException;
+
 import com.lt.exception.StudentDetailsNotFoundException;
 import com.lt.exception.UserNotFoundException;
 import com.lt.util.DBUtil;
@@ -25,6 +26,7 @@ import java.time.LocalDateTime;
  */
 
 public class UserDaoImpl implements UserDaoInterface {
+
     private static Logger logger = Logger.getLogger(UserDaoImpl.class);
     Connection con = DBUtil.getConnection();
     PreparedStatement smt = null;
@@ -51,6 +53,7 @@ public class UserDaoImpl implements UserDaoInterface {
      * User Login Method
      */
     @Override
+
     public int login(String username, String password) throws SQLException {
         int role = 0;
         try {
@@ -68,6 +71,12 @@ public class UserDaoImpl implements UserDaoInterface {
         } catch (UserNotFoundException e) {
             logger.error(e.getMessage(username, password));
         }
+        if(role==0){
+            throw new UserNotFoundException(username,password);
+        }
+        }catch(UserNotFoundException e){
+           logger.error(e.getMessage(username,password));
+       }
         return role;
     }
 
