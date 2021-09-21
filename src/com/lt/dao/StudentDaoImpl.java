@@ -2,11 +2,16 @@ package com.lt.dao;
 
 import com.lt.bean.*;
 import com.lt.constants.SqlConstants;
+import com.lt.exception.CourseFoundException;
+import com.lt.exception.CourseNotFoundException;
+import com.lt.exception.StudentAlreadyRegisteredException;
 import com.lt.util.DBUtil;
 
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
+
+import org.apache.log4j.Logger;
 
 /**
  * @author Implementation of Student DAO Interface all methods to interacts with DB
@@ -15,6 +20,8 @@ import java.util.*;
 public class StudentDaoImpl implements StudentDaoInterface {
 
     private static volatile StudentDaoImpl instance = null;
+    private static Logger logger = Logger.getLogger(StudentDaoImpl.class);
+    
     private StudentDaoImpl() {
     }
 
@@ -35,9 +42,11 @@ public class StudentDaoImpl implements StudentDaoInterface {
 
     /**
      * Student signup method
+     * @throws StudentAlreadyRegisteredException 
      */
     @Override
-    public boolean signUp(Student student) throws SQLException {
+    public boolean signUp(Student student) throws SQLException, StudentAlreadyRegisteredException {
+    	try {
         smt = con.prepareStatement(SqlConstants.INSERT_TO_STUDENT);
         smt.setInt(1, (int) student.getStudentId());
         smt.setString(2, student.getStudentName());
@@ -50,15 +59,23 @@ public class StudentDaoImpl implements StudentDaoInterface {
         smt.setInt(9, 0);
         int flag = smt.executeUpdate();
         if (flag != 0)
-            return true;
+            return true; 
+        }
+    	catch(SQLException ex)
+    	{
+    		//log.error(ex.getMessage());
+    		throw new StudentAlreadyRegisteredException();
+    	}
         return false;
     }
 
     /**
      * Student Register for Courses Method Implementation
+     * @throws CourseFoundException 
      */
     @Override
-    public boolean registerForCourse(long student_id, long semesterId, long courseId) throws SQLException {
+    public boolean registerForCourse(long student_id, long semesterId, long courseId) throws SQLException, CourseNotFoundException {
+    	try {
         smt = con.prepareStatement(SqlConstants.REGISTER_COURSE);
         smt.setInt(1, (int) student_id);
         smt.setInt(2, (int) semesterId);
@@ -66,6 +83,10 @@ public class StudentDaoImpl implements StudentDaoInterface {
         int flag = smt.executeUpdate();
         if (flag != 0)
             return true;
+    	}
+    	catch(SQLException ex) {
+    		logger.error(ex.getMessage());
+    	}
         return false;
     }
 

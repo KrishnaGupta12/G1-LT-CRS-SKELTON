@@ -1,6 +1,9 @@
 package com.lt.dao;
 
 import com.lt.bean.Courses;
+import com.lt.exception.CourseFoundException;
+import com.lt.exception.CourseNotFoundException;
+import com.lt.exception.StudentAlreadyRegisteredException;
 import com.lt.bean.*;
 
 import java.sql.SQLException;
@@ -16,8 +19,9 @@ public interface StudentDaoInterface {
      *
      * @param student: student object containing all the fields
      * @return some boolean if student is added
+     * @throws StudentAlreadyRegisteredException 
      */
-    public boolean signUp(Student student) throws SQLException; //insert query
+    public boolean signUp(Student student) throws SQLException, StudentAlreadyRegisteredException; //insert query
 
     /**
      * Method to add registered courses for student
@@ -26,8 +30,10 @@ public interface StudentDaoInterface {
      * @param semesterid: for which semserter
      * @param courseId:   for which course
      * @return some boolean  if student is added
+     * @throws CourseFoundException 
+     * @throws CourseNotFoundException 
      */
-    public boolean registerForCourse(long student_id, long semesterid, long courseId) throws SQLException; // insert query + select data from course table
+    public boolean registerForCourse(long student_id, long semesterid, long courseId) throws SQLException, CourseNotFoundException; // insert query + select data from course table
 
     /**
      * Method to list registered courses for student

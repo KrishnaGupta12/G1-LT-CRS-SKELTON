@@ -6,6 +6,8 @@ import com.lt.bean.Payment;
 import com.lt.bean.RegisterCourse;
 import com.lt.business.StudentImplService;
 import com.lt.constants.ModeOfPayment;
+import com.lt.exception.CourseFoundException;
+import com.lt.exception.CourseNotFoundException;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -16,7 +18,7 @@ import java.util.*;
  * @author Student Individual Menu with all the Student functionality
  */
 public class StudentMenu {
-    public void studentSession(String userName, long student_id, String studentName, String loginTime) throws SQLException {
+    public void studentSession(String userName, long student_id, String studentName, String loginTime) throws SQLException, CourseNotFoundException {
         System.out.println("Welcome "+studentName+" to your panel. Have a Good day!!");
         System.out.println("Login at : "+loginTime);
         System.out.println("---------------------------------------------------------------");
@@ -52,8 +54,7 @@ public class StudentMenu {
                     boolean flag = studentImplService.registerForCourse(student_id, semester_id, courseId);
                     if (flag) {
                         System.out.println("Course Registered ..! Payment Status is pending. Please Pay your fees");
-                    } else
-                        System.out.println("Sorry!! Seats are Full!! Try Different Course..");
+                    } 
 
                     System.out.println("***************************************************");
                     break;

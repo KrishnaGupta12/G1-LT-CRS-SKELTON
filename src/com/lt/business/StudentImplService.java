@@ -4,29 +4,41 @@ import com.lt.bean.*;
 import com.lt.dao.CourseDaoImpl;
 import com.lt.dao.StudentDaoImpl;
 import com.lt.dao.StudentDaoInterface;
+import com.lt.exception.CourseFoundException;
+import com.lt.exception.CourseNotFoundException;
+import com.lt.exception.StudentAlreadyRegisteredException;
 
 import java.sql.SQLException;
 import java.util.*;
 //import static com.lt.dao.StudentDao.studentsList;
 
+import org.apache.log4j.Logger;
+
 /**
  * @author Student Business Layer implementing student DAO.
  */
-public class StudentImplService implements StudentDaoInterface {
-
+public class StudentImplService extends User implements StudentDaoInterface {
+	
+	 private static Logger logger = Logger.getLogger(StudentImplService.class);
     StudentDaoImpl studentDao = StudentDaoImpl.getInstance();
     CourseDaoImpl courseDao = null;
     boolean flag = false;
+    
 
 
     /**
      * this method will do Student Sign up
      */
     @Override
-    public boolean signUp(Student student) throws SQLException {
+    public boolean signUp(Student student) throws SQLException,StudentAlreadyRegisteredException  {
         //studentDao = new StudentDaoImpl();
+    	try {
         flag = studentDao.signUp(student);
-        return flag;
+         }
+    	catch(StudentAlreadyRegisteredException ex) {
+    		logger.error(ex.getMessage(student.getStudentId()));
+    	}
+    	return flag;
 
     }
 
@@ -37,7 +49,17 @@ public class StudentImplService implements StudentDaoInterface {
     @Override
     public boolean registerForCourse(long student_id, long semesterId, long courseId) throws SQLException {
         //  studentDao = new StudentDaoImpl();
+    	try {
+    		if(!isValidCourse(courseId,studentDao.showAvailableCourses(semesterId)))
+    		{
+    			throw new CourseNotFoundException(courseId);
+    		}
         flag = studentDao.registerForCourse(student_id, semesterId, courseId);
+        
+    	}
+    	catch(CourseNotFoundException e) {
+    		logger.error(e.getMessage(courseId));
+    	}
         return flag;
     }
 
@@ -57,7 +79,15 @@ public class StudentImplService implements StudentDaoInterface {
      */
     @Override
     public boolean removeCourse(long courseId) throws SQLException {
+    	try {
+    	if(courseId !=  )) {
+    		throw new CourseNotFoundException(courseId);
+    	}
         return studentDao.removeCourse(courseId);
+    	}
+    	catch(CourseNotFoundException e) {
+    		logger.error(e.getMessage(courseId));
+    	}
     }
 
     /**
@@ -126,5 +156,29 @@ public class StudentImplService implements StudentDaoInterface {
             return true;
         return false;
     }
+    
+    public static boolean isValidCourse(long courseId,List<Courses> coursesList) 
+	{
+		for(Courses course : coursesList)
+		{
+			if(courseId == course.getCourseId()) 
+			{
+				return true; 
+			}
+		}
+		
+		return false;
+	}
+    
+    public static boolean isRegisteredCourse(Set<RegisterCourse> viewRegisteredCourses,long courseId,long studentId) {
+    	for(RegisterCourse course : viewRegisteredCourses) {
+    		if(courseId == course.getCourseId()) 
+			{
+				return true; 
+			}
+    	}
+    	return false;
+    }
+    
 
 }
