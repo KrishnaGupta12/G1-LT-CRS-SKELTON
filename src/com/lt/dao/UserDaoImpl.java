@@ -2,19 +2,15 @@ package com.lt.dao;
 import com.lt.bean.Professor;
 import com.lt.bean.Roles;
 import com.lt.bean.Student;
-import com.lt.business.AdminImplService;
 import com.lt.client.AdminMenu;
 import com.lt.client.ProfessorMenu;
 import com.lt.client.StudentMenu;
 import com.lt.constants.SqlConstants;
-import com.lt.exception.CourseFoundException;
-import com.lt.exception.CourseNotFoundException;
-import com.lt.exception.ProfessorExistedException;
 import com.lt.exception.RoleNotFoundException;
+import com.lt.exception.StudentDetailsNotFoundException;
 import com.lt.exception.UserNotFoundException;
 import com.lt.util.DBUtil;
 import org.apache.log4j.Logger;
-import javax.management.relation.Role;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -85,9 +81,14 @@ public class UserDaoImpl implements UserDaoInterface {
         return role;
     }
     @Override
-    public void getUserMenu(int role, String userName) throws SQLException, IOException, RoleNotFoundException, CourseNotFoundException {
+
+    public void getUserMenu(int role, String userName) throws SQLException, IOException, RoleNotFoundException, StudentDetailsNotFoundException {
+
         try {
             Roles roles = getRoleDetails(role);
+            if(roles == null){
+                throw new RoleNotFoundException();
+            }
             if (roles.getRole_id() == role && roles.getRole_name().equalsIgnoreCase("STUDENT")) {
                 StudentMenu studentmenu = new StudentMenu();
                 //  StudentDaoImpl studentDao = new StudentDaoImpl();
@@ -105,11 +106,12 @@ public class UserDaoImpl implements UserDaoInterface {
             } else {
                 System.out.println("Invalid user");
             }
-            } catch (SQLException e) {
+        } catch (SQLException e) {
             logger.error(e.getMessage());
-            throw new RoleNotFoundException();
         }
     }
+
+
 
     @Override
     public String getLoginTime() {

@@ -18,7 +18,7 @@ import java.util.*;
  * @author Student Individual Menu with all the Student functionality
  */
 public class StudentMenu {
-    public void studentSession(String userName, long student_id, String studentName, String loginTime) throws SQLException, CourseNotFoundException {
+    public void studentSession(String userName, long student_id, String studentName, String loginTime) throws SQLException {
         System.out.println("Welcome "+studentName+" to your panel. Have a Good day!!");
         System.out.println("Login at : "+loginTime);
         System.out.println("---------------------------------------------------------------");
