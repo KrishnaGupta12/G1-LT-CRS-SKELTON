@@ -8,14 +8,15 @@ public class CourseCatalog {
     private long courseCatalogId;
     private List<Courses> coursesList;
 
-    public  CourseCatalog(){}
+    public CourseCatalog() {
+    }
+
     public CourseCatalog(long courseId, long professorId, long courseCatalogId, List<Courses> coursesList) {
         this.courseId = courseId;
         this.professorId = professorId;
         this.courseCatalogId = courseCatalogId;
         this.coursesList = coursesList;
     }
-
 
 
     public List<Courses> getCoursesList() {

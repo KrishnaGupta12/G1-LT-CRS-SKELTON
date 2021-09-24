@@ -2,7 +2,7 @@ package com.lt.bean;
 
 import java.util.Objects;
 
-public class RegisterCourse  {
+public class RegisterCourse {
 
     private long courseId;
     private String courseName;
@@ -10,20 +10,27 @@ public class RegisterCourse  {
     private String courseType;
     private String courseDuration;
     private String courseDetails;
-    private long numberOfStudents;
-    private long professorId;
+    private String paymentStatus;
 
-    public RegisterCourse(){}
+    public RegisterCourse() {
+    }
 
-    public RegisterCourse(long courseId, String courseName, double courseFee, String courseType, String courseDuration, String courseDetails) {
+//    public RegisterCourse(long courseId, String courseName, double courseFee, String courseType, String courseDuration, String courseDetails, String paymentStatsu) {
+//        super( courseId,  courseName,  courseFee,  courseType,  courseDuration,  courseDetails);
+//        this.paymentStatus = paymentStatsu;
+//
+//    }
+
+
+    public RegisterCourse(long courseId, String courseName, double courseFee, String courseType, String courseDuration, String courseDetails, String paymentStatus) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseFee = courseFee;
         this.courseType = courseType;
         this.courseDuration = courseDuration;
         this.courseDetails = courseDetails;
+        this.paymentStatus = paymentStatus;
     }
-
 
     public long getCourseId() {
         return courseId;
@@ -58,33 +65,31 @@ public class RegisterCourse  {
         this.courseDetails = courseDetails;
     }
 
-    public long getNumberOfStudents() {
-        return numberOfStudents;
+
+    public String getCourseType() {
+        return courseType;
     }
 
-    public void setNumberOfStudents(long numberOfStudents) {
-        this.numberOfStudents = numberOfStudents;
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
     }
 
-    public long getProfessorId() {
-        return professorId;
+
+    public String getCourseDuration() {
+        return courseDuration;
     }
 
-    public void setProfessorId(long professorId) {
-        this.professorId = professorId;
+
+    public void setCourseDuration(String courseDuration) {
+        this.courseDuration = courseDuration;
     }
 
-    @Override
-    public String toString() {
-        return "\n RegisterCourse{" +
-                "courseId=" + courseId +
-                ", courseName='" + courseName + '\'' +
-                ", courseFee=" + courseFee +
-                ", courseType='" + courseType + '\'' +
-                ", courseDuration='" + courseDuration + '\'' +
-                ", courseDetails='" + courseDetails + '\'' +
-                '}';
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
 
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
     @Override
@@ -98,5 +103,18 @@ public class RegisterCourse  {
     @Override
     public int hashCode() {
         return Objects.hash(getCourseId());
+    }
+
+    @Override
+    public String toString() {
+        return "\n RegisterCourse{" +
+                "courseId=" + courseId +
+                ", courseName='" + courseName + '\'' +
+                ", courseFee=" + courseFee +
+                ", courseType='" + courseType + '\'' +
+                ", courseDuration='" + courseDuration + '\'' +
+                ", courseDetails='" + courseDetails + '\'' +
+                ", paymentStatus='" + paymentStatus + '\'' +
+                '}';
     }
 }

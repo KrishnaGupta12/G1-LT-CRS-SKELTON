@@ -1,22 +1,51 @@
 package com.lt.bean;
 
 public class Payment {
-    private long billingId;
+    private long transactionId;
     private double billingAmount;
-   // private Boolean type;
+    private String billingMode;
+    private String card_no;
+    private String card_expiry;
 
-    public Payment(){}
-    public Payment(long billingId, double billingAmount) {
-        this.billingId = billingId;
+    public Payment() {
+    }
+
+    public long getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(long transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public Payment(double billingAmount, String billingMode, long transactionId) {
         this.billingAmount = billingAmount;
+        this.billingMode = billingMode;
+        this.transactionId = transactionId;
     }
 
-    public long getBillingId() {
-        return billingId;
+    public Payment(long transactionId, double billingAmount, String billingMode, String card_no, String card_expiry) {
+        this.transactionId = transactionId;
+        this.billingAmount = billingAmount;
+        this.billingMode = billingMode;
+        this.card_no = card_no;
+        this.card_expiry = card_expiry;
     }
 
-    public void setBillingId(long billingId) {
-        this.billingId = billingId;
+    public String getCard_no() {
+        return card_no;
+    }
+
+    public void setCard_no(String card_no) {
+        this.card_no = card_no;
+    }
+
+    public String getCard_expiry() {
+        return card_expiry;
+    }
+
+    public void setCard_expiry(String card_expiry) {
+        this.card_expiry = card_expiry;
     }
 
     public double getBillingAmount() {
@@ -25,5 +54,13 @@ public class Payment {
 
     public void setBillingAmount(double billingAmount) {
         this.billingAmount = billingAmount;
+    }
+
+    public String getBillingMode() {
+        return billingMode;
+    }
+
+    public void setBillingMode(String billingMode) {
+        this.billingMode = billingMode;
     }
 }
