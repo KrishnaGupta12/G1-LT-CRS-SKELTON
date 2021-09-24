@@ -11,7 +11,7 @@ import java.sql.Date;
 import java.util.*;
 
 /**
- * @author Implementation of Student DAO Interface all methods to interacts with DB
+ *  Implementation of Student DAO Interface all methods to interacts with DB
  */
 
 public class StudentDaoImpl implements StudentDaoInterface {
@@ -233,7 +233,10 @@ public class StudentDaoImpl implements StudentDaoInterface {
         }
         return false;
     }
-
+    
+    /**
+     * Method to view grade card of student
+     */
     @Override
     public List<GradeCard> viewGradeCard(long semesterId, long studentId) throws SQLException {
         List<GradeCard> gradeCardLits = new ArrayList<GradeCard>();
@@ -253,7 +256,10 @@ public class StudentDaoImpl implements StudentDaoInterface {
         }
         return gradeCardLits;
     }
-
+    
+    /**
+     * Method to make payment  for   student and add to  database via card
+     */
     @Override
     public boolean payfeesCard(long courseId, Payment payment, long studentId) throws SQLException {
         smt = con.prepareStatement(SqlConstants.INSERT_PAYMENT_STATUS_VIA_CARD);
@@ -276,7 +282,10 @@ public class StudentDaoImpl implements StudentDaoInterface {
         return false;
     }
 
-
+    
+    /**
+     * this method will check register course id with list of course id's
+     */
     public static boolean isRegisteredCourse(Set<RegisterCourse> viewRegisteredCourses, long courseId, long studentId) {
         for (RegisterCourse course : viewRegisteredCourses) {
             if (courseId == course.getCourseId()) {

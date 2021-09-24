@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- * @author Student DAO Interface with all student Methods
+ *  Student DAO Interface with all student Methods
  */
 public interface StudentDaoInterface {
 
@@ -81,7 +81,7 @@ public interface StudentDaoInterface {
     public boolean payfees(long courseId, Payment payment, long studentid) throws SQLException;
 
     /**
-     * Method to show list of available course to  student from database
+     * Method to view grade card of student
      *
      * @param semesterId: display list for this student
      * @param studentId: display list for this student

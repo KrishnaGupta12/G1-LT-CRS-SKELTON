@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Admin Individual Menu with all the admin functionality
+ */
 public class AdminMenu {
 
     public void adminSession(String username, String loginTime) throws SQLException, IOException, StudentDetailsNotFoundException {

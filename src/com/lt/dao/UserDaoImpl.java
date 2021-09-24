@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 /**
- * @author User DAO implementation method for login to interacts with DB
+ * User DAO implementation method for login to interacts with DB
  */
 
 public class UserDaoImpl implements UserDaoInterface {
@@ -69,7 +69,10 @@ public class UserDaoImpl implements UserDaoInterface {
         }
         return role;
     }
-
+    
+    /**
+     * Method get role details
+     */
     @Override
     public Roles getRoleDetails(int roleId) throws SQLException {
         Roles role = null;
@@ -90,7 +93,10 @@ public class UserDaoImpl implements UserDaoInterface {
         }
         return role;
     }
-
+    
+    /**
+     * Method to get usermenu 
+     */
     @Override
     public void getUserMenu(int role, String userName) throws SQLException, IOException {
         try {
@@ -119,9 +125,11 @@ public class UserDaoImpl implements UserDaoInterface {
         }
 
     }
-
-
-    @Override
+    
+    /**
+     * Method to get login Time
+     */
+	@Override
     public String getLoginTime() {
          LocalDateTime dateTime = LocalDateTime.now();
          String loginTime = dateTime.getDayOfMonth() + " " + dateTime.getMonth() + " " +dateTime.getYear() +" , Time : " +dateTime.getHour()+":"+dateTime.getMinute()+":"+dateTime.getSecond();

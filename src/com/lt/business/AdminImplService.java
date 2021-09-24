@@ -13,23 +13,37 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ *  Admin Business Layer implementing admin DAO.
+ */
 public class AdminImplService  implements AdminDaoInterface {
+	
     private static Logger logger = Logger.getLogger(AdminImplService.class);
     AdminDaoImpl adminDao = AdminDaoImpl.getInstance();
     boolean flag = false;
 
 
+    /**
+     *  this method is used to add professor by admin
+     */
     @Override
     public void addProfessor(Professor professor) throws SQLException {
         adminDao.addProfessor(professor);
 
     }
 
+    /**
+     *  this method is used to approve student by admin
+     */
     @Override
     public void approveStudent(int studentId) throws SQLException, StudentDetailsNotFoundException {
     adminDao.approveStudent(studentId);
     }
 
+    
+    /**
+     *  this method shows list of pending students to admin
+     */
     @Override
     public List<Student> showListOfPendingStudent() throws SQLException {
 
@@ -37,12 +51,18 @@ public class AdminImplService  implements AdminDaoInterface {
         return pendingStudent;
     }
 
+    /**
+     *  this method will generate report card
+     */
     @Override
     public void generateReportCard() throws SQLException{
         adminDao.generateReportCard();
 
     }
-
+    
+    /**
+     *  this method will add course
+     */
     @Override
     public void addCourse(Courses course) throws SQLException {
        try{
@@ -53,7 +73,10 @@ public class AdminImplService  implements AdminDaoInterface {
        }
 
     }
-
+    
+    /**
+     *  this method will delete course
+     */
     @Override
     public void deleteCourse(long courseId,List<Courses> coursesList) throws IOException, SQLException {
         adminDao.deleteCourse(courseId,coursesList);
@@ -61,7 +84,10 @@ public class AdminImplService  implements AdminDaoInterface {
 
     }
 
-
+    
+    /**
+     *  this method will view all admin courses
+     */
     @Override
     public List<Courses> adminViewAllCourses() throws SQLException {
 

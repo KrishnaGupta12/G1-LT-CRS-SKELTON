@@ -5,7 +5,7 @@ import com.lt.bean.Roles;
 import com.lt.bean.Student;
 import com.lt.business.ProfessorImplService;
 import com.lt.business.StudentImplService;
-import com.lt.business.UserImplServiceInterface;
+import com.lt.business.UserImplService;
 import com.lt.exception.CourseNotAssignedToProfessorException;
 import com.lt.exception.CourseNotFoundException;
 import com.lt.exception.GradeNotAddedException;
@@ -24,7 +24,7 @@ import java.util.Scanner;
 
 
 /**
- * @author CRS Applicaion Menu Class. Its main method class to run the application.
+ *  CRS Applicaion Menu Class. Its main method class to run the application.
  * Bases on Options all the methods get called.
  */
 public class CRSApplication {
@@ -32,7 +32,7 @@ public class CRSApplication {
 
         StudentImplService studentImplService = new StudentImplService();
         ProfessorImplService professorImplService = new ProfessorImplService();
-        UserImplServiceInterface userImplService = new UserImplServiceInterface();
+        UserImplService userImplService = new UserImplService();
 
 
         System.out.println("Welcome to CRSApplication");
