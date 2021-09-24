@@ -13,7 +13,7 @@ import java.util.*;
 
 
 /**
- * @author Student Individual Menu with all the Student functionality
+ *  Student Individual Menu with all the Student functionality
  */
 public class StudentMenu {
     public void studentSession(String userName, long student_id, String studentName, String loginTime) throws SQLException {

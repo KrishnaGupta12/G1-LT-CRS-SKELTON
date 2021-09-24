@@ -15,9 +15,16 @@ import java.util.List;
 import java.util.Set;
 import org.apache.log4j.Logger;
 
+/**
+ *  Professor Business Layer implementing ProfessorInterface.
+ */
 public class ProfessorImplService extends User implements ProfessorInterface {
 	 private static Logger logger = Logger.getLogger(ProfessorImplService.class);
 ProfessorDaoImpl pdo = ProfessorDaoImpl.getInstance();
+
+	/**
+	 * this method will display Full Course List
+	 */
 	@Override
     public void viewFullCourses(long professorId) throws CourseNotAssignedToProfessorException  {
     	
@@ -43,20 +50,31 @@ ProfessorDaoImpl pdo = ProfessorDaoImpl.getInstance();
         	logger.error(e.getMessage());
         }
     }
+	
+	/**
+	 * this method will add grade for the student
+	 */
 
     @Override
     public void addGrade(Grade grade) throws SQLException,StudentNotFoundException {
         ProfessorDaoImpl pdo = new ProfessorDaoImpl();
         pdo.addGrade(grade);
     }
-
+    
+    /**
+	 * this method will get the List of registered courses by student
+	 */
     @Override
-    public List<Courses> getListofStudents( long studentId,long semesterId) throws SQLException,StudentNotFoundException{
+    public List<Courses> getListOfRegCourses( long studentId,long semesterId) throws SQLException,StudentNotFoundException{
         ProfessorDaoImpl pdo = new ProfessorDaoImpl();
-        List<Courses> studentList = pdo.getListofStudents(studentId,semesterId);
+        List<Courses> studentList = pdo.getListOfRegCourses(studentId,semesterId);
         return studentList;
     }
-
+    
+    
+    /**
+   	 * this method will get the List of registered students for professor
+   	 */
     @Override
     public List<Student> viewRegisteredStudents(long professorId) throws SQLException, StudentNotFoundException {
         ProfessorDaoImpl pdo = new ProfessorDaoImpl();
@@ -64,6 +82,9 @@ ProfessorDaoImpl pdo = ProfessorDaoImpl.getInstance();
         return studentList;
     }
 
+    /**
+   	 * this method will get the professor Id
+   	 */
     @Override
     public Professor getProfessorId(String username) throws SQLException,ProfessorNotFoundException {
         // pdo = new ProfessorDaoImpl();

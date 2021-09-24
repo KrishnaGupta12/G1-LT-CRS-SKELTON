@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * @author Professor Individual Menu with all the professor functionality
+ * Professor Individual Menu with all the professor functionality
  */
 public class ProfessorMenu {
     public void professorSession(String userName, long professorId, String professorName, String loginTime) throws SQLException, CourseNotAssignedToProfessorException, StudentNotFoundException {
@@ -27,7 +27,7 @@ public class ProfessorMenu {
             System.out.println("Choose your Tasks");
             System.out.println("1. View List of Courses");
             System.out.println("2. Add grades");
-            System.out.println("3. View Registered courses");
+            System.out.println("3. View Registered Students");
             System.out.println("4. Logout");
             Scanner sc = new Scanner(System.in);
             int task = sc.nextInt();
@@ -43,7 +43,7 @@ public class ProfessorMenu {
                     int semesterId = sc.nextInt();
                     System.out.println("Enter StudentId : ");
                     long studentId = sc.nextLong();
-                    List<Courses>  registeredStudentList = professorImplService.getListofStudents(studentId,semesterId);
+                    List<Courses>  registeredStudentList = professorImplService.getListOfRegCourses(studentId,semesterId);
                     if(!registeredStudentList.isEmpty()) {
                         System.out.println(String.format("|%-10s | %-10s |", "-----------", "-----------"));
                         System.out.println(String.format("|%-10s | %-10s |", "COURSE ID", "COURSE NAME"));
@@ -66,7 +66,7 @@ public class ProfessorMenu {
                 case 3:
                     System.out.println("View Registered Students");
                     List<Student> studList = professorImplService.viewRegisteredStudents(professorId);
-                   if(studList.isEmpty()) {
+                   if(!studList.isEmpty()) {
                        System.out.println(String.format("|%-10s | %-10s | %-10s|", "-----------", "-----------", "--------------"));
                        System.out.println(String.format("|%-10s | %-10s | %-10s|", "STUD ID", "STUD NAME", "SEMESTER ID"));
                        System.out.println(String.format("|%-10s | %-10s | %-10s|", "-----------", "-----------", "--------------"));

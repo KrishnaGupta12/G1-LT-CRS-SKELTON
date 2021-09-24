@@ -1,7 +1,6 @@
 package com.lt.business;
 
 import com.lt.bean.*;
-import com.lt.dao.CourseDaoImpl;
 import com.lt.dao.StudentDaoImpl;
 import com.lt.dao.StudentDaoInterface;
 import com.lt.exception.CourseNotFoundException;
@@ -10,13 +9,13 @@ import java.sql.SQLException;
 import java.util.*;
 //import static com.lt.dao.StudentDao.studentsList;
 
+
 /**
- * @author Student Business Layer implementing student DAO.
+ *  Student Business Layer implementing student DAO.
  */
 public class StudentImplService implements StudentDaoInterface {
 
     StudentDaoImpl studentDao = StudentDaoImpl.getInstance();
-    CourseDaoImpl courseDao = null;
     boolean flag = false;
 
 
@@ -33,7 +32,7 @@ public class StudentImplService implements StudentDaoInterface {
 
 
     /**
-     * register for course
+     * this method will allow student to register course
      */
     @Override
     public boolean registerForCourse(long student_id, long semesterId, long courseId) throws SQLException {
@@ -44,7 +43,7 @@ public class StudentImplService implements StudentDaoInterface {
 
 
     /**
-     * show list of registered courses by student
+     * this method show list of registered courses by student
      */
     @Override
     public Set<RegisterCourse> viewRegisteredCourses(long studentId, long semesterId) throws SQLException {
@@ -54,7 +53,7 @@ public class StudentImplService implements StudentDaoInterface {
     }
 
     /**
-     * remove registered courses method
+     * this method will remove registered courses by student
      */
     @Override
     public boolean removeCourse(long courseId) throws SQLException {
@@ -62,7 +61,7 @@ public class StudentImplService implements StudentDaoInterface {
     }
 
     /**
-     * get student ID method
+     * this method will get student ID 
      */
     @Override
     public Student getStudent(String username) throws SQLException {
@@ -72,7 +71,7 @@ public class StudentImplService implements StudentDaoInterface {
     }
 
     /**
-     * show list of available courses
+     * this method will show list of available courses
      */
     @Override
     public List<Courses> showAvailableCourses(long semesterId) throws SQLException {
@@ -83,7 +82,7 @@ public class StudentImplService implements StudentDaoInterface {
     }
 
     /**
-     * show list of registered courses with pending payment status
+     * this method will show list of registered courses with pending payment status
      */
     @Override
     public Set<RegisterCourse> showListofPendingPayment(long student_id) throws SQLException {
@@ -94,7 +93,7 @@ public class StudentImplService implements StudentDaoInterface {
     }
 
     /**
-     * payfees method
+     * this method will allow you to payfees
      */
     @Override
     public boolean payfees(long courseId, Payment payment, long studentId) throws SQLException {
@@ -102,6 +101,9 @@ public class StudentImplService implements StudentDaoInterface {
         return studentDao.payfees(courseId, payment, studentId);
     }
 
+    /**
+     * this method will get the list of gradecard for the students
+     */
     @Override
     public List<GradeCard> viewGradeCard(long semesterId, long studentId) throws SQLException {
         //  studentDao = new StudentDaoImpl();
@@ -109,25 +111,37 @@ public class StudentImplService implements StudentDaoInterface {
         return gradecard;
     }
 
+    /**
+     * this method will dipsplay  payfees card
+     */
     @Override
     public boolean payfeesCard(long courseId, Payment payment, long studentId) throws SQLException {
         return studentDao.payfeesCard(courseId, payment, studentId);
     }
 
 
+    /**
+     * this method will generate transaction id
+     */
     public String generateTransactionId() {
         Random rnd = new Random();
         int number = rnd.nextInt(999999);
         return String.format("%05d", number);
     }
 
-
+    /**
+     * this method will validate card details
+     */
     public static boolean validateCard(String card) {
         if (card.length() == 16)
             return true;
         return false;
     }
-
+    
+    
+    /**
+     * this method will check register course id with list of course id's
+     */
     public boolean checkId(long id,Set<RegisterCourse> list ){
         for (RegisterCourse c :list) {
             if(c.getCourseId() == id)
